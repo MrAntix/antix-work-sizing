@@ -1,9 +1,8 @@
-//  by Anthony J. Johnston, antix.co.uk
-
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Antix.Logging;
+using Antix.Work.Sizing.Services.Models;
 
 namespace Antix.Work.Sizing.Services
 {
@@ -11,166 +10,184 @@ namespace Antix.Work.Sizing.Services
         ITeamService
     {
         readonly ITeamDataService _dataService;
+        readonly ILogAdapter _logger;
 
-        public TeamService(ITeamDataService dataService)
+        public TeamService(
+            ITeamDataService dataService, 
+            ILogAdapter logger)
         {
             _dataService = dataService;
+            _logger = logger;
         }
 
         async Task<TeamModel> ITeamService
-            .Connect(TeamMemberModel teamMember, string teamId)
+            .Connect(string teamId, TeamMemberModel member)
         {
-            if (teamMember == null) throw new ArgumentNullException("teamMember");
+            if (member == null) throw new ArgumentNullException("member");
             if (teamId == null) throw new ArgumentNullException("teamId");
 
             var team = await _dataService.TryGetById(teamId)
-                       ?? _dataService.Create();
+                       ?? new TeamModel();
 
-            team.Members = team.Members.Add(teamMember);
+            team.Members = team.Members
+                               .AddByName(member)
+                               .ToArray();
 
-            return team;
+            _logger.Information(m=>m("Connected '{0}'", member));
+
+            return await _dataService.Update(team);
         }
 
         async Task<TeamModel> ITeamService
-            .TryDisconnect(string teamMemberId, string teamId)
+            .TryDisconnect(string teamId, string memberId)
         {
-            if (teamMemberId == null) throw new ArgumentNullException("teamMemberId");
+            if (memberId == null) throw new ArgumentNullException("memberId");
             if (teamId == null) throw new ArgumentNullException("teamId");
 
             var team = await _dataService.TryGetById(teamId);
             if (team == null) return null;
 
-            team.Members = team.Members.NotById(teamMemberId);
-            team.StoryVotes = team.StoryVotes.NotByOwnerId(teamMemberId);
+            team.Members = team.Members
+                               .NotById(memberId)
+                               .ToArray();
+
+            team.Story.Votes = team.Story.Votes
+                                   .NotByOwnerId(memberId)
+                                   .ToArray();
+
+            _logger.Information(m => m("Disconnected '{0}'", memberId));
+
+            return await _dataService.Update(team);
+        }
+
+        async Task<TeamModel> ITeamService
+            .SetStory(string teamId, string memberId, string title)
+        {
+            var team = await GetTeam(teamId);
+
+            AssertIsStoryOwner(team, memberId);
+
+            team.Story.OwnerId = memberId;
+            team.Story.Title = title;
+
+            _logger.Information(m => m("{0} set title '{1}'", memberId, title));
+
+            return await _dataService.Update(team);
+        }
+
+        async Task<TeamModel> ITeamService
+            .OpenVoting(string teamId, string memberId)
+        {
+            var team = await GetTeam(teamId);
+
+            AssertIsStoryOwner(team, memberId);
+
+            team.Story.VotingIsOpen = true;
+
+            _logger.Information(m => m("{0} opened voting", memberId));
+
+            return await _dataService.Update(team);
+        }
+
+        async Task<TeamModel> ITeamService
+            .CloseVoting(string teamId, string memberId)
+        {
+            var team = await GetTeam(teamId);
+
+            AssertIsStoryOwner(team, memberId);
+
+            team.Story.VotingIsOpen = false;
+
+            _logger.Information(m => m("{0} closed voting", memberId));
+
+            return await _dataService.Update(team);
+        }
+
+        async Task<TeamModel> ITeamService.Vote(
+            string teamId, string memberId, int points)
+        {
+            var team = await GetTeam(teamId);
+
+            AssertIsMember(team, memberId);
+
+            if (!team.Story.VotingIsOpen)
+                throw new VotingIsClosedException();
+
+            team.Story.Votes = team.Story.Votes
+                                   .AddReplaceByOwnerId(
+                                       new VoteModel
+                                           {
+                                               OwnerId = memberId,
+                                               Points = points
+                                           })
+                                   .ToArray();
+
+            _logger.Information(m => m("{0} voted {1} points", memberId, points));
+
+            return await _dataService.Update(team);
+        }
+
+        async Task<TeamModel> ITeamService
+            .ClearVotes(string teamId, string memberId)
+        {
+            var team = await GetTeam(teamId);
+
+            AssertIsMember(team, memberId);
+
+            team.Story.Votes = new VoteModel[] {};
+
+            _logger.Information(m => m("{0} cleared votes", memberId));
+
+            return await _dataService.Update(team);
+        }
+
+        async Task<TeamModel> ITeamService
+            .TryUpdateMember(
+            string teamId, string memberId,
+            string targetMemberId, Action<TeamMemberModel> action)
+        {
+            var team = await GetTeam(teamId);
+
+            if (memberId == targetMemberId)
+                AssertIsMember(team, memberId);
+            else
+                AssertIsStoryOwner(team, memberId);
+
+            team.Members = team.Members
+                               .UpdateById(targetMemberId, action)
+                               .ToArray();
+
+            _logger.Information(m => m("{0} updated {1}", memberId, targetMemberId));
+
+            return await _dataService.Update(team);
+        }
+
+        async Task<TeamModel> GetTeam(string teamId)
+        {
+            if (teamId == null) throw new ArgumentNullException("teamId");
+
+            var team = await _dataService.TryGetById(teamId);
+            if (team == null)
+                throw new TeamNotfoundException(teamId);
 
             return team;
         }
-    }
 
-    public interface ITeamService
-    {
-        Task<TeamModel> Connect(TeamMemberModel teamMember, string teamId);
-        Task<TeamModel> TryDisconnect(string teamMemberId, string teamId);
-    }
-
-    public interface ITeamDataService
-    {
-        Task<TeamModel> TryGetById(string teamId);
-        TeamModel Create();
-    }
-
-    public class TeamModel : IHasId
-    {
-        public TeamModel()
+        static void AssertIsMember(TeamModel team, string memberId)
         {
-            Members = new TeamMemberModel[] {};
-            StoryVotes = new StoryVoteModel[] {};
+            if (memberId == null) throw new ArgumentNullException("memberId");
+
+            if (!team.Members.ExistsById(memberId))
+                throw new TeamMemberNotFoundException(memberId, team.Id);
         }
 
-        public string Id { get; set; }
-
-        public IEnumerable<TeamMemberModel> Members { get; set; }
-
-        public string Story { get; set; }
-        public string StoryOwnerId { get; set; }
-        public IEnumerable<StoryVoteModel> StoryVotes { get; set; }
-    }
-
-    public class TeamMemberModel : IHasId, IHasName
-    {
-        public string Id { get; set; }
-        public string Name { get; set; }
-
-        public bool IsObserver { get; set; }
-    }
-
-    public class StoryVoteModel : IHasOwnerId
-    {
-        public int Points { get; set; }
-        public string OwnerId { get; set; }
-    }
-
-    public interface IHasName
-    {
-        string Name { get; set; }
-    }
-
-    public interface IHasId
-    {
-        string Id { get; }
-    }
-
-    public interface IHasOwnerId
-    {
-        string OwnerId { get; }
-    }
-
-    public static class ModelExtensions
-    {
-        public static IEnumerable<T> Add<T>(
-            this IEnumerable<T> items, T item)
-            where T : class, IHasName
+        static void AssertIsStoryOwner(TeamModel team, string memberId)
         {
-            if (items == null) throw new ArgumentNullException("items");
-            if (item == null) throw new ArgumentNullException("item");
+            AssertIsMember(team, memberId);
 
-            if (string.IsNullOrWhiteSpace(item.Name))
-                item.Name = "Shy Member";
-
-            var itemsArray = items as T[] ?? items.ToArray();
-
-            var name = item.Name;
-
-            var count = 1;
-            while (itemsArray.Any(i => i.Name.Equals(name, StringComparison.OrdinalIgnoreCase)))
-            {
-                name = string.Concat(item.Name, " (", ++count, ")");
-            }
-
-            return itemsArray.Concat(new[] {item});
-        }
-
-        public static IEnumerable<T> NotById<T>(
-            this IEnumerable<T> items,
-            string id)
-            where T : IHasId
-        {
-            if (items == null) throw new ArgumentNullException("items");
-
-            return items.Where(
-                i => !i.Id.Equals(id, StringComparison.OrdinalIgnoreCase));
-        }
-
-        public static IEnumerable<T> NotByOwnerId<T>(
-            this IEnumerable<T> items,
-            string id)
-            where T : IHasOwnerId
-        {
-            if (items == null) throw new ArgumentNullException("items");
-
-            return items.Where(
-                i => !i.OwnerId.Equals(id, StringComparison.OrdinalIgnoreCase));
-        }
-
-        public static T ByNameOrDefault<T>(
-            this IEnumerable<T> items, string value)
-            where T : class, IHasName
-        {
-            if (items == null) throw new ArgumentNullException("items");
-            if (value == null) throw new ArgumentNullException("value");
-
-            return items.SingleOrDefault(
-                i => i.Name.Equals(value, StringComparison.OrdinalIgnoreCase));
-        }
-
-        public static T ByIdOrDefault<T>(
-            this IEnumerable<T> items, string value)
-            where T : class, IHasId
-        {
-            if (items == null) throw new ArgumentNullException("items");
-            if (value == null) throw new ArgumentNullException("value");
-
-            return items.SingleOrDefault(i => i.Id.Equals(value));
+            if (team.Story.OwnerId != null
+                && !team.Story.OwnerId.Equals(memberId))
+                throw new RequiresOwnerPermissionException(memberId, team.Story.OwnerId);
         }
     }
 }

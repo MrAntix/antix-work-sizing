@@ -1,0 +1,313 @@
+﻿@import url('imports/vars.less');
+
+html,body{min-height:100%;margin:0;padding:0;}
+body {
+    .box;
+    .linearGradient(@backgroundColor);
+    color: @color;
+    font-family: @font;
+    font-size: 95%;
+    font-weight:100;
+}
+textarea{
+    font-family: @font;
+}
+input, textarea, select, button {
+    font-size: 1em;
+}
+a{
+    font-size: 1em;
+    color:@color;    
+}
+.header h1{
+    font-size:10em;
+    margin:-.2em 0 -.8em;
+
+    color:darken(desaturate(@backgroundColor,10%),3%);
+}
+.page{
+    .box;
+    width:100%;
+    overflow:hidden;
+
+    min-width:300px;max-width:600px;
+    margin:0 auto;
+    padding: 1em;
+}
+.body{
+    min-height:300px;
+}
+
+.footer{
+    text-align:right;
+}
+
+.footer p {
+    font-size: 1em;
+    margin: 0 0 -.6em;
+}
+.footer p, .footer a{
+    color:darken(desaturate(@backgroundColor,25%),25%);
+}
+.share a {
+    text-decoration: none;
+    padding: @borderWidth;
+    padding-left: (@borderWidth *2 + @iconSize);
+    line-height:1.8em;
+
+    background-image: url(../Images/Share.svg);
+    background-size: @iconSize @iconSize;
+    background-position: @borderWidth center;
+    background-repeat: no-repeat;
+}
+
+.box{
+    -ms-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing:border-box;
+
+}
+
+#HelpContainer{
+    .box;
+    .rounded;
+    .shadowed;
+    display:none;
+    z-index:2;
+
+    position:relative;
+    max-width:280px;
+
+    background-color:@helpBackgroundColor;
+    color:@helpColor;
+}
+
+.showHelp,
+.showDemo{
+    .box;
+    .rounded;
+
+    position:relative;
+    z-index:1;
+    float:right;
+
+    margin:0 0 @borderWidth @borderWidth;
+    border:solid @borderWidth @helpBackgroundColor;
+    padding:0;
+    background-color:@helpBackgroundColor;
+    color:@helpColor;    
+}
+
+.helpContainerInner{
+    padding:0 1em;
+}
+    .helpContainerInner:after {
+        border-color: @helpBackgroundColor rgba(0, 0, 0, 0);
+        border-style: solid;
+        border-width: 15px 15px 0;
+        bottom: -15px;
+        content: "";
+        display: block;
+        left: 50px;
+        position: absolute;
+        width: 0;
+    }
+.below .helpContainerInner:after {
+    border-width: 0 15px 15px;
+    bottom: inherit;
+    top: -15px;
+}
+
+.row .help{
+    display:none;
+}
+
+.row{
+    .box;
+    .rounded;
+    position:relative;
+    overflow:visible;
+    clear:both;
+    list-style:none;
+    margin-bottom:@borderWidth;
+}
+.withLabel {
+    padding: 0 0 0 (@labelWidth+@borderWidth);
+}
+.row .input{
+    min-height:2.5em;
+}
+.row .inputs{
+    padding:0;
+    margin:0;
+}
+
+.row>label{
+    position:absolute;
+    margin-left:-@labelWidth;
+    width:5.5em;
+    padding:.3em 0;
+}
+
+.input{
+    .box;
+    .rounded;
+    position:relative;
+    display:block;
+    overflow:auto;
+
+    background-color:@inputBackgroundColor;
+    color:@inputColor;
+    padding:@borderWidth;
+}
+.input input,
+.input textarea,
+.input select,
+.input button,
+.input div{
+    .box;
+    .rounded;
+
+    display:block;
+    width:100%;
+    height:100%;
+    border:none;
+    
+    padding:@borderWidth;
+    margin:0;
+
+    outline:none;
+    -webkit-appearance: none;
+
+    color:inherit;
+    background-color:transparent;
+}
+.input textarea {
+    width: 100%!important; //over-rides user resize
+}
+
+.withAction{
+    padding-right:@buttonWidth + (@borderWidth*5);
+}
+.withAction button{
+    .rounded;
+    position:absolute;
+    top:@borderWidth;bottom:@borderWidth;
+    right:@borderWidth;
+    width:@buttonWidth;height:auto;
+
+    border:solid @borderWidth transparent;
+    padding:@borderWidth 0;
+    background-color:@actionBackgroundColor;
+}
+.withAction button.active{
+    background-color:@activeBackgroundColor;
+    border:solid @borderWidth rgba(255,255,255,.1);
+}
+
+.readonly,
+.readonly .input,
+.input [readonly],
+.row .withAction button[disabled]{
+    background-color:@inputReadonlyBackgroundColor;
+}
+
+.story .title .withAction button {
+    
+    background-image: url(../Images/Lock.svg);
+    background-size: (@iconSize*2) (@iconSize*2);
+    background-position: center center;
+    background-repeat: no-repeat;
+
+    padding-top:4.25em;
+    overflow:hidden;
+}
+
+.story .title .withAction button.active {
+    background-image: url(../Images/Unlock.svg);
+}
+
+.story [name='title']{
+    font-size:1.25em;
+    min-height:5em;
+}
+.story .points .results{
+    min-height:3em;
+}
+.story .points .result {
+    .box;
+    float: left;
+    width:100%;
+    margin: 0;
+    padding: @borderWidth;
+    border: solid @borderWidth transparent;
+    text-align: center;
+}
+
+.user .points{
+    display:none;
+}
+.user .points [type='radio']{
+    display:none;
+}
+
+    .user .points [type='radio'] + label {
+        .box;
+        .rounded;
+        float:left;
+        width: 20%;height:100%;
+        margin:0;padding:(@borderWidth * 3) @borderWidth;
+        border:solid @borderWidth @inputBackgroundColor;
+        text-align:center;
+    }
+
+    .user .points [type='radio'] + label.active {
+        .box;
+        border:solid @borderWidth rgba(255,255,255,.1);
+    }
+
+.users .input {
+    padding-left: (@borderWidth*2 + @iconSize);
+    padding-right: (@borderWidth*2 + @iconSize);
+    background-image: url(../Images/User.svg);
+    background-size: @iconSize @iconSize;
+    background-position: @borderWidth center;
+    background-repeat: no-repeat;
+    margin-bottom:@borderWidth;
+}
+.users .input.inactive{
+    background-image: url(../Images/User_inactive.svg);
+}
+.input.voted{
+    background-color:@selectedBackgroundColor;
+}
+
+@pointsColor:#c33;
+.points .p8,
+.row .p8{
+    color:@activeColor;
+    background-color:@pointsColor;
+}
+.points .p5,
+.row .p5{
+    color:@activeColor;
+    background-color:spin(@pointsColor,-30);
+}
+.points .p3,
+.row .p3{
+    color:@activeColor;
+    background-color:spin(@pointsColor,-60);
+}
+.points .p2,
+.row .p2{
+    color:@activeColor;
+    background-color:spin(@pointsColor,-90);
+}
+.points .p1,
+.row .p1{
+    color:@activeColor;
+    background-color:spin(@pointsColor,-120);
+}
+
+@import url(dialog.less);
+

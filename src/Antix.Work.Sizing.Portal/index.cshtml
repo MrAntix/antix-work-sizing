@@ -1,0 +1,133 @@
+﻿@using System.Web.Optimization
+@using Antix.Work.Sizing.Portal.Properties
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>@Resources.Title</title>
+        <!--[if lt IE 9]>
+            @Styles.Render("~/bundles/styles-ie")
+        <![endif]-->
+        <!--[if gte IE 9]><!-->
+            @Styles.Render("~/bundles/styles")
+        <!--<![endif]-->
+        
+        <link rel="canonical" href="http://size.antix.co.uk" />
+
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+        
+        <meta name='apple-mobile-web-app-capable' content='yes' />
+        <meta name='apple-mobile-web-app-status-bar-style' content='black' />
+
+        <meta name="description" content="A task sizing tool for online project teams, enter a topic and get your team to estimate complexity by clicking one of the 5 options, when all votes are in you see the result" />
+        <meta name="keywords" content="planning poker, complexity sizing, task estimation, team task estimating tool" />
+		<link rel="icon" type="image/svg+xml" href="Images/icon.svg"/>
+    </head>
+    <body>
+        <div class="page">
+            <div class="header"><h1>[Size]</h1></div>
+            <div class="body">
+@*                <button class="showDemo">Demo</button>*@
+                <button class="showHelp">?</button>
+                <div class="story">
+                    <div class="row share readonly">
+                        <div class="help">
+                            @Html.Raw(Resources.Help_Share)
+                        </div>
+                        <div class="input">
+                            
+                        </div>
+                    </div>
+                    <div class="row title">
+                        <div class="help">
+                            @Html.Raw(Resources.Help_Title)
+                        </div>
+                        <div class="input withAction">
+                            <textarea name="title" readonly="readonly" placeholder="(enter topic)"></textarea>
+                            <button class="action" disabled="disabled"></button>
+                        </div>
+                    </div>
+                    <div class="row points readonly">
+                        <div class="help">
+                            @Html.Raw(Resources.Help_Results)
+                        </div>
+                        <div class="input">
+                            <span class="results"></span>
+                            <button class="action">Open</button>
+                        </div>
+                    </div>
+                </div>
+        
+                <div class="user">
+                    <div class="row points">
+                        <div class="input">
+                            <input name="points" id="Points1" value="1" type="radio"/>
+                            <label for="Points1" class="p1">1</label>
+                            <input name="points" id="Points2" value="2" type="radio"/>
+                            <label for="Points2" class="p2">2</label>
+                            <input name="points" id="Points3" value="3" type="radio"/>
+                            <label for="Points3" class="p3">3</label>
+                            <input name="points" id="Points5" value="5" type="radio"/>
+                            <label for="Points5" class="p5">5</label>
+                            <input name="points" id="Points8" value="8" type="radio"/>
+                            <label for="Points8" class="p8">8</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="users row">
+                    <div class="help">
+                        @Html.Raw(Resources.Help_Users)
+                    </div>
+                    <ul class="inputs">
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer">
+                <p>by <a href="http://antix.co.uk">antix.co.uk</a><br />
+                    on <a href="http://twitter.com/mrantix">twitter/mrantix</a>
+                </p>
+            </div>
+        </div>
+        
+        <!--[if lt IE 9]>
+            @Scripts.Render("~/bundles/scripts-ie")
+        <![endif]-->
+        <!--[if gte IE 9]><!-->
+            @Scripts.Render("~/bundles/scripts")
+        <!--<![endif]-->
+        
+        <div id="UserNameView" class="dialog">
+            @Html.Raw(Resources.Welcome_title)
+            <div class="row">
+                <div class="input withAction">
+                    <input name="UserName">
+                    <button class="action">OK</button>
+                </div>
+            </div>
+            @Html.Raw(Resources.Welcome_message)
+        </div>
+        
+        <div id="HelpContainer" class="hide">
+            <div class="withAction">
+                <div class="helpContainerInner"></div>
+            
+                <button class="next">next</button>
+            </div>
+        </div>
+
+        <script src="/signalr/hubs"></script>
+        <script src="/Scripts/app.js"></script>
+
+        <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+            ga('create', 'UA-2936095-10', 'antix.co.uk');
+            ga('send', 'pageview');
+
+        </script>
+    </body>
+</html>

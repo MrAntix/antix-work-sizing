@@ -11,6 +11,8 @@
     <AssemblyName>Antix.Work.Sizing</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -39,10 +41,53 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Antix\IO\IOExtensions.cs" />
+    <Compile Include="Antix\Logging\ILogAdapter.cs" />
+    <Compile Include="Antix\Logging\LoggerExtensionsDebug.cs" />
+    <Compile Include="Antix\Logging\LoggerExtensionsError.cs" />
+    <Compile Include="Antix\Logging\LoggerExtensionsFatal.cs" />
+    <Compile Include="Antix\Logging\LoggerExtensionsInformation.cs" />
+    <Compile Include="Antix\Logging\LoggerExtensionsWarning.cs" />
+    <Compile Include="Antix\Logging\LoggerHelper.cs" />
+    <Compile Include="Antix\Logging\LogLevel.cs" />
+    <Compile Include="Antix\Logging\LogMessageDelegate.cs" />
+    <Compile Include="Antix\StringExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Services\Models\IHasId.cs" />
+    <Compile Include="Services\Models\IHasIdAndName.cs" />
+    <Compile Include="Services\Models\IHasName.cs" />
+    <Compile Include="Services\Models\IHasOwnerId.cs" />
+    <Compile Include="Services\ITeamDataService.cs" />
+    <Compile Include="Services\ITeamService.cs" />
+    <Compile Include="Services\Models\ModelExtensions.cs" />
+    <Compile Include="Services\Models\StoryModel.cs" />
+    <Compile Include="Services\Models\VoteModel.cs" />
+    <Compile Include="Services\Models\VoteResultModel.cs" />
+    <Compile Include="Services\Models\TeamMemberModel.cs" />
+    <Compile Include="Services\TeamMemberNotFoundException.cs" />
+    <Compile Include="Services\RequiresOwnerPermissionException.cs" />
+    <Compile Include="Services\SizeException.cs" />
+    <Compile Include="Services\Models\TeamModel.cs" />
+    <Compile Include="Services\TeamNotfoundException.cs" />
     <Compile Include="Services\TeamService.cs" />
+    <Compile Include="Services\VotingIsClosedException.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

@@ -1,0 +1,45 @@
+﻿@backgroundColor: #edb;
+@color:#333;
+
+@inputBackgroundColor: #fff;
+@inputColor:#333;
+@inputReadonlyBackgroundColor: rgba(0,0,0,.05);
+@inputReadonlyColor:rgba(0,0,0,.6);
+
+@actionBackgroundColor: #696;
+@actionColor:#fff;
+@activeBackgroundColor: #363;
+@activeColor:#fff;
+@selectedBackgroundColor: spin(@backgroundColor,120);
+@selectedColor:#fff;
+
+@helpBackgroundColor:#ffc;
+@helpColor:#555;
+
+@labelWidth:5em;
+@buttonWidth:20%;
+@borderWidth:.4em;
+
+@iconSize:1.6em;
+
+@font:Helvetica, Arial, 'DejaVu Sans', 'Liberation Sans', Freesans, sans-serif;
+
+.linearGradient(@c){
+    background-color: @backgroundColor;
+    background-image: linear-gradient(bottom, darken(@c,15%) 7%, @c 70%);
+    background-image: -o-linear-gradient(bottom, darken(@c,15%) 7%, @c 70%);
+    background-image: -moz-linear-gradient(bottom, darken(@c,15%) 7%, @c 70%);
+    background-image: -webkit-linear-gradient(bottom, darken(@c,15%) 7%, @c 70%);
+    background-image: -ms-linear-gradient(bottom, darken(@c,15%) 7%, @c 70%);
+}
+
+.opacity(@v){
+    opacity:@v;
+}
+
+.rounded{
+    border-radius:.2em;
+}
+.shadowed{
+    box-shadow: rgba(0,0,0,.4) 2px 2px 8px;
+}
