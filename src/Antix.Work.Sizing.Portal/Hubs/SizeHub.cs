@@ -1,9 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Antix.Work.Sizing.Portal.Models;
 using Antix.Work.Sizing.Services;
-using Antix.Work.Sizing.Services.Models;
 using Microsoft.AspNet.SignalR;
 
 namespace Antix.Work.Sizing.Portal.Hubs
@@ -18,49 +15,34 @@ namespace Antix.Work.Sizing.Portal.Hubs
             _teamService = teamService;
         }
 
-        public async Task<User> Connect(User user)
+        public async Task<Session> Connect(User user)
         {
-            var team = await _teamService.Connect(
-                user.TeamId, new TeamMemberModel
-                    {
-                        Id = Context.ConnectionId,
-                        Name = user.Name,
-                        IsObserver = user.IsObserver
-                    });
+            if (user.Id != Context.ConnectionId)
+                await _teamService.TryDisconnect(user.Id);
 
-            var teamMember = team.Members.ById(Context.ConnectionId);
+            var team = await _teamService
+                                 .Connect(
+                                     user.TeamId, Map.ToServer(user, Context.ConnectionId));
 
             await Groups.Add(Context.ConnectionId, team.Id);
 
             await Clients
                 .OthersInGroup(team.Id)
-                .teamUpdate(MapToClient(team));
+                .teamUpdate(Map.ToClient(team));
 
-            user.Name = teamMember.Name;
-            user.TeamId = team.Id;
-
-            return user;
+            return Map.ToClient(team, Context.ConnectionId);
         }
 
-        static Team MapToClient(TeamModel item)
+        public override async Task OnDisconnected()
         {
-            return new Team
-                {
-                    Id = item.Id,
-                    Members = MapToClient(item.Members)
-                };
-        }
+            var team = await _teamService
+                                 .TryDisconnect(Context.ConnectionId);
+            if (team != null)
+                await Clients
+                    .OthersInGroup(team.Id)
+                    .teamUpdate(Map.ToClient(team));
 
-        static User MapToClient(TeamMemberModel item)
-        {
-            return new User
-                {
-                };
-        }
-
-        static User[] MapToClient(IEnumerable<TeamMemberModel> items)
-        {
-            return items.Select(MapToClient).ToArray();
+            await base.OnDisconnected();
         }
     }
 }

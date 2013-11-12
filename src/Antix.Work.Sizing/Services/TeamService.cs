@@ -24,7 +24,6 @@ namespace Antix.Work.Sizing.Services
             .Connect(string teamId, TeamMemberModel member)
         {
             if (member == null) throw new ArgumentNullException("member");
-            if (teamId == null) throw new ArgumentNullException("teamId");
 
             var team = await _dataService.TryGetById(teamId)
                        ?? new TeamModel();
@@ -35,17 +34,26 @@ namespace Antix.Work.Sizing.Services
 
             _logger.Information(m=>m("Connected '{0}'", member));
 
-            return await _dataService.Update(team);
+            team = await _dataService.Update(team);
+            await _dataService.TryAddIndex(member.Id, team.Id);
+
+            return team;
         }
 
         async Task<TeamModel> ITeamService
-            .TryDisconnect(string teamId, string memberId)
+            .TryDisconnect(string memberId)
         {
-            if (memberId == null) throw new ArgumentNullException("memberId");
-            if (teamId == null) throw new ArgumentNullException("teamId");
+            if (string.IsNullOrWhiteSpace(memberId))
+                return null;
+
+            var teamId = await _dataService.TryRemoveIndex(memberId);
+            if (string.IsNullOrWhiteSpace(teamId))
+                return null;
 
             var team = await _dataService.TryGetById(teamId);
             if (team == null) return null;
+
+            if (!team.Members.ExistsById(memberId)) return null;
 
             team.Members = team.Members
                                .NotById(memberId)

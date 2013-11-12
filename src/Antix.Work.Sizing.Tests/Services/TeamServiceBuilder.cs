@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Antix.Work.Sizing.Services;
 using Antix.Work.Sizing.Services.Models;
@@ -33,6 +34,13 @@ namespace Antix.Work.Sizing.Tests.Services
 
                         return Task.FromResult(team);
                     });
+
+            dataServiceMock
+                .Setup(o => o.TryAddIndex(It.IsAny<string>(), It.IsAny<string>()))
+                .Returns(Task.FromResult(0));
+            dataServiceMock
+                .Setup(o => o.TryRemoveIndex(It.IsAny<string>()))
+                .Returns(Task.FromResult(_teams.Select(t=>t.Id).FirstOrDefault()));
 
             return new TeamService(
                 dataServiceMock.Object,

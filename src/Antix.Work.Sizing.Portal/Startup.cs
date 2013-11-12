@@ -39,7 +39,7 @@ namespace Antix.Work.Sizing.Portal
             {
                 if (Trace.Listeners.Count == 0) return;
 
-                if (logLevel <= LogLevel.Information) return;
+               // if (logLevel <= LogLevel.Information) return;
 
                 var message = LoggerHelper
                     .GetMessageFunc(formatProvider, getMessage)();
@@ -54,7 +54,7 @@ namespace Antix.Work.Sizing.Portal
 
         public class TeamDataService : ITeamDataService
         {
-            public async Task<TeamModel> TryGetById(string id)
+            async Task<TeamModel> ITeamDataService.TryGetById(string id)
             {
                 if (string.IsNullOrWhiteSpace(id)) return null;
 
@@ -63,7 +63,7 @@ namespace Antix.Work.Sizing.Portal
                            : default(TeamModel);
             }
 
-            public async Task<TeamModel> Update(TeamModel data)
+            async Task<TeamModel> ITeamDataService.Update(TeamModel data)
             {
                 if (data.Id == null)
                 {
@@ -78,6 +78,20 @@ namespace Antix.Work.Sizing.Portal
                     data.Id, data, DateTimeOffset.UtcNow.AddSeconds(1440));
 
                 return data;
+            }
+
+            async Task ITeamDataService.TryAddIndex(string memberId, string id)
+            {
+                MemoryCache.Default.Add(
+                    memberId, id, DateTimeOffset.UtcNow.AddSeconds(1440));
+            }
+
+            async Task<string> ITeamDataService.TryRemoveIndex(string memberId)
+            {
+                if (MemoryCache.Default.Contains(memberId))
+                    return (string) MemoryCache.Default.Remove(memberId);
+
+                return null;
             }
 
             static async Task<bool> Exists(string id)

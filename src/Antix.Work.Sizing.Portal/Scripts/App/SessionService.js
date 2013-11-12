@@ -36,11 +36,9 @@
                 }
 
                 hub.server.connect(service.user)
-                    .done(function(user) {
-                        service.saveUser(user);
-                        hub.server.getCurrentTeam()
-                            .done(service.handleResponse)
-                            .fail(service.error);
+                    .done(function(session) {
+                        service.saveUser(session.User);
+                        service.handleResponse(session.Team);
                     })
                     .fail(service.error);
             },

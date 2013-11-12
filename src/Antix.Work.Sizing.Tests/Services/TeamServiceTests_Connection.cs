@@ -47,7 +47,7 @@ namespace Antix.Work.Sizing.Tests.Services
                     .With(team)
                     .Build();
 
-            var result = await teamService.TryDisconnect(TeamId, MemberId);
+            var result = await teamService.TryDisconnect(MemberId);
 
             Assert.Equal(1, result.Members.Count());
             Assert.Equal(1, result.Story.Votes.Count());

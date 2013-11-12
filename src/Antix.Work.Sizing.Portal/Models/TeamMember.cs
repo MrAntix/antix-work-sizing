@@ -1,11 +1,8 @@
 ﻿namespace Antix.Work.Sizing.Portal.Models
 {
-    public class User
+    public class TeamMember
     {
-        public string Id { get; set; }
         public string Name { get; set; }
-
-        public string TeamId { get; set; }
         public bool IsActive { get; set; }
     }
 }

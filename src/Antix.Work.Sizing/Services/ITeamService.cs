@@ -7,7 +7,7 @@ namespace Antix.Work.Sizing.Services
     public interface ITeamService
     {
         Task<TeamModel> Connect(string teamId, TeamMemberModel teamMember);
-        Task<TeamModel> TryDisconnect(string teamId, string teamMemberId);
+        Task<TeamModel> TryDisconnect(string teamMemberId);
 
         Task<TeamModel> SetStory(string teamId, string memberId, string story);
 
@@ -18,5 +18,6 @@ namespace Antix.Work.Sizing.Services
 
         Task<TeamModel> TryUpdateMember(string teamId, string memberId, string targetMemberId,
                                         Action<TeamMemberModel> action);
+
     }
 }
