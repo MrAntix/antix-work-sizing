@@ -26,7 +26,7 @@ namespace Antix.Work.Sizing.Services
             if (member == null) throw new ArgumentNullException("member");
 
             var team = await _dataService.TryGetById(teamId)
-                       ?? new TeamModel();
+                       ?? new TeamModel {Id = teamId};
 
             team.Members = team.Members
                                .AddByName(member)
