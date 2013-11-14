@@ -70,22 +70,33 @@ namespace Antix.Work.Sizing.Services
             this ITeamService service,
             string memberId, string title)
         {
-            if (service == null) throw new ArgumentNullException("service");
-            if (memberId == null) throw new ArgumentNullException("memberId");
             if (title == null) throw new ArgumentNullException("title");
 
-            var teamId = await service.TryGetTeamIdByMemberId(memberId);
-            if (teamId != null)
-            {
-                return await service.LockStory(
-                    teamId, memberId,
-                    title);
-            }
-
-            throw new TeamNotfoundException();
+            var teamId = await service.GetTeamIdByMemberId(memberId);
+            return await service.LockStory(
+                teamId, memberId,
+                title);
         }
 
         public static async Task<TeamModel> UnlockStory(
+            this ITeamService service,
+            string memberId)
+        {
+            var teamId = await service.GetTeamIdByMemberId(memberId);
+            return await service.UnlockStory(
+                teamId, memberId);
+        }
+
+        public static async Task<TeamModel> OpenVoting(
+            this ITeamService service,
+            string memberId)
+        {
+            var teamId = await service.GetTeamIdByMemberId(memberId);
+            return await service
+                             .OpenVoting(teamId, memberId);
+        }
+
+        public static async Task<string> GetTeamIdByMemberId(
             this ITeamService service,
             string memberId)
         {
@@ -95,8 +106,7 @@ namespace Antix.Work.Sizing.Services
             var teamId = await service.TryGetTeamIdByMemberId(memberId);
             if (teamId != null)
             {
-                return await service.UnlockStory(
-                    teamId, memberId);
+                return teamId;
             }
 
             throw new TeamNotfoundException();
