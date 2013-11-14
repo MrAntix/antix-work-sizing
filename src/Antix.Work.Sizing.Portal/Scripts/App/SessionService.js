@@ -6,8 +6,9 @@
             cookie = require("cookie");
 
         var service = {
-            saveUser:function(user) {
-                service.user = user;
+            saveUser: function (user) {
+                if (user !== undefined) service.user = user;
+                
                 cookie(userCookieName, service.user, { expires: 7 });
             },
             connect: function (teamId) {
@@ -38,11 +39,11 @@
                 hub.server.connect(service.user)
                     .done(function(session) {
                         service.saveUser(session.User);
-                        service.handleResponse(session.Team);
+                        service.teamUpdate(session.Team);
                     })
                     .fail(service.error);
             },
-            handleResponse: function(team) {
+            teamUpdate: function(team) {
                 logger.log("SessionService.handleResponse");
 
                 if ($.grep(team.Users,
@@ -71,8 +72,10 @@
                             }
                         }
 
-                        if (user.Name == service.user.Name)
+                        if (user.Name == service.user.Name) {
                             service.user.IsObserver = user.IsObserver;
+                            service.saveUser();
+                        }
                     });
 
                     var prime = function (u) {

@@ -13,7 +13,7 @@
 
         hub.client.teamUpdate = function(data) {
             logger.log("size.teamUpdate");
-            sessionService.handleResponse(data);
+            sessionService.teamUpdate(data);
         };
 
         return {
