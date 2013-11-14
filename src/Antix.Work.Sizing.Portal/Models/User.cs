@@ -6,6 +6,6 @@
         public string Name { get; set; }
 
         public string TeamId { get; set; }
-        public bool IsActive { get; set; }
+        public bool IsObserver { get; set; }
     }
 }

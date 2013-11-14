@@ -2,11 +2,15 @@
 using System.Diagnostics;
 using System.Runtime.Caching;
 using System.Threading.Tasks;
+
 using Antix.Logging;
 using Antix.Work.Sizing.Portal.Hubs;
+using Antix.Work.Sizing.Portal.Properties;
 using Antix.Work.Sizing.Services;
 using Antix.Work.Sizing.Services.Models;
+
 using Microsoft.AspNet.SignalR;
+
 using Owin;
 
 namespace Antix.Work.Sizing.Portal
@@ -29,7 +33,7 @@ namespace Antix.Work.Sizing.Portal
                 });
         }
 
-        public class TraceLogger : ILogAdapter
+        class TraceLogger : ILogAdapter
         {
             public void Log(
                 LogLevel logLevel,
@@ -39,7 +43,7 @@ namespace Antix.Work.Sizing.Portal
             {
                 if (Trace.Listeners.Count == 0) return;
 
-               // if (logLevel <= LogLevel.Information) return;
+                // if (logLevel <= LogLevel.Information) return;
 
                 var message = LoggerHelper
                     .GetMessageFunc(formatProvider, getMessage)();
@@ -52,7 +56,7 @@ namespace Antix.Work.Sizing.Portal
             }
         }
 
-        public class TeamDataService : ITeamDataService
+        class TeamDataService : ITeamDataService
         {
             async Task<TeamModel> ITeamDataService.TryGetById(string id)
             {
@@ -74,24 +78,44 @@ namespace Antix.Work.Sizing.Portal
                     }
                 }
 
-                MemoryCache.Default.Add(
-                    data.Id, data, DateTimeOffset.UtcNow.AddSeconds(1440));
+                AddOrUpdate(data.Id, data);
 
                 return data;
             }
 
-            async Task ITeamDataService.TryAddIndex(string memberId, string id)
+            async Task ITeamDataService.TryAddIndex(string indexKey, string value)
             {
-                MemoryCache.Default.Add(
-                    memberId, id, DateTimeOffset.UtcNow.AddSeconds(1440));
+                AddOrUpdate(indexKey, value);
             }
 
-            async Task<string> ITeamDataService.TryRemoveIndex(string memberId)
+            async Task<string> ITeamDataService.TryGetIndex(string indexKey)
             {
-                if (MemoryCache.Default.Contains(memberId))
-                    return (string) MemoryCache.Default.Remove(memberId);
+                if (IsValidIndexKey(indexKey)
+                    && MemoryCache.Default.Contains(indexKey))
+                    return (string) MemoryCache.Default.Get(indexKey);
 
                 return null;
+            }
+
+            async Task<string> ITeamDataService.TryRemoveIndex(string indexKey)
+            {
+                if (IsValidIndexKey(indexKey)
+                    && MemoryCache.Default.Contains(indexKey))
+                    return (string) MemoryCache.Default.Remove(indexKey);
+
+                return null;
+            }
+
+            static void AddOrUpdate(string key, object value)
+            {
+                MemoryCache.Default.Set(
+                    key, value, 
+                    DateTimeOffset.UtcNow.AddSeconds(Settings.Default.TeamTimeoutSeconds));
+            }
+
+            static bool IsValidIndexKey(string indexKey)
+            {
+                return !string.IsNullOrWhiteSpace(indexKey);
             }
 
             static async Task<bool> Exists(string id)

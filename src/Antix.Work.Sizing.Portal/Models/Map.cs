@@ -21,7 +21,11 @@ namespace Antix.Work.Sizing.Portal.Models
                 {
                     Id = model.Id,
                     Users = ToClient(model.Members),
-                    Story = ToClient(model.Story)
+                    CurrentStory = ToClient(model.Story),
+                    CurrentStoryOwner = model.Members
+                        .Where(m=>m.Id==model.Story.OwnerId)
+                        .Select(m=>m.Name)
+                        .SingleOrDefault()
                 };
         }
 
@@ -32,7 +36,7 @@ namespace Antix.Work.Sizing.Portal.Models
                 Id = model.Id,
                 Name = model.Name,
                 TeamId = teamId,
-                IsActive = !model.IsObserver
+                IsObserver = model.IsObserver
             };
         }
 
@@ -41,7 +45,7 @@ namespace Antix.Work.Sizing.Portal.Models
             return new TeamMember
             {
                 Name = model.Name,
-                IsActive = !model.IsObserver
+                IsObserver = model.IsObserver
             };
         }
 
@@ -80,7 +84,7 @@ namespace Antix.Work.Sizing.Portal.Models
                 {
                     Id = id,
                     Name = model.Name,
-                    IsObserver = !model.IsActive
+                    IsObserver = !model.IsObserver
                 };
         }
     }

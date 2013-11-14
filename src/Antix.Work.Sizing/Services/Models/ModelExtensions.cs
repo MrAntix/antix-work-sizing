@@ -9,8 +9,12 @@ namespace Antix.Work.Sizing.Services.Models
     {
         public static IEnumerable<T> Add<T>(
             this IEnumerable<T> items, T item)
+            where T : class
         {
-            return items.Concat(new[] {item});
+            if (items == null) throw new ArgumentNullException("items");
+            if (item == null) throw new ArgumentNullException("item");
+
+            return items.Concat(new[] { item });
         }
 
         public static IEnumerable<T> AddByName<T>(
@@ -20,14 +24,16 @@ namespace Antix.Work.Sizing.Services.Models
             if (items == null) throw new ArgumentNullException("items");
             if (item == null) throw new ArgumentNullException("item");
 
-            var itemsArray = items as T[] ?? items.ToArray();
+            var itemsArray = (items as T[] ?? items.ToArray())
+                .NotById(item.Id)
+                .ToArray();
 
             ProcessName(itemsArray, item);
 
-            return itemsArray.Concat(new[] {item});
+            return itemsArray.Add(item);
         }
 
-        public static IEnumerable<T> ProcessName<T>(
+        public static void ProcessName<T>(
             this IEnumerable<T> items, T item)
             where T : class, IHasIdAndName
         {
@@ -50,8 +56,6 @@ namespace Antix.Work.Sizing.Services.Models
             }
 
             item.Name = name;
-
-            return itemsArray.Concat(new[] {item});
         }
 
         public static IEnumerable<T> UpdateById<T>(
@@ -101,6 +105,17 @@ namespace Antix.Work.Sizing.Services.Models
             return items
                 .NotByOwnerId(item.OwnerId)
                 .Add(item);
+        }
+
+        public static T ByName<T>(
+            this IEnumerable<T> items, string value)
+            where T : class, IHasName
+        {
+            if (items == null) throw new ArgumentNullException("items");
+            if (value == null) throw new ArgumentNullException("value");
+
+            return items.Single(
+                i => i.Name.Equals(value, StringComparison.OrdinalIgnoreCase));
         }
 
         public static T ByNameOrDefault<T>(

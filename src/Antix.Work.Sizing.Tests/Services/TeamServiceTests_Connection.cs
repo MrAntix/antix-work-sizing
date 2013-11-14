@@ -1,6 +1,8 @@
 using System.Linq;
 using System.Threading.Tasks;
+
 using Antix.Work.Sizing.Services.Models;
+
 using Xunit;
 
 namespace Antix.Work.Sizing.Tests.Services
@@ -22,7 +24,7 @@ namespace Antix.Work.Sizing.Tests.Services
         }
 
         [Fact]
-        public async Task disconnect_removes_the_user_and_users_votes()
+        public async Task disconnect_removes_the_user_and_users_votes_and_owner()
         {
             var team = new TeamModel
                 {
@@ -34,6 +36,7 @@ namespace Antix.Work.Sizing.Tests.Services
                         },
                     Story = new StoryModel
                         {
+                            OwnerId = MemberId,
                             Votes = new[]
                                 {
                                     new VoteModel {OwnerId = MemberId},
@@ -47,10 +50,43 @@ namespace Antix.Work.Sizing.Tests.Services
                     .With(team)
                     .Build();
 
-            var result = await teamService.TryDisconnect(MemberId);
+            var result = await teamService.TryDisconnect(TeamId, MemberId);
 
             Assert.Equal(1, result.Members.Count());
+            Assert.Null(result.Story.OwnerId);
             Assert.Equal(1, result.Story.Votes.Count());
+        }
+
+        [Fact]
+        public async Task disconnect_does_not_clear_owner()
+        {
+            var team = new TeamModel
+                {
+                    Id = TeamId,
+                    Members = new[]
+                        {
+                            new TeamMemberModel {Id = MemberId},
+                            new TeamMemberModel()
+                        },
+                    Story = new StoryModel
+                        {
+                            OwnerId = "Other",
+                            Votes = new[]
+                                {
+                                    new VoteModel {OwnerId = MemberId},
+                                    new VoteModel()
+                                }
+                        }
+                };
+
+            var teamService =
+                new TeamServiceBuilder()
+                    .With(team)
+                    .Build();
+
+            var result = await teamService.TryDisconnect(TeamId, MemberId);
+
+            Assert.NotNull(result.Story.OwnerId);
         }
     }
 }

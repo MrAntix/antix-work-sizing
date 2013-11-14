@@ -3,6 +3,6 @@
     public class TeamMember
     {
         public string Name { get; set; }
-        public bool IsActive { get; set; }
+        public bool IsObserver { get; set; }
     }
 }

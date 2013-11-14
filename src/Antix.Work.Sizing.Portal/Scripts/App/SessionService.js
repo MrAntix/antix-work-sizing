@@ -72,11 +72,11 @@
                         }
 
                         if (user.Name == service.user.Name)
-                            service.user.IsActive = user.IsActive;
+                            service.user.IsObserver = user.IsObserver;
                     });
 
                     var prime = function (u) {
-                        if (!u.IsActive) return 99;
+                        if (u.IsObserver) return 99;
 
                         if (team.CurrentStoryResult)
                             return -Math.abs(team.CurrentStoryResult - u.vote);
@@ -100,37 +100,38 @@
         };
 
         view.$el
-            .on("user-change", function (e, name) {
-                logger.log("user-change " + name);
+            .on("user-change-name", function (e, name) {
+                logger.log("user-change-name " + name);
+
+                service.user.Name = name;
 
                 hub.server
-                    .updateCurrentUser(name)
+                    .updateCurrentUserName(name)
                     .done(function () {
-                        service.user.Name = name;
                         cookie(userCookieName, service.user);
                     })
                     .fail(function () {
                         view.render();
                     });
             })
-            .on("user-active", function (e, name, isActive) {
-                logger.log("user-active " + name + "=" + isActive);
+            .on("user-change-observer", function (e, name, isObserver) {
+                logger.log("user-change-observer " + name + "=" + isObserver);
 
                 hub.server
-                    .updateUserActive(name, isActive);
+                    .updateUserIsObserver(name, isObserver);
             })
             .on("story-lock", function (e, data) {
                 logger.log("story-lock " + JSON.stringify(data));
 
                 hub.server
-                    .lockCurrentStory(data.Title, service.user)
+                    .lockCurrentStory(data.Title)
                     .fail(service.error);
             })
             .on("story-release", function() {
                 logger.log("story-release");
 
                 hub.server
-                    .releaseCurrentStory(service.user)
+                    .releaseCurrentStory()
                     .fail(service.error);
             })
             .on("user-points", function(e, points) {

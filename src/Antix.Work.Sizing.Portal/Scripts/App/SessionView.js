@@ -142,7 +142,7 @@
 
                 var set = false, show = false;
                 if (view.model.team.CurrentStory
-                    && view.model.user.IsActive) {
+                    && !view.model.user.IsObserver) {
 
                     $.each(view.model.team.CurrentStory.Points, function() {
                         if (this.Name === view.model.user.Name) {
@@ -184,7 +184,7 @@
                         $input
                             .on("click", function() { return false; })
                             .on("change", function() {
-                                $el.trigger("user-change", $input.val());
+                                $el.trigger("user-change-name", $input.val());
                             });
                     } else {
                         $input.attr("readonly", true);
@@ -195,14 +195,14 @@
                         || view.model.user.Name === view.model.team.CurrentStoryOwner) {
                         $row
                             .on("click", function() {
-                                $el.trigger("user-active", [userName, $row.hasClass("inactive")]);
+                                $el.trigger("user-change-observer", [userName, !$row.hasClass("inactive")]);
                             });
                     }
 
                     $users.append($row.append($input));
 
-                    $row.toggleClass("inactive", !this.IsActive);
-                    if (this.IsActive) {
+                    $row.toggleClass("inactive", this.IsObserver);
+                    if (!this.IsObserver) {
                         $row.toggleClass("voted", this.hasVoted);
 
                         if (this.hasVoted)
