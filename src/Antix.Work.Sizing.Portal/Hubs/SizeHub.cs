@@ -49,7 +49,7 @@ namespace Antix.Work.Sizing.Portal.Hubs
             await base.OnDisconnected();
         }
 
-        public async Task<User> UpdateCurrentUserName(string name)
+        public async Task<Session> UpdateCurrentUserName(string name)
         {
             if (name == null) throw new ArgumentNullException("name");
 
@@ -61,10 +61,10 @@ namespace Antix.Work.Sizing.Portal.Hubs
             if (team == null) throw new TeamNotfoundException();
 
             await Clients
-                .Group(team.Id)
+                .OthersInGroup(team.Id)
                 .teamUpdate(team.ToTeam());
 
-            return team.ToUser(Context.ConnectionId);
+            return team.ToSession(Context.ConnectionId);
         }
 
         public async Task UpdateUserIsObserver(string name, bool value)

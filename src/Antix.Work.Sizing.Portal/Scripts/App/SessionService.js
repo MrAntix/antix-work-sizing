@@ -108,9 +108,9 @@
 
                 hub.server
                     .updateCurrentUserName(name)
-                    .done(function (user) {
-                        service.saveUser(user);
-                        view.render();
+                    .done(function (session) {
+                        service.saveUser(session.User);
+                        service.teamUpdate(session.Team);
                     })
                     .fail(function () {
                         view.render();
