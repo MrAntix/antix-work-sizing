@@ -82,6 +82,7 @@
     <Compile Include="Services\Models\TeamModel.cs" />
     <Compile Include="Services\TeamNotfoundException.cs" />
     <Compile Include="Services\TeamService.cs" />
+    <Compile Include="Services\TeamServiceExtensions.cs" />
     <Compile Include="Services\VotingIsClosedException.cs" />
   </ItemGroup>
   <ItemGroup>

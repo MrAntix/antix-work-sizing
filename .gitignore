@@ -33,6 +33,7 @@ local.properties
 # PDT-specific
 .buildpath
 
+size.antix.log
 
 #################
 ## Visual Studio

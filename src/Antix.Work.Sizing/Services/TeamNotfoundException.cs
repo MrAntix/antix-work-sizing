@@ -13,6 +13,10 @@ namespace Antix.Work.Sizing.Services
         {
         }
 
+        public TeamNotfoundException() : this("current")
+        {
+        }
+
         protected TeamNotfoundException(
             SerializationInfo info,
             StreamingContext context)

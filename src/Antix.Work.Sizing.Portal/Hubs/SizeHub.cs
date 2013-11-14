@@ -51,12 +51,14 @@ namespace Antix.Work.Sizing.Portal.Hubs
 
         public async Task<User> UpdateCurrentUserName(string name)
         {
+            if (name == null) throw new ArgumentNullException("name");
+
             var team = await _teamService
                                  .TryUpdateCurrentMember(
                                      Context.ConnectionId,
-                                     m => m.Name = name);
+                                     m => m.Name = name.Trim());
 
-            if (team == null) throw new Exception();
+            if (team == null) throw new TeamNotfoundException();
 
             await Clients
                 .Group(team.Id)
@@ -67,13 +69,15 @@ namespace Antix.Work.Sizing.Portal.Hubs
 
         public async Task UpdateUserIsObserver(string name, bool value)
         {
+            if (name == null) throw new ArgumentNullException("name");
+
             var team = await _teamService
                                  .TryUpdateMemberByName(
                                      Context.ConnectionId,
-                                     name,
+                                     name.Trim(),
                                      m => m.IsObserver = value);
 
-            if (team == null) throw new Exception();
+            if (team == null) throw new TeamNotfoundException();
 
             await Clients
                 .Group(team.Id)
@@ -82,9 +86,10 @@ namespace Antix.Work.Sizing.Portal.Hubs
 
         public async Task LockCurrentStory(string title)
         {
+            if (title == null) throw new ArgumentNullException("title");
+
             var team = await _teamService
                                  .LockStory(Context.ConnectionId, title);
-            if (team == null) throw new Exception();
 
             await Clients
                 .Group(team.Id)
@@ -95,7 +100,6 @@ namespace Antix.Work.Sizing.Portal.Hubs
         {
             var team = await _teamService
                                  .UnlockStory(Context.ConnectionId);
-            if (team == null) throw new Exception();
 
             await Clients
                 .Group(team.Id)
