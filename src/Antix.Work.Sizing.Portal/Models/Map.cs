@@ -84,7 +84,7 @@ namespace Antix.Work.Sizing.Portal.Models
                 {
                     Id = id,
                     Name = model.Name,
-                    IsObserver = !model.IsObserver
+                    IsObserver = model.IsObserver
                 };
         }
     }
