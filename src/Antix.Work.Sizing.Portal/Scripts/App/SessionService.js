@@ -106,12 +106,11 @@
             .on("user-change-name", function (e, name) {
                 logger.log("user-change-name " + name);
 
-                service.user.Name = name;
-
                 hub.server
                     .updateCurrentUserName(name)
-                    .done(function () {
-                        cookie(userCookieName, service.user);
+                    .done(function (user) {
+                        service.saveUser(user);
+                        view.render();
                     })
                     .fail(function () {
                         view.render();

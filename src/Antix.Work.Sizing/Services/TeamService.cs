@@ -184,7 +184,7 @@ namespace Antix.Work.Sizing.Services
 
         async Task<TeamModel> ITeamService
             .TryUpdateMemberByName(
-            string teamId, string memberId, 
+            string teamId, string memberId,
             string targetMemberName, Action<TeamMemberModel> action)
         {
             var team = await GetTeam(teamId);
@@ -194,22 +194,22 @@ namespace Antix.Work.Sizing.Services
         }
 
         async Task<TeamModel> TryUpdateMember(
-             TeamModel team, string memberId,
-             string targetMemberId, Action<TeamMemberModel> action)
-         {
-             if (memberId == targetMemberId)
-                 AssertIsMember(team, memberId);
-             else
-                 AssertIsStoryOwner(team, memberId);
+            TeamModel team, string memberId,
+            string targetMemberId, Action<TeamMemberModel> action)
+        {
+            if (memberId == targetMemberId)
+                AssertIsMember(team, memberId);
+            else
+                AssertIsStoryOwner(team, memberId);
 
-             team.Members = team.Members
-                                .UpdateById(targetMemberId, action)
-                                .ToArray();
+            team.Members = team.Members
+                               .UpdateById(targetMemberId, action)
+                               .ToArray();
 
-             _logger.Information(m => m("{0} updated {1}", memberId, targetMemberId));
+            _logger.Information(m => m("{0} updated {1}", memberId, targetMemberId));
 
-             return await _dataService.Update(team);
-         }
+            return await _dataService.Update(team);
+        }
 
         async Task<TeamModel> GetTeam(string teamId)
         {
@@ -273,7 +273,7 @@ namespace Antix.Work.Sizing.Services
 
         public static async Task<TeamModel> TryUpdateMemberByName(
             this ITeamService service,
-            string memberId, 
+            string memberId,
             string targetMemberName,
             Action<TeamMemberModel> action)
         {

@@ -164,8 +164,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Map.cs" />
     <Compile Include="Hubs\SizeHub.cs" />
+    <Compile Include="Models\MappingExtensions.cs" />
     <Compile Include="Models\Session.cs" />
     <Compile Include="Models\Story.cs" />
     <Compile Include="Models\StoryPoints.cs" />

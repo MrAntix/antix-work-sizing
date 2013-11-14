@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+
 using Antix.Work.Sizing.Properties;
 
 namespace Antix.Work.Sizing.Services.Models
@@ -14,7 +15,7 @@ namespace Antix.Work.Sizing.Services.Models
             if (items == null) throw new ArgumentNullException("items");
             if (item == null) throw new ArgumentNullException("item");
 
-            return items.Concat(new[] { item });
+            return items.Concat(new[] {item});
         }
 
         public static IEnumerable<T> AddByName<T>(

@@ -1,5 +1,6 @@
 using System;
 using System.Runtime.Serialization;
+
 using Antix.Work.Sizing.Properties;
 
 namespace Antix.Work.Sizing.Services

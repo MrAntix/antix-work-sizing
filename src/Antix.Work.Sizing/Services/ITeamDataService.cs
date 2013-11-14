@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+
 using Antix.Work.Sizing.Services.Models;
 
 namespace Antix.Work.Sizing.Services

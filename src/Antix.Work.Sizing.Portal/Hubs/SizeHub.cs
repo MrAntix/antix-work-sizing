@@ -25,15 +25,15 @@ namespace Antix.Work.Sizing.Portal.Hubs
 
             var team = await _teamService
                                  .Connect(
-                                     user.TeamId, Map.ToServer(user, Context.ConnectionId));
+                                     user.TeamId, user.ToTeamMemberModel(Context.ConnectionId));
 
             await Groups.Add(Context.ConnectionId, team.Id);
 
             await Clients
                 .OthersInGroup(team.Id)
-                .teamUpdate(Map.ToClient(team));
+                .teamUpdate(team.ToTeam());
 
-            return Map.ToClient(team, Context.ConnectionId);
+            return team.ToSession(Context.ConnectionId);
         }
 
         public override async Task OnDisconnected()
@@ -44,12 +44,12 @@ namespace Antix.Work.Sizing.Portal.Hubs
             if (team != null)
                 await Clients
                     .OthersInGroup(team.Id)
-                    .teamUpdate(Map.ToClient(team));
+                    .teamUpdate(team.ToTeam());
 
             await base.OnDisconnected();
         }
 
-        public async Task UpdateCurrentUserName(string name)
+        public async Task<User> UpdateCurrentUserName(string name)
         {
             var team = await _teamService
                                  .TryUpdateCurrentMember(
@@ -60,7 +60,9 @@ namespace Antix.Work.Sizing.Portal.Hubs
 
             await Clients
                 .Group(team.Id)
-                .teamUpdate(Map.ToClient(team));
+                .teamUpdate(team.ToTeam());
+
+            return team.ToUser(Context.ConnectionId);
         }
 
         public async Task UpdateUserIsObserver(string name, bool value)
@@ -75,7 +77,7 @@ namespace Antix.Work.Sizing.Portal.Hubs
 
             await Clients
                 .Group(team.Id)
-                .teamUpdate(Map.ToClient(team));
+                .teamUpdate(team.ToTeam());
         }
 
         public async Task LockCurrentStory(string title)
@@ -86,7 +88,7 @@ namespace Antix.Work.Sizing.Portal.Hubs
 
             await Clients
                 .Group(team.Id)
-                .teamUpdate(Map.ToClient(team));
+                .teamUpdate(team.ToTeam());
         }
 
         public async Task ReleaseCurrentStory()
@@ -97,7 +99,7 @@ namespace Antix.Work.Sizing.Portal.Hubs
 
             await Clients
                 .Group(team.Id)
-                .teamUpdate(Map.ToClient(team));
+                .teamUpdate(team.ToTeam());
         }
     }
 }
