@@ -13,8 +13,8 @@ namespace Antix.Work.Sizing.Portal.Models
                 {
                     Id = model.Id,
                     Users = model.Members.ToTeamMembers(),
-                    CurrentStory = model.Story.ToStory(),
-                    CurrentStoryOwner = model.TryGetMemberNameById(model.Story.OwnerId)
+                    CurrentStory = model.Story.ToStory(model.Members),
+                    CurrentStoryOwner = model.Members.TryGetNameById(model.Story.OwnerId)
                 };
         }
 
@@ -70,26 +70,32 @@ namespace Antix.Work.Sizing.Portal.Models
                 };
         }
 
-        public static Story ToStory(this StoryModel model)
+        public static Story ToStory(
+            this StoryModel model, 
+            IEnumerable<TeamMemberModel> members)
         {
             return new Story
                 {
                     Title = model.Title,
                     VotingOpen = model.VotingIsOpen,
-                    Points = StoryPoints(model.Votes)
+                    Points = StoryPoints(model.Votes, members)
                 };
         }
 
-        public static StoryPoints[] StoryPoints(this IEnumerable<VoteModel> models)
+        public static StoryPoints[] StoryPoints(
+            this IEnumerable<VoteModel> models, 
+            IEnumerable<TeamMemberModel> members)
         {
-            return models.Select(StoryPoints).ToArray();
+            return models.Select(m=>StoryPoints(m,members)).ToArray();
         }
 
-        public static StoryPoints StoryPoints(this VoteModel model)
+        public static StoryPoints StoryPoints(
+            this VoteModel model, 
+            IEnumerable<TeamMemberModel> members)
         {
             return new StoryPoints
                 {
-                    Name = model.OwnerId,
+                    Name = members.TryGetNameById(model.OwnerId),
                     Value = model.Points
                 };
         }

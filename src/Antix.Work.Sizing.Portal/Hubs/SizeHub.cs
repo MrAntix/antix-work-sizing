@@ -84,6 +84,18 @@ namespace Antix.Work.Sizing.Portal.Hubs
                 .teamUpdate(team.ToTeam());
         }
 
+        public async Task UpdateCurrentUserVote(int points)
+        {
+            var team = await _teamService
+                                 .Vote(Context.ConnectionId, points);
+
+            if (team == null) throw new TeamNotfoundException();
+
+            await Clients
+                .Group(team.Id)
+                .teamUpdate(team.ToTeam());
+        }
+
         public async Task LockCurrentStory(string title)
         {
             if (title == null) throw new ArgumentNullException("title");

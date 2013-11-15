@@ -169,13 +169,14 @@ namespace Antix.Work.Sizing.Services.Models
             return items.Any(i => CompareNames(i.Name, value));
         }
 
-        public static string TryGetMemberNameById(
-            this TeamModel team, string memberId)
+        public static string TryGetNameById<T>(
+            this IEnumerable<T> items, string id)
+            where T : IHasIdAndName
         {
-            return team.Members
-                       .Where(m => CompareIds(m.Id, memberId))
-                       .Select(m => m.Name)
-                       .SingleOrDefault();
+            return items
+                .Where(m => CompareIds(m.Id, id))
+                .Select(m => m.Name)
+                .SingleOrDefault();
         }
 
         static readonly Func<string, string, bool> CompareIds =

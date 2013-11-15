@@ -140,7 +140,7 @@
                 logger.log("user-points " + points);
 
                 hub.server
-                    .updateCurrentStoryPoints(points, service.user)
+                    .updateCurrentUserVote(points)
                     .fail(service.error);
             })
             .on("open-voting", function () {
