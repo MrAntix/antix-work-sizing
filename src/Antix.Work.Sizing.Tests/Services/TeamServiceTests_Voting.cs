@@ -175,6 +175,7 @@ namespace Antix.Work.Sizing.Tests.Services
             var result = await teamService.ClearVotes(TeamId, MemberId);
 
             Assert.Equal(0, result.Story.Votes.Count());
+            Assert.False(result.Story.VotingIsOpen);
         }
     }
 }

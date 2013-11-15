@@ -170,6 +170,7 @@ namespace Antix.Work.Sizing.Services
 
             AssertIsMember(team, memberId);
 
+            team.Story.VotingIsOpen = false;
             team.Story.Votes = new VoteModel[] {};
 
             _logger.Information(m => m("{0} cleared votes", memberId));

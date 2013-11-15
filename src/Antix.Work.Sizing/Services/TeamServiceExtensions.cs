@@ -114,6 +114,15 @@ namespace Antix.Work.Sizing.Services
                              .CloseVoting(teamId, memberId);
         }
 
+        public static async Task<TeamModel> ClearVotes(
+            this ITeamService service,
+            string memberId)
+        {
+            var teamId = await service.GetTeamIdByMemberId(memberId);
+            return await service
+                             .ClearVotes(teamId, memberId);
+        }
+
         public static async Task<string> GetTeamIdByMemberId(
             this ITeamService service,
             string memberId)

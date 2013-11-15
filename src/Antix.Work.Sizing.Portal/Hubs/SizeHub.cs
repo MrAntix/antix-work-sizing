@@ -137,5 +137,15 @@ namespace Antix.Work.Sizing.Portal.Hubs
                 .Group(team.Id)
                 .teamUpdate(team.ToTeam());
         }
+
+        public async Task ClearVotes()
+        {
+            var team = await _teamService
+                                 .ClearVotes(Context.ConnectionId);
+
+            await Clients
+                .Group(team.Id)
+                .teamUpdate(team.ToTeam());
+        }
     }
 }
