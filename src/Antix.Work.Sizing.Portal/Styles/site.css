@@ -93,8 +93,8 @@ a {
   z-index: 2;
   position: relative;
   max-width: 280px;
-  background-color: #ffffcc;
-  color: #555555;
+  background-color: #336699;
+  color: #eeeeee;
 }
 .showHelp,
 .showDemo {
@@ -106,16 +106,16 @@ a {
   z-index: 1;
   float: right;
   margin: 0 0 0.4em 0.4em;
-  border: solid 0.4em #ffffcc;
+  border: solid 0.4em #336699;
   padding: 0;
-  background-color: #ffffcc;
-  color: #555555;
+  background-color: #336699;
+  color: #eeeeee;
 }
 .helpContainerInner {
   padding: 0 1em;
 }
 .helpContainerInner:after {
-  border-color: #ffffcc rgba(0, 0, 0, 0);
+  border-color: #336699 rgba(0, 0, 0, 0);
   border-style: solid;
   border-width: 15px 15px 0;
   bottom: -15px;
