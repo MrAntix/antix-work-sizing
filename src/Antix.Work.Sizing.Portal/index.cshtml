@@ -100,7 +100,9 @@
         <div id="UserNameView" class="dialog">
             @Html.Raw(Resources.Welcome_title)
             <div class="row">
-                <div class="input withAction">
+                <div class="input withAction withSelector">
+                    <input id="IsObserver" type="checkbox">
+                    <label for="IsObserver">Observe</label>
                     <input name="UserName">
                     <button class="action">OK</button>
                 </div>

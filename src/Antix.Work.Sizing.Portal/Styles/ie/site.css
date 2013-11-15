@@ -1,4 +1,10 @@
-﻿.input textarea {
+﻿.rounded {
+  border-radius: .2em;
+}
+.shadowed {
+  box-shadow: rgba(0, 0, 0, 0.4) 2px 2px 8px;
+}
+.input textarea {
   padding-left: 0;
   padding-right: 0;
   height: 90px;

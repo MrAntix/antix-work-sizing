@@ -17,10 +17,11 @@
                 if (!service.user) {
 
                     userNameView
-                        .$el.on("ok", function (e, name) {
-
+                        .$el.on("ok", function (e, name, isObserver) {
+                            
                             service.saveUser({
-                                Name: name
+                                Name: name,
+                                IsObserver: isObserver
                             });
 
                             service.connect(teamId);

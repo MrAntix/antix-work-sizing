@@ -138,8 +138,8 @@
     <value>Size - by antix.co.uk</value>
   </data>
   <data name="Welcome_message" xml:space="preserve">
-    <value>&lt;p&gt;Welcome to &lt;strong&gt;Size&lt;/strong&gt;, a task estimation tool for online teams.&lt;br /&gt;
-                Enter a name and click ok, once in, click the blue question mark for a very quick tour.&lt;/p&gt;</value>
+    <value>&lt;p&gt;Welcome to &lt;strong&gt;Size&lt;/strong&gt;, an estimation tool for online teams.&lt;br /&gt;Enter a name and click ok, once in, click the help question mark for a very quick tour.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;(If your not voting click the icon by your name)&lt;/em&gt;&lt;/p&gt;</value>
   </data>
   <data name="Welcome_title" xml:space="preserve">
     <value>&lt;h3&gt;hello, what's your name?&lt;/h3&gt;</value>

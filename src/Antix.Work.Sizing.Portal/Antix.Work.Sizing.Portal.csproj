@@ -150,14 +150,30 @@
     <Content Include="Scripts\jquery.signalR-2.0.0.js" />
     <Content Include="Scripts\jquery.signalR-2.0.0.min.js" />
     <Content Include="Scripts\json2.js" />
-    <Content Include="Styles\ie\site.css" />
-    <Content Include="Styles\ie\site.min.css" />
-    <Content Include="Styles\imports\vars.css" />
-    <Content Include="Styles\imports\vars.min.css" />
-    <Content Include="Styles\popup.css" />
-    <Content Include="Styles\popup.min.css" />
-    <Content Include="Styles\site.css" />
-    <Content Include="Styles\site.min.css" />
+    <Content Include="Styles\dialog.css">
+      <DependentUpon>dialog.less</DependentUpon>
+    </Content>
+    <Content Include="Styles\dialog.min.css">
+      <DependentUpon>dialog.less</DependentUpon>
+    </Content>
+    <Content Include="Styles\ie\site.css">
+      <DependentUpon>site.less</DependentUpon>
+    </Content>
+    <Content Include="Styles\ie\site.min.css">
+      <DependentUpon>site.less</DependentUpon>
+    </Content>
+    <Content Include="Styles\imports\vars.css">
+      <DependentUpon>vars.less</DependentUpon>
+    </Content>
+    <Content Include="Styles\imports\vars.min.css">
+      <DependentUpon>vars.less</DependentUpon>
+    </Content>
+    <Content Include="Styles\site.css">
+      <DependentUpon>site.less</DependentUpon>
+    </Content>
+    <Content Include="Styles\site.min.css">
+      <DependentUpon>site.less</DependentUpon>
+    </Content>
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

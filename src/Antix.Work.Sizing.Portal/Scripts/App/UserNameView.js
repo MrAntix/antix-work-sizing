@@ -5,12 +5,13 @@
     return function ($el) {
 
         var $userNameInput = $el.find("[name='UserName']"),
+            $isObserver = $el.find("#IsObserver"),
             $ok = $el.find("button"),
             ok = function() {
                 var name = $userNameInput.val();
 
                 if (name) {
-                    $ok.trigger("ok", $userNameInput.val());
+                    $ok.trigger("ok", [$userNameInput.val(), $isObserver.is(":checked")]);
 
                     dialog.hide();
                 }
