@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+
 using Antix.Work.Sizing.Services.Models;
 
 namespace Antix.Work.Sizing.Portal.Models
@@ -9,12 +10,20 @@ namespace Antix.Work.Sizing.Portal.Models
         public static Team ToTeam(
             this TeamModel model)
         {
+            var results = model.GetVoteResults().ToStoryPointQuantities();
+
             return new Team
                 {
                     Id = model.Id,
                     Users = model.Members.ToTeamMembers(),
                     CurrentStory = model.Story.ToStory(model.Members),
-                    CurrentStoryOwner = model.Members.TryGetNameById(model.Story.OwnerId)
+                    CurrentStoryOwner = model.Members.TryGetNameById(model.Story.OwnerId),
+                    CurrentStoryResult =
+                        results.GroupBy(g => g.Value)
+                               .OrderByDescending(g => g.Count())
+                               .Select(g => g.Key)
+                               .FirstOrDefault(),
+                    CurrentStoryResults = results
                 };
         }
 
@@ -71,32 +80,48 @@ namespace Antix.Work.Sizing.Portal.Models
         }
 
         public static Story ToStory(
-            this StoryModel model, 
+            this StoryModel model,
             IEnumerable<TeamMemberModel> members)
         {
             return new Story
                 {
                     Title = model.Title,
                     VotingOpen = model.VotingIsOpen,
-                    Points = StoryPoints(model.Votes, members)
+                    Points = ToStoryPoints(model.Votes, members)
                 };
         }
 
-        public static StoryPoints[] StoryPoints(
-            this IEnumerable<VoteModel> models, 
+        public static StoryPoints[] ToStoryPoints(
+            this IEnumerable<VoteModel> models,
             IEnumerable<TeamMemberModel> members)
         {
-            return models.Select(m=>StoryPoints(m,members)).ToArray();
+            return models.Select(m => ToStoryPoints(m, members)).ToArray();
         }
 
-        public static StoryPoints StoryPoints(
-            this VoteModel model, 
+        public static StoryPoints ToStoryPoints(
+            this VoteModel model,
             IEnumerable<TeamMemberModel> members)
         {
             return new StoryPoints
                 {
                     Name = members.TryGetNameById(model.OwnerId),
                     Value = model.Points
+                };
+        }
+
+        public static StoryPointsResults[] ToStoryPointQuantities(this IEnumerable<VoteResultModel> models)
+        {
+            return models == null
+                       ? new StoryPointsResults[] {}
+                       : models.Select(ToStoryPointQuantity).ToArray();
+        }
+
+        public static StoryPointsResults ToStoryPointQuantity(this VoteResultModel model)
+        {
+            return new StoryPointsResults
+                {
+                    Value = model.Points,
+                    Percentage = model.Percentage
                 };
         }
     }

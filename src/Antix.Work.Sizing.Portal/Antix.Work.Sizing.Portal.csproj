@@ -185,6 +185,7 @@
     <Compile Include="Models\Session.cs" />
     <Compile Include="Models\Story.cs" />
     <Compile Include="Models\StoryPoints.cs" />
+    <Compile Include="Models\StoryPointsResults.cs" />
     <Compile Include="Models\Team.cs" />
     <Compile Include="Models\TeamMember.cs" />
     <Compile Include="Models\User.cs" />

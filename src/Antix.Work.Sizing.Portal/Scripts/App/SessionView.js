@@ -89,7 +89,7 @@
             renderStoryPoints = function() {
                 $storyPointsResult.empty();
                 if (view.model.team.CurrentStoryResult) {
-                    $.each(view.model.team.CurrentStoryResultQuantities, function() {
+                    $.each(view.model.team.CurrentStoryResults, function() {
                         $("<span>" + this.Value + "</span>")
                             .addClass("result")
                             .addClass("p" + this.Value)
