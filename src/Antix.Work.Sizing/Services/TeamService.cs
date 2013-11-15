@@ -144,14 +144,19 @@ namespace Antix.Work.Sizing.Services
             if (!team.Story.VotingIsOpen)
                 throw new VotingIsClosedException();
 
-            team.Story.Votes = team.Story.Votes
-                                   .AddReplaceByOwnerId(
-                                       new VoteModel
-                                           {
-                                               OwnerId = memberId,
-                                               Points = points
-                                           })
-                                   .ToArray();
+            if (points == 0)
+                team.Story.Votes = team.Story.Votes
+                                       .NotByOwnerId(memberId)
+                                       .ToArray();
+            else
+                team.Story.Votes = team.Story.Votes
+                                       .AddReplaceByOwnerId(
+                                           new VoteModel
+                                               {
+                                                   OwnerId = memberId,
+                                                   Points = points
+                                               })
+                                       .ToArray();
 
             _logger.Information(m => m("{0} voted {1} points", memberId, points));
 

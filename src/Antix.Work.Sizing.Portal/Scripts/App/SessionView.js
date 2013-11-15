@@ -134,19 +134,19 @@
             },
             renderUserPoints = function() {
                 $userPoints
-                    .off("change")
+                    .off("change click")
                     .attr({ disabled: true });
                 $userPointsContainer
                     .find("label")
                     .removeClass("active");
 
-                var set = false, show = false;
+                var pointsValue = false, show = false;
                 if (view.model.team.CurrentStory
                     && !view.model.user.IsObserver) {
 
                     $.each(view.model.team.CurrentStory.Points, function() {
                         if (this.Name === view.model.user.Name) {
-                            set = true;
+                            pointsValue = this.Value;
                             var id = $userPoints
                                 .filter("#Points" + this.Value)
                                 .attr({ checked: true })
@@ -156,16 +156,26 @@
                                 .addClass("active");
                         }
                     });
-
+                    
                     $userPoints
                         .attr({ disabled: false })
-                        .on("change", function() {
-                            $el.trigger("user-points", $userPoints.filter(":checked").val());
+                        .on("change", function () {
+                            pointsValue =
+                                $userPoints.filter(":checked").val();
+
+                            $el.trigger("user-points", pointsValue);
+                        })
+                        .on("click", function() {
+                            var $this = $(this);
+                            if ($this.val() == pointsValue) {
+                                pointsValue = 0;
+                                $el.trigger("user-points", pointsValue);
+                            }
                         });
 
                     show = view.model.team.CurrentStory.VotingOpen;
                 }
-                if (!set) $userPoints.attr({ checked: false });
+                if (!pointsValue) $userPoints.attr({ checked: false });
                 if ($userPointsContainer.is(":visible")) {
                     if (!show) $userPointsContainer.slideUp();
                 } else {
