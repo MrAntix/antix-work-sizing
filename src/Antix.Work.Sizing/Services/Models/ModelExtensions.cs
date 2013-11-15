@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-
 using Antix.Work.Sizing.Properties;
 
 namespace Antix.Work.Sizing.Services.Models
@@ -168,6 +167,15 @@ namespace Antix.Work.Sizing.Services.Models
             if (value == null) throw new ArgumentNullException("value");
 
             return items.Any(i => CompareNames(i.Name, value));
+        }
+
+        public static string TryGetMemberNameById(
+            this TeamModel team, string memberId)
+        {
+            return team.Members
+                       .Where(m => CompareIds(m.Id, memberId))
+                       .Select(m => m.Name)
+                       .SingleOrDefault();
         }
 
         static readonly Func<string, string, bool> CompareIds =

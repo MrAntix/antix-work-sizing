@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-
 using Antix.Work.Sizing.Services.Models;
 
 namespace Antix.Work.Sizing.Portal.Models
@@ -14,18 +13,15 @@ namespace Antix.Work.Sizing.Portal.Models
                 {
                     Id = model.Id,
                     Users = model.Members.ToTeamMembers(),
-                    CurrentStory = ToStory(model.Story),
-                    CurrentStoryOwner = model.Members
-                                             .Where(m => m.Id == model.Story.OwnerId)
-                                             .Select(m => m.Name)
-                                             .SingleOrDefault()
+                    CurrentStory = model.Story.ToStory(),
+                    CurrentStoryOwner = model.TryGetMemberNameById(model.Story.OwnerId)
                 };
         }
 
         public static User ToUser(
             this TeamModel model, string userId)
         {
-            return ToUser(model.Members.ById(userId), model.Id);
+            return model.Members.ById(userId).ToUser(model.Id);
         }
 
         public static User ToUser(
@@ -65,7 +61,7 @@ namespace Antix.Work.Sizing.Portal.Models
             return models.Select(ToTeamMember).ToArray();
         }
 
-        static TeamMember ToTeamMember(this TeamMemberModel model)
+        public static TeamMember ToTeamMember(this TeamMemberModel model)
         {
             return new TeamMember
                 {
