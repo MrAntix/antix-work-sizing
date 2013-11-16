@@ -11,7 +11,7 @@ namespace Antix.Work.Sizing.Portal.Models
             this TeamModel model)
         {
             var results = model.GetVoteResults().ToStoryPointResults();
-            var result = model.Story.Votes.Select(r => r.Points).GetMode();
+            var result = results.OrderByDescending(r => r.Percentage).Select(r=>r.Value).FirstOrDefault();
 
             return new Team
                 {
