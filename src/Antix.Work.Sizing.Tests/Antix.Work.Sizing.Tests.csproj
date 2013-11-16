@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\DebugLogger.cs" />
+    <Compile Include="Services\GetModeTests.cs" />
     <Compile Include="Services\TeamServiceBuilder.cs" />
     <Compile Include="Services\TeamServiceTests.cs" />
     <Compile Include="Services\TeamServiceTests_Connection.cs" />

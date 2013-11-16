@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -87,6 +88,35 @@ namespace Antix.Work.Sizing.Tests.Services
             var result = await teamService.TryDisconnect(TeamId, MemberId);
 
             Assert.NotNull(result.Story.OwnerId);
+        }
+
+        [Fact]
+        public async Task last_disconnect_removes_team()
+        {
+            const string otherMemberId = "OtherMemberId";
+
+            var team = new TeamModel
+                {
+                    Id = TeamId,
+                    Members = new[]
+                        {
+                            new TeamMemberModel {Id = MemberId},
+                            new TeamMemberModel {Id = otherMemberId}
+                        }
+                };
+
+            var teams = new List<TeamModel>();
+            var teamService =
+                new TeamServiceBuilder()
+                    .With(teams)
+                    .With(team)
+                    .Build();
+
+            await teamService.TryDisconnect(TeamId, MemberId);
+            Assert.True(teams.ExistsById(TeamId));
+
+            await teamService.TryDisconnect(TeamId, otherMemberId);
+            Assert.False(teams.ExistsById(TeamId));
         }
     }
 }

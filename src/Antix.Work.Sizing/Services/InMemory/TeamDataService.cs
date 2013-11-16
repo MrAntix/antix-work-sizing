@@ -33,6 +33,14 @@ namespace Antix.Work.Sizing.Services.InMemory
             return data;
         }
 
+        async Task<TeamModel> ITeamDataService.Remove(string id)
+        {
+            if (MemoryCache.Default.Contains(id))
+                return (TeamModel)MemoryCache.Default.Remove(id);
+
+            return null;
+        }
+
         async Task ITeamDataService.TryAddIndex(string indexKey, string value)
         {
             AddOrUpdate(indexKey, value);

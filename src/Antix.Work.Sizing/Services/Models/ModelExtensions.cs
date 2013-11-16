@@ -65,7 +65,7 @@ namespace Antix.Work.Sizing.Services.Models
             where T : class, IHasIdAndName
         {
             var itemsArray = items as T[] ?? items.ToArray();
-            var item = itemsArray.ById(memberId);
+            var item = itemsArray.GetById(memberId);
 
             action(item);
 
@@ -107,7 +107,7 @@ namespace Antix.Work.Sizing.Services.Models
                 .Add(item);
         }
 
-        public static T ByName<T>(
+        public static T GetByName<T>(
             this IEnumerable<T> items, string value)
             where T : class, IHasName
         {
@@ -118,7 +118,7 @@ namespace Antix.Work.Sizing.Services.Models
                 i => i.Name.Equals(value, StringComparison.OrdinalIgnoreCase));
         }
 
-        public static T ByNameOrDefault<T>(
+        public static T TryGetByName<T>(
             this IEnumerable<T> items, string value)
             where T : class, IHasName
         {
@@ -129,7 +129,7 @@ namespace Antix.Work.Sizing.Services.Models
                 i => i.Name.Equals(value, StringComparison.OrdinalIgnoreCase));
         }
 
-        public static T ById<T>(
+        public static T GetById<T>(
             this IEnumerable<T> items, string id)
             where T : class, IHasId
         {
@@ -139,7 +139,7 @@ namespace Antix.Work.Sizing.Services.Models
             return items.Single(i => CompareIds(i.Id, id));
         }
 
-        public static T ByIdOrDefault<T>(
+        public static T TryGetById<T>(
             this IEnumerable<T> items, string id)
             where T : class, IHasId
         {
@@ -203,5 +203,14 @@ namespace Antix.Work.Sizing.Services.Models
                         (int) Math.Round(100*g.Count()/(decimal) votingMembersCount)))
                 .ToArray();
         }
+
+        public static int GetMode(this IEnumerable<int> results)
+        {
+            return results.GroupBy(r => r)
+                          .OrderByDescending(g => g.Count())
+                          .Select(g => g.Key)
+                          .FirstOrDefault();
+        }
+
     }
 }

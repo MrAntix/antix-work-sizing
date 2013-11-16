@@ -58,7 +58,7 @@ namespace Antix.Work.Sizing.Tests.Services
                                        TeamId, MemberId,
                                        MemberId, m => m.Name = newName);
 
-            Assert.Equal(newName + " (2)", result.Members.ById(MemberId).Name);
+            Assert.Equal(newName + " (2)", result.Members.GetById(MemberId).Name);
         }
 
         [Fact]
@@ -85,7 +85,7 @@ namespace Antix.Work.Sizing.Tests.Services
                                        TeamId, MemberId,
                                        MemberId, m => m.Name = newName);
 
-            Assert.Equal(Resources.InvalidMemberName, result.Members.ById(MemberId).Name);
+            Assert.Equal(Resources.InvalidMemberName, result.Members.GetById(MemberId).Name);
         }
 
         [Fact]
@@ -171,7 +171,7 @@ namespace Antix.Work.Sizing.Tests.Services
                                        TeamId, MemberId,
                                        targetMemberId, m => m.IsObserver = true);
 
-            Assert.True(result.Members.ById(targetMemberId).IsObserver);
+            Assert.True(result.Members.GetById(targetMemberId).IsObserver);
         }
     }
 }

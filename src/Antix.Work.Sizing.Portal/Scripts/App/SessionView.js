@@ -164,13 +164,6 @@
                                 $userPoints.filter(":checked").val();
 
                             $el.trigger("user-points", pointsValue);
-                        })
-                        .on("click", function() {
-                            var $this = $(this);
-                            if ($this.val() == pointsValue) {
-                                pointsValue = 0;
-                                $el.trigger("user-points", pointsValue);
-                            }
                         });
 
                     show = view.model.team.CurrentStory.VotingOpen;

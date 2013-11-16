@@ -57,6 +57,14 @@ namespace Antix.Work.Sizing.Services
                                .NotById(memberId)
                                .ToArray();
 
+            _logger.Information(m => m("Disconnected '{0}'", memberId));
+
+            if (!team.Members.Any())
+            {
+                _logger.Information(m => m("Team removed after last member '{0}'", teamId));
+                return await _dataService.Remove(teamId);
+            }
+
             if (string.Equals(team.Story.OwnerId, memberId,
                               StringComparison.OrdinalIgnoreCase))
                 team.Story.OwnerId = null;
@@ -64,8 +72,6 @@ namespace Antix.Work.Sizing.Services
             team.Story.Votes = team.Story.Votes
                                    .NotByOwnerId(memberId)
                                    .ToArray();
-
-            _logger.Information(m => m("Disconnected '{0}'", memberId));
 
             return await _dataService.Update(team);
         }
@@ -194,7 +200,7 @@ namespace Antix.Work.Sizing.Services
             string targetMemberName, Action<TeamMemberModel> action)
         {
             var team = await GetTeam(teamId);
-            var targetMemberId = team.Members.ByName(targetMemberName).Id;
+            var targetMemberId = team.Members.GetByName(targetMemberName).Id;
 
             return await TryUpdateMember(team, memberId, targetMemberId, action);
         }

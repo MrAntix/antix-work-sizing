@@ -61,6 +61,15 @@ namespace Antix.Work.Sizing.Portal.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to help.
+        /// </summary>
+        public static string Help_Button {
+            get {
+                return ResourceManager.GetString("Help_Button", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &lt;p&gt;If you&apos;re in charge the voting start button will show.&lt;/p&gt;
         ///&lt;p&gt;When everyone has voted the results show here for everyone to see.&lt;/p&gt;.
         /// </summary>
@@ -91,8 +100,6 @@ namespace Antix.Work.Sizing.Portal.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;p&gt;This is the list of everyone in the session.&lt;/p&gt;
-        ///&lt;p&gt;During voting, those who have not voted will show at the top.&lt;/p&gt;
-        ///&lt;p&gt;After voting, those who disagree most with the majority show at the top&lt;/p&gt;
         ///&lt;p&gt;Click your icon if you don&apos;t want to vote&lt;/p&gt;.
         /// </summary>
         public static string Help_Users {
@@ -102,7 +109,7 @@ namespace Antix.Work.Sizing.Portal.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Size - by antix.co.uk.
+        ///   Looks up a localized string similar to [Size] - by antix.co.uk.
         /// </summary>
         public static string Title {
             get {
@@ -111,7 +118,7 @@ namespace Antix.Work.Sizing.Portal.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;p&gt;Welcome to &lt;strong&gt;Size&lt;/strong&gt;, an estimation tool for online teams.&lt;br /&gt;Enter a name and click ok, once in, click the help question mark for a very quick tour.&lt;/p&gt;
+        ///   Looks up a localized string similar to &lt;p&gt;Welcome to &lt;strong&gt;[Size]&lt;/strong&gt;, an estimation tool for online teams.&lt;br /&gt;Enter a name and click ok.&lt;/p&gt;
         ///&lt;p&gt;&lt;em&gt;(If your not voting click the icon by your name)&lt;/em&gt;&lt;/p&gt;.
         /// </summary>
         public static string Welcome_message {

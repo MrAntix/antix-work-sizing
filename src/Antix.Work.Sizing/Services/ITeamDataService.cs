@@ -8,6 +8,7 @@ namespace Antix.Work.Sizing.Services
     {
         Task<TeamModel> TryGetById(string id);
         Task<TeamModel> Update(TeamModel team);
+        Task<TeamModel> Remove(string id);
 
         Task TryAddIndex(string indexKey, string value);
         Task<string> TryGetIndex(string indexKey);

@@ -43,7 +43,7 @@ namespace Antix.Work.Sizing.Portal
                     .GetMessageFunc(formatProvider, getMessage)();
 
                 Trace.Write(
-                    string.Format("{0}\r\n{1}", message, ex),
+                    string.Format("{0} {1}\r\n{2}", DateTimeOffset.UtcNow, message, ex),
                     logLevel.ToString()
                     );
                 Trace.Close();

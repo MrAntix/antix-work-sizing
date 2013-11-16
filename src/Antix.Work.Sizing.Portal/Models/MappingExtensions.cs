@@ -10,7 +10,8 @@ namespace Antix.Work.Sizing.Portal.Models
         public static Team ToTeam(
             this TeamModel model)
         {
-            var results = model.GetVoteResults().ToStoryPointQuantities();
+            var results = model.GetVoteResults().ToStoryPointResults();
+            var result = model.Story.Votes.Select(r => r.Points).GetMode();
 
             return new Team
                 {
@@ -18,11 +19,7 @@ namespace Antix.Work.Sizing.Portal.Models
                     Users = model.Members.ToTeamMembers(),
                     CurrentStory = model.Story.ToStory(model.Members),
                     CurrentStoryOwner = model.Members.TryGetNameById(model.Story.OwnerId),
-                    CurrentStoryResult =
-                        results.GroupBy(g => g.Value)
-                               .OrderByDescending(g => g.Count())
-                               .Select(g => g.Key)
-                               .FirstOrDefault(),
+                    CurrentStoryResult = result,
                     CurrentStoryResults = results
                 };
         }
@@ -30,7 +27,7 @@ namespace Antix.Work.Sizing.Portal.Models
         public static User ToUser(
             this TeamModel model, string userId)
         {
-            return model.Members.ById(userId).ToUser(model.Id);
+            return model.Members.GetById(userId).ToUser(model.Id);
         }
 
         public static User ToUser(
@@ -109,14 +106,14 @@ namespace Antix.Work.Sizing.Portal.Models
                 };
         }
 
-        public static StoryPointsResults[] ToStoryPointQuantities(this IEnumerable<VoteResultModel> models)
+        public static StoryPointsResults[] ToStoryPointResults(this IEnumerable<VoteResultModel> models)
         {
             return models == null
                        ? new StoryPointsResults[] {}
-                       : models.Select(ToStoryPointQuantity).ToArray();
+                       : models.Select(ToStoryPointResults).ToArray();
         }
 
-        public static StoryPointsResults ToStoryPointQuantity(this VoteResultModel model)
+        public static StoryPointsResults ToStoryPointResults(this VoteResultModel model)
         {
             return new StoryPointsResults
                 {
