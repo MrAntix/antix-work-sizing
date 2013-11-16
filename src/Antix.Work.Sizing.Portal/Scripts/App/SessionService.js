@@ -80,7 +80,7 @@
                     });
 
                     var prime = function (u) {
-                        if (u.IsObserver) return 99;
+                        if (u.IsObserver) return "zzzzzz";
 
                         if (team.CurrentStoryResult)
                             return -Math.abs(team.CurrentStoryResult - u.vote);
@@ -88,8 +88,9 @@
                         return u.hasVoted;
                     };
                     team.Users.sort(function (a, b) {
-                        a = prime(a), b = prime(b);
-                        return a < b ? -1 : a > b ? 1 : 0;
+                        var pa = prime(a), pb = prime(b);
+                        return pa < pb ? -1 : pa > pb ? 1 :
+                            a.Name < b.Name ? -1 : a.Name > b.Name ? 1 : 0;
                     });
                     
                     view.render();
