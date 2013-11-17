@@ -14,12 +14,12 @@ body {
   -ms-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  background-color: #ffddbb;
-  background-image: linear-gradient(bottom, #ffb76f 7%, #ffddbb 70%);
-  background-image: -o-linear-gradient(bottom, #ffb76f 7%, #ffddbb 70%);
-  background-image: -moz-linear-gradient(bottom, #ffb76f 7%, #ffddbb 70%);
-  background-image: -webkit-linear-gradient(bottom, #ffb76f 7%, #ffddbb 70%);
-  background-image: -ms-linear-gradient(bottom, #ffb76f 7%, #ffddbb 70%);
+  background-color: #eeddbb;
+  background-image: linear-gradient(bottom, #dfbe7e 7%, #eeddbb 70%);
+  background-image: -o-linear-gradient(bottom, #dfbe7e 7%, #eeddbb 70%);
+  background-image: -moz-linear-gradient(bottom, #dfbe7e 7%, #eeddbb 70%);
+  background-image: -webkit-linear-gradient(bottom, #dfbe7e 7%, #eeddbb 70%);
+  background-image: -ms-linear-gradient(bottom, #dfbe7e 7%, #eeddbb 70%);
   color: #333333;
   font-family: Helvetica, Arial, 'DejaVu Sans', 'Liberation Sans', Freesans, sans-serif;
   font-size: 95%;
@@ -41,7 +41,7 @@ a {
 .header h1 {
   font-size: 10em;
   margin: -0.2em 0 -0.8em;
-  color: #fbd5b0;
+  color: #e6d5b4;
 }
 .page {
   -ms-box-sizing: border-box;
@@ -66,7 +66,7 @@ a {
 }
 .footer p,
 .footer a {
-  color: #e79d54;
+  color: #baa170;
 }
 .share a {
   text-decoration: none;
@@ -311,7 +311,7 @@ a {
   background-image: url(../Images/User_inactive.svg);
 }
 .input.voted {
-  background-color: #bbffdd;
+  background-color: #bbeedd;
 }
 .points .p8,
 .row .p8 {
@@ -342,7 +342,7 @@ a {
   display: none;
 }
 .dialogCover {
-  background-color: #ffddbb;
+  background-color: #eeddbb;
   background-image: linear-gradient(bottom, #d9d9d9 7%, #ffffff 70%);
   background-image: -o-linear-gradient(bottom, #d9d9d9 7%, #ffffff 70%);
   background-image: -moz-linear-gradient(bottom, #d9d9d9 7%, #ffffff 70%);
@@ -352,7 +352,7 @@ a {
   display: none;
 }
 .dialogContainer {
-  background-color: #ffddbb;
+  background-color: #eeddbb;
   background-image: linear-gradient(bottom, #204060 7%, #336699 70%);
   background-image: -o-linear-gradient(bottom, #204060 7%, #336699 70%);
   background-image: -moz-linear-gradient(bottom, #204060 7%, #336699 70%);

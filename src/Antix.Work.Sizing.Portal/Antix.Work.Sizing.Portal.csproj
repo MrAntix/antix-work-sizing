@@ -175,7 +175,9 @@
     <Content Include="Styles\site.min.css">
       <DependentUpon>site.less</DependentUpon>
     </Content>
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Global.asax.cs">
