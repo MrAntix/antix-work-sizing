@@ -26,11 +26,11 @@
 
 .linearGradient(@c){
     background-color: @backgroundColor;
-    background-image: linear-gradient(bottom, darken(@c,15%) 7%, @c 70%);
     background-image: -o-linear-gradient(bottom, darken(@c,15%) 7%, @c 70%);
     background-image: -moz-linear-gradient(bottom, darken(@c,15%) 7%, @c 70%);
     background-image: -webkit-linear-gradient(bottom, darken(@c,15%) 7%, @c 70%);
     background-image: -ms-linear-gradient(bottom, darken(@c,15%) 7%, @c 70%);
+    background-image: linear-gradient(to top, darken(@c,15%) 7%, @c 70%);
 }
 
 .opacity(@v){

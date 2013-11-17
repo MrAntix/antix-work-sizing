@@ -15,11 +15,11 @@ body {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   background-color: #eeddbb;
-  background-image: linear-gradient(bottom, #dfbe7e 7%, #eeddbb 70%);
   background-image: -o-linear-gradient(bottom, #dfbe7e 7%, #eeddbb 70%);
   background-image: -moz-linear-gradient(bottom, #dfbe7e 7%, #eeddbb 70%);
   background-image: -webkit-linear-gradient(bottom, #dfbe7e 7%, #eeddbb 70%);
   background-image: -ms-linear-gradient(bottom, #dfbe7e 7%, #eeddbb 70%);
+  background-image: linear-gradient(to top, #dfbe7e 7%, #eeddbb 70%);
   color: #333333;
   font-family: Helvetica, Arial, 'DejaVu Sans', 'Liberation Sans', Freesans, sans-serif;
   font-size: 95%;
@@ -343,21 +343,21 @@ a {
 }
 .dialogCover {
   background-color: #eeddbb;
-  background-image: linear-gradient(bottom, #d9d9d9 7%, #ffffff 70%);
-  background-image: -o-linear-gradient(bottom, #d9d9d9 7%, #ffffff 70%);
-  background-image: -moz-linear-gradient(bottom, #d9d9d9 7%, #ffffff 70%);
-  background-image: -webkit-linear-gradient(bottom, #d9d9d9 7%, #ffffff 70%);
-  background-image: -ms-linear-gradient(bottom, #d9d9d9 7%, #ffffff 70%);
+  background-image: -o-linear-gradient(bottom, #000000 7%, #000000 70%);
+  background-image: -moz-linear-gradient(bottom, #000000 7%, #000000 70%);
+  background-image: -webkit-linear-gradient(bottom, #000000 7%, #000000 70%);
+  background-image: -ms-linear-gradient(bottom, #000000 7%, #000000 70%);
+  background-image: linear-gradient(to top, #000000 7%, #000000 70%);
   opacity: 0.5;
   display: none;
 }
 .dialogContainer {
   background-color: #eeddbb;
-  background-image: linear-gradient(bottom, #204060 7%, #336699 70%);
   background-image: -o-linear-gradient(bottom, #204060 7%, #336699 70%);
   background-image: -moz-linear-gradient(bottom, #204060 7%, #336699 70%);
   background-image: -webkit-linear-gradient(bottom, #204060 7%, #336699 70%);
   background-image: -ms-linear-gradient(bottom, #204060 7%, #336699 70%);
+  background-image: linear-gradient(to top, #204060 7%, #336699 70%);
   padding: 0 2em 2em;
   display: none;
   color: #fff;
