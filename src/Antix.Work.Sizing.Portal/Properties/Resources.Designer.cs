@@ -109,11 +109,65 @@ namespace Antix.Work.Sizing.Portal.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to next.
+        /// </summary>
+        public static string Next {
+            get {
+                return ResourceManager.GetString("Next", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        public static string OK {
+            get {
+                return ResourceManager.GetString("OK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to [Size] - by antix.co.uk.
         /// </summary>
         public static string Title {
             get {
                 return ResourceManager.GetString("Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to (enter topic).
+        /// </summary>
+        public static string Title_Placeholder {
+            get {
+                return ResourceManager.GetString("Title_Placeholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Clear.
+        /// </summary>
+        public static string Voting_Clear {
+            get {
+                return ResourceManager.GetString("Voting_Clear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Close.
+        /// </summary>
+        public static string Voting_Close {
+            get {
+                return ResourceManager.GetString("Voting_Close", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open.
+        /// </summary>
+        public static string Voting_Open {
+            get {
+                return ResourceManager.GetString("Voting_Open", resourceCulture);
             }
         }
         

@@ -135,8 +135,26 @@
     <value>&lt;p&gt;This is the list of everyone in the session.&lt;/p&gt;
 &lt;p&gt;Click your icon if you don't want to vote&lt;/p&gt;</value>
   </data>
+  <data name="Next" xml:space="preserve">
+    <value>next</value>
+  </data>
+  <data name="OK" xml:space="preserve">
+    <value>OK</value>
+  </data>
   <data name="Title" xml:space="preserve">
     <value>[Size] - by antix.co.uk</value>
+  </data>
+  <data name="Title_Placeholder" xml:space="preserve">
+    <value>(enter topic)</value>
+  </data>
+  <data name="Voting_Clear" xml:space="preserve">
+    <value>Clear</value>
+  </data>
+  <data name="Voting_Close" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="Voting_Open" xml:space="preserve">
+    <value>Open</value>
   </data>
   <data name="Welcome_message" xml:space="preserve">
     <value>&lt;p&gt;Welcome to &lt;strong&gt;[Size]&lt;/strong&gt;, an estimation tool for online teams.&lt;br /&gt;Enter a name and click ok.&lt;/p&gt;

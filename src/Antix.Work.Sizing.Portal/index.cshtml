@@ -42,7 +42,7 @@
                             @Html.Raw(Resources.Help_Title)
                         </div>
                         <div class="input withAction">
-                            <textarea name="title" readonly="readonly" placeholder="(enter topic)"></textarea>
+                            <textarea name="title" readonly="readonly" placeholder="@Resources.Title_Placeholder"></textarea>
                             <button class="action" disabled="disabled"></button>
                         </div>
                     </div>
@@ -52,7 +52,7 @@
                         </div>
                         <div class="input">
                             <span class="results"></span>
-                            <button class="action">Open</button>
+                            <button class="action">@Resources.Voting_Open</button>
                         </div>
                     </div>
                 </div>
@@ -104,7 +104,7 @@
                     <input id="IsObserver" type="checkbox">
                     <label for="IsObserver">Observe</label>
                     <input name="UserName">
-                    <button class="action">OK</button>
+                    <button class="action">@Resources.OK</button>
                 </div>
             </div>
             @Html.Raw(Resources.Welcome_message)
@@ -114,7 +114,7 @@
             <div class="withAction">
                 <div class="helpContainerInner"></div>
             
-                <button class="next">next</button>
+                <button class="next">@Resources.Next</button>
             </div>
         </div>
 
