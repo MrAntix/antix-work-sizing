@@ -16,5 +16,7 @@ namespace Antix.Work.Sizing.Services.Models
         public TeamMemberModel[] Members { get; set; }
 
         public StoryModel Story { get; set; }
+
+        public bool InDemoMode { get; set; }
     }
 }

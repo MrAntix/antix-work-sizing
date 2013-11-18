@@ -123,6 +123,24 @@ namespace Antix.Work.Sizing.Services
                              .ClearVotes(teamId, memberId);
         }
 
+        public static async Task<TeamModel> DemoToggle(
+            this ITeamService service,
+            string memberId)
+        {
+            var teamId = await service.GetTeamIdByMemberId(memberId);
+            return await service
+                             .DemoToggle(teamId, memberId);
+        }
+
+        public static async Task<TeamModel> DemoStage(
+            this ITeamService service,
+            string memberId, DemoStage stage)
+        {
+            var teamId = await service.GetTeamIdByMemberId(memberId);
+            return await service
+                             .DemoStage(teamId, memberId, stage);
+        }
+
         public static async Task<string> GetTeamIdByMemberId(
             this ITeamService service,
             string memberId)

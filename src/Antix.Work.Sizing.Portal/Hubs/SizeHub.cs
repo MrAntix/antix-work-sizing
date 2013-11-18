@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 
 using Antix.Work.Sizing.Portal.Models;
 using Antix.Work.Sizing.Services;
+using Antix.Work.Sizing.Services.Models;
 
 using Microsoft.AspNet.SignalR;
 
@@ -147,5 +148,16 @@ namespace Antix.Work.Sizing.Portal.Hubs
                 .Group(team.Id)
                 .teamUpdate(team.ToTeam());
         }
+
+        public async Task DemoToggle()
+        {
+            var team = await _teamService
+                                 .DemoToggle(Context.ConnectionId);
+
+            await Clients
+                .Group(team.Id)
+                .teamUpdate(team.ToTeam());
+        }
     }
+
 }

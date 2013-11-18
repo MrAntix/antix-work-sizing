@@ -7,6 +7,8 @@ namespace Antix.Work.Sizing.Services.Models
 
         public bool IsObserver { get; set; }
 
+        public bool IsDemo { get; set; }
+
         public override string ToString()
         {
             return string.Format(

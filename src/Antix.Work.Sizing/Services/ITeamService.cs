@@ -10,6 +10,7 @@ namespace Antix.Work.Sizing.Services
         Task<TeamModel> Connect(string teamId, TeamMemberModel teamMember);
         Task<TeamModel> TryDisconnect(string teamId, string teamMemberId);
 
+        Task<TeamModel> TryGetTeamByMemberId(string memberId);
         Task<string> TryGetTeamIdByMemberId(string memberId);
 
         Task<TeamModel> LockStory(string teamId, string memberId, string story);
@@ -27,5 +28,8 @@ namespace Antix.Work.Sizing.Services
         Task<TeamModel> TryUpdateMemberByName(
             string teamId, string memberId,
             string targetMemberName, Action<TeamMemberModel> action);
+
+        Task<TeamModel> DemoToggle(string teamId, string memberId);
+        Task<TeamModel> DemoStage(string teamId, string memberId, DemoStage stage);
     }
 }
