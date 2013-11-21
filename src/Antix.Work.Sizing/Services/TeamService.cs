@@ -76,14 +76,6 @@ namespace Antix.Work.Sizing.Services
             return await _dataService.Update(team);
         }
 
-        async Task<TeamModel> ITeamService.TryGetTeamByMemberId(string memberId)
-        {
-            var teamId = await _dataService.TryGetIndex(memberId);
-            if (teamId == null) return null;
-
-            return await GetTeam(teamId);
-        }
-
         async Task<string> ITeamService.TryGetTeamIdByMemberId(string memberId)
         {
             return await _dataService.TryGetIndex(memberId);
@@ -258,73 +250,5 @@ namespace Antix.Work.Sizing.Services
                 || !team.Story.OwnerId.Equals(memberId))
                 throw new RequiresOwnerPermissionException(memberId, team.Story.OwnerId);
         }
-
-        async Task<TeamModel> ITeamService.DemoToggle(
-            string teamId, string memberId)
-        {
-            var team = await GetTeam(teamId);
-
-            return await Demo(team, memberId, team.InDemoMode ? DemoStage.None : DemoStage.Stage1_Team);
-        }
-
-        async Task<TeamModel> ITeamService.DemoStage(
-            string teamId, string memberId, DemoStage stage)
-        {
-            var team = await GetTeam(teamId);
-
-            return await Demo(team, memberId, stage);
-        }
-
-        async Task<TeamModel> Demo(
-            TeamModel team, string memberId, DemoStage stage)
-        {
-            //if (team.Members.Count() > 1)
-            //    AssertIsStoryOwner(team, memberId);
-
-            team.InDemoMode = true;
-            switch (stage)
-            {
-                case DemoStage.None:
-                    team.InDemoMode = false;
-
-                    team.Members = team.Members
-                                       .Where(m => !m.IsDemo)
-                                       .ToArray();
-
-                    break;
-                case DemoStage.Stage1_Team:
-                    await AddDemoMember(team, "Bob (developer)", false);
-                    await AddDemoMember(team, "Patrick (developer)", false);
-                    await AddDemoMember(team, "Gary (tester)", false);
-                    await AddDemoMember(team, "Eugine (stakeholder)", true);
-                    await AddDemoMember(team, "Edward (project manager)", false);
-
-                    break;
-            }
-
-            return await _dataService.Update(team);
-        }
-
-        static async Task AddDemoMember(TeamModel team, string name, bool isObserver)
-        {
-            team.Members = team.Members.AddByName(
-                new TeamMemberModel
-                    {
-                        Id = Guid.NewGuid().ToString(),
-                        Name = name,
-                        IsObserver = isObserver,
-                        IsDemo = true
-                    }).ToArray();
-        }
-    }
-    
-    public enum DemoStage
-    {
-        None,
-        Stage1_Team,
-        Story,
-        Vote,
-        Agree,
-        End
     }
 }

@@ -199,6 +199,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
+    <Compile Include="Application\TraceLogger.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Styles\dialog.less" />

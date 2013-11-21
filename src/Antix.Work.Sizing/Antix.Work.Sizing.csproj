@@ -59,6 +59,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Services\DemoService.cs" />
+    <Compile Include="Services\IDemoService.cs" />
     <Compile Include="Services\InMemory\InMemorySettings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
@@ -76,6 +78,7 @@
     <Compile Include="Services\Models\VoteModel.cs" />
     <Compile Include="Services\Models\VoteResultModel.cs" />
     <Compile Include="Services\Models\TeamMemberModel.cs" />
+    <Compile Include="Services\Schedule.cs" />
     <Compile Include="Services\TeamMemberNotFoundException.cs" />
     <Compile Include="Services\RequiresOwnerPermissionException.cs" />
     <Compile Include="Services\SizeException.cs" />

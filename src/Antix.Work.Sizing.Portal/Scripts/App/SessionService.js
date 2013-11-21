@@ -80,7 +80,7 @@
                     });
 
                     var prime = function (u) {
-                        if (u.IsObserver) return "zzzzzz";
+                        if (u.IsObserver) return 99;
 
                         if (team.CurrentStoryResult)
                             return -Math.abs(team.CurrentStoryResult - u.vote);
@@ -170,7 +170,7 @@
                 logger.log("demo-toggle");
 
                 hub.server
-                    .demoToggle()
+                    .demoStart()
                     .fail(service.error);
             });
 

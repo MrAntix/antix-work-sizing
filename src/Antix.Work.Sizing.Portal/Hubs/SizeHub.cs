@@ -12,11 +12,17 @@ namespace Antix.Work.Sizing.Portal.Hubs
     public class SizeHub : Hub
     {
         readonly ITeamService _teamService;
+        readonly IDemoService _demoService;
 
         public SizeHub(
-            ITeamService teamService)
+            ITeamService teamService,
+            Func<Func<TeamModel, Task>, IDemoService> getDemoService)
         {
             _teamService = teamService;
+            _demoService = getDemoService(
+                async team => await Clients
+                                        .Group(team.Id)
+                                        .teamUpdate(team.ToTeam()));
         }
 
         public async Task<Session> Connect(User user)
@@ -149,15 +155,19 @@ namespace Antix.Work.Sizing.Portal.Hubs
                 .teamUpdate(team.ToTeam());
         }
 
-        public async Task DemoToggle()
+        public async Task DemoStart()
         {
-            var team = await _teamService
-                                 .DemoToggle(Context.ConnectionId);
+            await _demoService.Start(Context.ConnectionId);
+        }
 
-            await Clients
-                .Group(team.Id)
-                .teamUpdate(team.ToTeam());
+        public async Task DemoNext()
+        {
+            await _demoService.Next(Context.ConnectionId);
+        }
+
+        public async Task DemoCancel()
+        {
+            await _demoService.Cancel(Context.ConnectionId);
         }
     }
-
 }
