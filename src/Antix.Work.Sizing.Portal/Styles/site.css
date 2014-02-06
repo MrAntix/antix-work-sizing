@@ -1,4 +1,4 @@
-﻿.rounded {
+.rounded {
   border-radius: .2em;
 }
 .shadowed {
@@ -171,6 +171,7 @@ a {
   background-color: #ffffff;
   color: #333333;
   padding: 0.4em;
+  box-shadow: inset 1px 1px 6px rgba(0, 0, 0, 0.2);
 }
 .input input,
 .input textarea,
@@ -243,6 +244,7 @@ a {
 .input [readonly],
 .row .withAction button[disabled] {
   background-color: rgba(0, 0, 0, 0.05);
+  box-shadow: none;
 }
 .story .title .withAction button {
   background-image: url(../Images/Lock.svg);
