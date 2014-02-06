@@ -5,13 +5,23 @@ namespace Antix.Work.Sizing.Services.Models
     [DebuggerDisplay("{Points} ({Percentage}%)")]
     public class VoteResultModel
     {
-        public VoteResultModel(int points, int count)
+        readonly int _points;
+        readonly decimal _percentage;
+
+        public VoteResultModel(int points, decimal percentage)
         {
-            Percentage = count;
-            Points = points;
+            _percentage = percentage;
+            _points = points;
         }
 
-        public int Points { get; private set; }
-        public int Percentage { get; private set; }
+        public int Points
+        {
+            get { return _points; }
+        }
+
+        public decimal Percentage
+        {
+            get { return _percentage; }
+        }
     }
 }
