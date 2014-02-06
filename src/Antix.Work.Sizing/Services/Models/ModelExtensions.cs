@@ -192,9 +192,11 @@ namespace Antix.Work.Sizing.Services.Models
             var votesCount = team.Story.Votes.Count();
 
             if (team.Story.VotingIsOpen
-                && votingMembersCount != votesCount) return null;
+                && votesCount < votingMembersCount) return null;
 
             return (from v in team.Story.Votes
+                    from m in team.Members
+                    where m.Id == v.OwnerId && !m.IsObserver
                     group v by v.Points
                     into g
                     orderby g.Key
