@@ -159,6 +159,8 @@ a{
     background-color:@inputBackgroundColor;
     color:@inputColor;
     padding:@borderWidth;
+
+    box-shadow:inset 1px 1px 6px rgba(0,0,0,.2);
 }
 .input input,
 .input textarea,
@@ -236,6 +238,7 @@ a{
 .input [readonly],
 .row .withAction button[disabled]{
     background-color:@inputReadonlyBackgroundColor;
+    box-shadow:none;
 }
 
 .story .title .withAction button {

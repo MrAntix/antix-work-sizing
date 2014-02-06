@@ -1,7 +1,7 @@
-﻿define("SessionView", function() {
+﻿define("SessionView", function () {
     var logger = require("logger");
 
-    return function($el) {
+    return function ($el) {
         var $users = $el.find(".users .inputs"),
             $user = $el.find(".user .inputs"),
             $userPoints = $el.find(".user [name='points']"),
@@ -16,7 +16,7 @@
         var view = {
             model: null,
             render:
-                function() {
+                function () {
                     logger.log("render: " + JSON.stringify(view.model));
 
                     location.hash = view.model.team.Id;
@@ -26,7 +26,7 @@
                             .attr({ href: window.location })
                             .text(window.location)
                             .addClass("share")
-                            .on("click", function() { return false; }));
+                            .on("click", function () { return false; }));
 
                     renderStoryTitle();
                     renderStoryPoints();
@@ -37,14 +37,16 @@
             $el: $el
         };
 
-        var lock = function() {
+        var lock = function () {
             $el.trigger("story-lock", { Title: $story.val() });
         },
-            release = function() {
+            release = function () {
                 $el.trigger("story-release");
             },
-            renderStoryTitle = function() {
-                $story.attr("readonly", true).off("keyup");
+            renderStoryTitle = function () {
+                $story.off("keyup")
+                    .attr("readonly", true)
+                    .parent().addClass("readonly");
                 $action.attr("disabled", true).off("click").removeClass("active");
 
                 view.model.user.isOwner = false;
@@ -52,14 +54,16 @@
                     || !view.model.team.CurrentStoryOwner
                     || view.model.team.CurrentStoryOwner === view.model.user.Name) {
 
-                    $story.attr("readonly", false)
-                        .on("keyup", lock);
+                    $story
+                        .on("keyup", lock)
+                        .attr("readonly", false)
+                        .parent().removeClass("readonly");
 
                     $action.attr("disabled", false);
                     if (view.model.team.CurrentStoryOwner) {
                         $action.text("")
                             .addClass("active")
-                            .on("click", function() {
+                            .on("click", function () {
                                 release();
                                 this.blur();
                                 return false;
@@ -68,7 +72,7 @@
 
                     } else {
                         $action.text("")
-                            .on("click", function() {
+                            .on("click", function () {
                                 lock();
                                 this.blur();
                                 return false;
@@ -86,10 +90,10 @@
                     $story.val(view.model.team.CurrentStory.Title);
                 }
             },
-            renderStoryPoints = function() {
+            renderStoryPoints = function () {
                 $storyPointsResult.empty();
                 if (view.model.team.CurrentStoryResult) {
-                    $.each(view.model.team.CurrentStoryResults, function() {
+                    $.each(view.model.team.CurrentStoryResults, function () {
                         $("<span>" + this.Value + "</span>")
                             .addClass("result")
                             .addClass("p" + this.Value)
@@ -114,25 +118,25 @@
                     if (view.model.team.CurrentStoryResult) {
                         $storyPointsAction
                             .text("Clear")
-                            .on("click", function() {
+                            .on("click", function () {
                                 $el.trigger("clear-votes");
                             });
                     } else if (view.model.team.CurrentStory.VotingOpen) {
                         $storyPointsAction
                             .text("Stop")
-                            .on("click", function() {
+                            .on("click", function () {
                                 $el.trigger("close-voting");
                             });
                     } else {
                         $storyPointsAction
                             .text("Start")
-                            .on("click", function() {
+                            .on("click", function () {
                                 $el.trigger("open-voting");
                             });
                     }
                 }
             },
-            renderUserPoints = function() {
+            renderUserPoints = function () {
                 $userPoints
                     .off("change click")
                     .attr({ disabled: true });
@@ -144,7 +148,7 @@
                 if (view.model.team.CurrentStory
                     && !view.model.user.IsObserver) {
 
-                    $.each(view.model.team.CurrentStory.Points, function() {
+                    $.each(view.model.team.CurrentStory.Points, function () {
                         if (this.Name === view.model.user.Name) {
                             pointsValue = this.Value;
                             var id = $userPoints
@@ -156,7 +160,7 @@
                                 .addClass("active");
                         }
                     });
-                    
+
                     $userPoints
                         .attr({ disabled: false })
                         .on("change", function () {
@@ -175,9 +179,9 @@
                     if (show) $userPointsContainer.slideDown();
                 }
             },
-            renderUsers = function() {
+            renderUsers = function () {
                 $users.add($user).empty();
-                $.each(view.model.team.Users, function() {
+                $.each(view.model.team.Users, function () {
                     var userName = this.Name,
                         $row = $("<li class='input'></li>"),
                         $input = $("<input type='text' name='person.Name' />")
@@ -185,8 +189,8 @@
 
                     if (userName === view.model.user.Name) {
                         $input
-                            .on("click", function() { return false; })
-                            .on("change", function() {
+                            .on("click", function () { return false; })
+                            .on("change", function () {
                                 $el.trigger("user-change-name", $input.val());
                             });
                     } else {
@@ -197,7 +201,7 @@
                     if (userName === view.model.user.Name
                         || view.model.user.Name === view.model.team.CurrentStoryOwner) {
                         $row
-                            .on("click", function() {
+                            .on("click", function () {
                                 $el.trigger("user-change-observer", [userName, !$row.hasClass("inactive")]);
                             });
                     }
@@ -213,7 +217,7 @@
                     }
                 });
             },
-            renderDemo = function() {
+            renderDemo = function () {
 
                 $demoButton
                     .attr("disabled", true)
@@ -225,7 +229,7 @@
 
                     $demoButton
                         .attr("disabled", false)
-                        .on("click", function() {
+                        .on("click", function () {
                             $el.trigger("demo-toggle");
                         });
                 }
