@@ -200,7 +200,7 @@ namespace Antix.Work.Sizing.Services.Models
                     orderby g.Key
                     select new VoteResultModel(
                         g.Key,
-                        (int) Math.Round(100*g.Count()/(decimal) votingMembersCount)))
+                        100*g.Count()/(decimal) votingMembersCount))
                 .ToArray();
         }
 
