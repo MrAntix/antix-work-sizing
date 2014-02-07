@@ -38,13 +38,9 @@ a{
     min-height:300px;
 }
 
-.footer{
-    text-align:right;
-}
-
 .footer p {
     font-size: 1em;
-    margin: 0 0 -.6em;
+    margin: 0 5px;
 }
 .footer p, .footer a{
     color:darken(desaturate(@backgroundColor,25%),25%);
@@ -271,7 +267,7 @@ a{
     .box;
     float: left;
     width:100%;
-    margin: 0;
+    margin: 0 0 2px;
     padding: @borderWidth;
     border: solid @borderWidth transparent;
     text-align: center;
@@ -344,3 +340,20 @@ a{
 
 @import url(dialog.less);
 
+.icon{
+    float:right;
+    overflow:hidden;
+    width:24px;height:0;
+
+    margin:0 0 0 6px;
+    padding-top:24px;
+
+    background-repeat:no-repeat;
+    border-radius:2px;
+}
+.icon-twitter{
+    background-image:url(/images/twitter.png);
+}
+.icon-google{
+    background-image:url(/images/google.png);
+}

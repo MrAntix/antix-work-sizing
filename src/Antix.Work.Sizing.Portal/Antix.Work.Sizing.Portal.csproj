@@ -121,8 +121,10 @@
     <Content Include="Images\icon.svg" />
     <Content Include="Images\Lock.gif" />
     <Content Include="Images\Lock.svg" />
+    <Content Include="Images\google.png" />
     <Content Include="Images\Share.gif" />
     <Content Include="Images\Share.svg" />
+    <Content Include="Images\twitter.png" />
     <Content Include="Images\Unlock.gif" />
     <Content Include="Images\Unlock.svg" />
     <Content Include="Images\User.gif" />
