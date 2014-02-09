@@ -352,7 +352,7 @@ a {
 }
 .users .input {
   padding-left: 2.4000000000000003em;
-  padding-right: 2.4000000000000003em;
+  padding-right: 0.4em;
   margin-bottom: 0.4em;
 }
 .users .input .activate {
