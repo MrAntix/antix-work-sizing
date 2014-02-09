@@ -215,8 +215,8 @@
                 $users.add($user).empty();
                 $.each(view.model.team.Users, function() {
                     var userName = this.Name,
-                        $row = $("<li class='input'></li>"),
-                        $input = $("<input type='text' name='person.Name' />")
+                        $row = $("<li class='input'><span class='activate'/></li>"),
+                        $input = $("<input type='text' name='person.Name'/>")
                             .val(userName);
 
                     if (userName === view.model.user.Name) {
@@ -232,9 +232,10 @@
 
                     if (userName === view.model.user.Name
                         || view.model.user.Name === view.model.team.CurrentStoryOwner) {
-                        $row
+                        $row.find(".activate")
                             .on("click", function() {
                                 $el.trigger("user-change-observer", [userName, !$row.hasClass("inactive")]);
+                                return false;
                             });
                     }
 
