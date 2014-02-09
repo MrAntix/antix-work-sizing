@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
-
 using Antix.Work.Sizing.Portal.Models;
 using Antix.Work.Sizing.Services;
+using Antix.Work.Sizing.Services.Models;
 
 using Microsoft.AspNet.SignalR;
 
@@ -118,10 +118,15 @@ namespace Antix.Work.Sizing.Portal.Hubs
                 .teamUpdate(team.ToTeam());
         }
 
-        public async Task OpenVoting()
+        public async Task OpenVoting(VoteSchedule schedule)
         {
-            var team = await _teamService
-                                 .OpenVoting(Context.ConnectionId);
+
+            var team
+                = await _teamService
+                            .OpenVoting(
+                                Context.ConnectionId,
+                                schedule.ToVoteScheduleModel()
+                            );
 
             await Clients
                 .Group(team.Id)

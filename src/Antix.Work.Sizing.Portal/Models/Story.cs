@@ -5,6 +5,8 @@
         public string Title { get; set; }
 
         public bool VotingOpen { get; set; }
+        public VoteSchedule VoteSchedule { get; set; }
+
         public StoryPoints[] Points { get; set; }
     }
 }

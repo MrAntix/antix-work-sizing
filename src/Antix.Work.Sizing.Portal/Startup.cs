@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Diagnostics;
+
 using Antix.Logging;
 using Antix.Work.Sizing.Portal.Hubs;
 using Antix.Work.Sizing.Services;
 using Antix.Work.Sizing.Services.InMemory;
+
 using Microsoft.AspNet.SignalR;
+
 using Owin;
 
 namespace Antix.Work.Sizing.Portal
@@ -13,9 +16,8 @@ namespace Antix.Work.Sizing.Portal
     {
         public void Configuration(IAppBuilder app)
         {
-            var logger = new TraceLogger();
             var teamDataService = new TeamDataService();
-            var teamService = new TeamService(teamDataService, logger);
+            var teamService = new TeamService(teamDataService, ToTrace);
 
             GlobalHost.DependencyResolver
                       .Register(typeof (SizeHub), () => new SizeHub(teamService));
@@ -27,27 +29,20 @@ namespace Antix.Work.Sizing.Portal
                 });
         }
 
-        class TraceLogger : ILogAdapter
-        {
-            public void Log(
-                LogLevel logLevel,
-                IFormatProvider formatProvider,
-                Func<LogMessageDelegate, string> getMessage,
-                Exception ex)
-            {
-                if (Trace.Listeners.Count == 0) return;
+        static readonly Log.Delegate ToTrace
+            = l => (ex, f, a) =>
+                {
+                    if (Trace.Listeners.Count == 0) return;
 
-                // if (logLevel <= LogLevel.Information) return;
+                    // if (l <= Log.Level.Information) return;
 
-                var message = LoggerHelper
-                    .GetMessageFunc(formatProvider, getMessage)();
+                    var m = string.Format(f, a);
 
-                Trace.Write(
-                    string.Format("{0} {1}\r\n{2}", DateTimeOffset.UtcNow, message, ex),
-                    logLevel.ToString()
-                    );
-                Trace.Close();
-            }
-        }
+                    Trace.Write(
+                        string.Format("{0} {1}\r\n{2}", DateTimeOffset.UtcNow, m, ex),
+                        l.ToString()
+                        );
+                    Trace.Close();
+                };
     }
 }

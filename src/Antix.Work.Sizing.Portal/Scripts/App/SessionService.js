@@ -145,12 +145,56 @@
                     .updateCurrentUserVote(points)
                     .fail(service.error);
             })
-            .on("open-voting", function () {
+            .on("open-voting", function (e, mins) {
                 logger.log("open-voting");
 
+                var schedule = mins
+                    ? {
+                        Percent: 100,
+                        Seconds: mins * 60
+                    }
+                    : {};
+
                 hub.server
-                    .openVoting()
+                    .openVoting(schedule)
                     .fail(service.error);
+
+                var clearSchedule = function() {
+                    if (view.schedule) {
+                        window.clearTimeout(view.schedule);
+                        view.schedule = null;
+                    }
+                };
+
+                clearSchedule();
+
+                if (mins) {
+                    var start = new Date().getTime(),
+                        end = start + (schedule.Seconds * 1000);
+
+                    var scheduleTick = function() {
+
+                        var left = end - new Date().getTime();
+
+                        schedule.Percent = 100 * left / (end - start);
+                        schedule.Seconds = Math.floor(left / 1000);
+
+                        hub.server
+                            .openVoting(schedule)
+                            .fail(service.error);
+
+                        if (schedule.Seconds > 0) {
+                            var interval = schedule.Seconds < 100
+                                ? .99
+                                : schedule.Seconds / 100;
+                            view.schedule = window.setTimeout(scheduleTick, interval * 1000);
+                        } else {
+                            clearSchedule();
+                        }
+                    };
+
+                    scheduleTick();
+                }
             })
             .on("close-voting", function () {
                 logger.log("close-voting");

@@ -14,5 +14,7 @@ namespace Antix.Work.Sizing.Services.Models
         public string OwnerId { get; set; }
         public bool VotingIsOpen { get; set; }
         public VoteModel[] Votes { get; set; }
+
+        public VoteScheduleModel VoteSchedule { get; set; }
     }
 }

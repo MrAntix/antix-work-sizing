@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+using Antix.Logging;
 using Antix.Work.Sizing.Services;
 using Antix.Work.Sizing.Services.Models;
 
@@ -61,7 +62,7 @@ namespace Antix.Work.Sizing.Tests.Services
 
             return new TeamService(
                 dataServiceMock.Object,
-                new DebugLogger());
+                Log.ToConsole);
         }
     }
 }

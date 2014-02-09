@@ -11,11 +11,11 @@ namespace Antix.Work.Sizing.Services
         ITeamService
     {
         readonly ITeamDataService _dataService;
-        readonly ILogAdapter _logger;
+        readonly Log.Delegate _logger;
 
         public TeamService(
             ITeamDataService dataService,
-            ILogAdapter logger)
+            Log.Delegate logger)
         {
             _dataService = dataService;
             _logger = logger;
@@ -112,14 +112,22 @@ namespace Antix.Work.Sizing.Services
             return await _dataService.Update(team);
         }
 
-        async Task<TeamModel> ITeamService
-            .OpenVoting(string teamId, string memberId)
+        async Task<TeamModel> ITeamService.OpenVoting(
+            string teamId, string memberId, VoteScheduleModel schedule)
         {
             var team = await GetTeam(teamId);
 
             AssertIsStoryOwner(team, memberId);
 
-            team.Story.VotingIsOpen = true;
+            if (schedule == null || schedule.Seconds == 0)
+            {
+                team.Story.VoteSchedule = null;
+                team.Story.VotingIsOpen = true;
+            }
+            else
+            {
+                team.Story.VoteSchedule = schedule;
+            }
 
             _logger.Information(m => m("{0} opened voting", memberId));
 

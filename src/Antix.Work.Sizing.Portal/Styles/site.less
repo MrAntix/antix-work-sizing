@@ -184,11 +184,18 @@ a{
     width: 100%!important; //over-rides user resize
 }
 
+.action {
+    background-color: @actionBackgroundColor;
+    color: @actionColor;
+    cursor: pointer;
+}
+
 .withAction{
-    padding-right:@buttonWidth + (@borderWidth*5);
+    padding-right:@buttonWidth + (@borderWidth*4);
 }
 .withAction button{
     .rounded;
+    .action;
     position:absolute;
     top:@borderWidth;bottom:@borderWidth;
     right:@borderWidth;
@@ -196,7 +203,6 @@ a{
 
     border:solid @borderWidth transparent;
     padding:@borderWidth 0;
-    background-color:@actionBackgroundColor;
 }
 .withAction button.active{
     background-color:@activeBackgroundColor;
@@ -266,11 +272,49 @@ a{
 .story .points .result {
     .box;
     float: left;
-    width:100%;
+    width:100%;min-height:45px;
     margin: 0 0 2px;
     padding: @borderWidth;
     border: solid @borderWidth transparent;
     text-align: center;
+}
+
+.story .timer{
+    .box;
+    .rounded;
+
+    float: right;
+    min-height:35px;min-width:30px;
+    line-height:35px;
+    padding: @borderWidth;
+    border: none;
+    text-align: right;
+
+    background-color:@timerBackgroundColor;
+}
+
+.story .time{
+    .box;
+    float: left;
+    padding: 0 @borderWidth 0 0;
+
+}
+.story .time span {
+    .box;
+    .rounded;
+    .action;
+    float: right;
+    min-height:23px;width:100%;
+    line-height:23px;
+    padding: @borderWidth;
+    padding-left: @iconSize + @borderWidth;
+    border: solid @borderWidth transparent;
+    text-align: left;
+
+    background-image: url(../Images/Time.svg);
+    background-size: @iconSize @iconSize;
+    background-position: left center;
+    background-repeat: no-repeat;
 }
 
 .user .points{
