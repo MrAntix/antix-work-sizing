@@ -193,11 +193,19 @@ a {
 .input textarea {
   width: 100%!important;
 }
+.action {
+  background-color: #669966;
+  color: #000000;
+  cursor: pointer;
+}
 .withAction {
-  padding-right: 22%;
+  padding-right: 21.6%;
 }
 .withAction button {
   border-radius: .2em;
+  background-color: #669966;
+  color: #000000;
+  cursor: pointer;
   position: absolute;
   top: 0.4em;
   bottom: 0.4em;
@@ -206,7 +214,6 @@ a {
   height: auto;
   border: solid 0.4em transparent;
   padding: 0.4em 0;
-  background-color: #669966;
 }
 .withAction button.active {
   background-color: #336633;
@@ -270,10 +277,53 @@ a {
   box-sizing: border-box;
   float: left;
   width: 100%;
+  min-height: 45px;
   margin: 0 0 2px;
   padding: 0.4em;
   border: solid 0.4em transparent;
   text-align: center;
+}
+.story .timer {
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  border-radius: .2em;
+  float: right;
+  min-height: 35px;
+  min-width: 30px;
+  line-height: 35px;
+  padding: 0.4em;
+  border: none;
+  text-align: right;
+  background-color: #ff9900;
+}
+.story .time {
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  float: left;
+  padding: 0 0.4em 0 0;
+}
+.story .time span {
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  border-radius: .2em;
+  background-color: #669966;
+  color: #000000;
+  cursor: pointer;
+  float: right;
+  min-height: 23px;
+  width: 100%;
+  line-height: 23px;
+  padding: 0.4em;
+  padding-left: 2em;
+  border: solid 0.4em transparent;
+  text-align: left;
+  background-image: url(../Images/Time.svg);
+  background-size: 1.6em 1.6em;
+  background-position: left center;
+  background-repeat: no-repeat;
 }
 .user .points {
   display: none;

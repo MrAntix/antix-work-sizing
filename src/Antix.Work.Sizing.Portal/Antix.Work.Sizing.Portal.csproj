@@ -118,6 +118,7 @@
   <ItemGroup>
     <Content Include="Global.asax" />
     <Content Include="Images\body-back.png" />
+    <Content Include="Images\Time.svg" />
     <Content Include="Images\icon.svg" />
     <Content Include="Images\Lock.gif" />
     <Content Include="Images\Lock.svg" />
@@ -194,6 +195,7 @@
     <Compile Include="Models\Team.cs" />
     <Compile Include="Models\TeamMember.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="Models\VoteSchedule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>

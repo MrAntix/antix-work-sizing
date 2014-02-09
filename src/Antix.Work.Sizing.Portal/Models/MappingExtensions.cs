@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-
 using Antix.Work.Sizing.Services.Models;
 
 namespace Antix.Work.Sizing.Portal.Models
@@ -11,7 +10,7 @@ namespace Antix.Work.Sizing.Portal.Models
             this TeamModel model)
         {
             var results = model.GetVoteResults().ToStoryPointResults();
-            var result = results.OrderByDescending(r => r.Percentage).Select(r=>r.Value).FirstOrDefault();
+            var result = results.OrderByDescending(r => r.Percentage).Select(r => r.Value).FirstOrDefault();
 
             return new Team
                 {
@@ -84,8 +83,31 @@ namespace Antix.Work.Sizing.Portal.Models
                 {
                     Title = model.Title,
                     VotingOpen = model.VotingIsOpen,
+                    VoteSchedule = model.VoteSchedule.ToVotingSchedule(),
                     Points = ToStoryPoints(model.Votes, members)
                 };
+        }
+
+        public static VoteSchedule ToVotingSchedule(
+            this VoteScheduleModel model)
+        {
+            if (model == null) return null;
+
+            return new VoteSchedule
+                {
+                    Percent = model.Percent,
+                    Seconds = model.Seconds
+                };
+        }
+
+        public static VoteScheduleModel ToVoteScheduleModel(
+            this VoteSchedule schedule)
+        {
+            if (schedule == null) return null;
+
+            return new VoteScheduleModel(
+                schedule.Percent, 
+                schedule.Seconds);
         }
 
         public static StoryPoints[] ToStoryPoints(

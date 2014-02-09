@@ -1,6 +1,5 @@
 using System;
 using System.Threading.Tasks;
-
 using Antix.Work.Sizing.Services.Models;
 
 namespace Antix.Work.Sizing.Services
@@ -15,7 +14,7 @@ namespace Antix.Work.Sizing.Services
         Task<TeamModel> LockStory(string teamId, string memberId, string story);
         Task<TeamModel> UnlockStory(string teamId, string memberId);
 
-        Task<TeamModel> OpenVoting(string teamId, string memberId);
+        Task<TeamModel> OpenVoting(string teamId, string memberId, VoteScheduleModel schedule);
         Task<TeamModel> CloseVoting(string teamId, string memberId);
         Task<TeamModel> Vote(string teamId, string memberId, int points);
         Task<TeamModel> ClearVotes(string teamId, string memberId);
