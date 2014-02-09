@@ -219,30 +219,6 @@ a {
   background-color: #336633;
   border: solid 0.4em rgba(255, 255, 255, 0.1);
 }
-.withSelector {
-  padding-left: 2.4000000000000003em;
-}
-.withSelector > [type='checkbox'],
-.withSelector > [type='radio'] {
-  display: none;
-}
-.withSelector input[type='checkbox'] + label {
-  position: absolute;
-  top: 0.4em;
-  bottom: 0.4em;
-  left: 0.4em;
-  width: 2em;
-  height: auto;
-  background-image: url('/Images/User.svg');
-  background-size: 1.6em 1.6em;
-  background-position: 0.4em center;
-  background-repeat: no-repeat;
-  cursor: pointer;
-  text-indent: -10000px;
-}
-.withSelector input[type='checkbox']:checked + label {
-  background-image: url(../Images/User_inactive.svg);
-}
 .readonly,
 .readonly .input,
 .input [readonly],
