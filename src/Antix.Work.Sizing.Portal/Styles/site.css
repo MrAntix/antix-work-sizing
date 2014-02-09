@@ -233,7 +233,7 @@ a {
   left: 0.4em;
   width: 2em;
   height: auto;
-  background-image: url(../Images/User.svg);
+  background-image: url('/Images/User.svg');
   background-size: 1.6em 1.6em;
   background-position: 0.4em center;
   background-repeat: no-repeat;
@@ -278,7 +278,7 @@ a {
   float: left;
   width: 100%;
   min-height: 45px;
-  margin: 0 0 2px;
+  margin: 0;
   padding: 0.4em;
   border: solid 0.4em transparent;
   text-align: center;
@@ -313,14 +313,14 @@ a {
   color: #000000;
   cursor: pointer;
   float: right;
-  min-height: 23px;
+  min-height: 21px;
   width: 100%;
-  line-height: 23px;
+  line-height: 21px;
   padding: 0.4em;
   padding-left: 2em;
   border: solid 0.4em transparent;
   text-align: left;
-  background-image: url(../Images/Time.svg);
+  background-image: url('../Images/Time.svg');
   background-size: 1.6em 1.6em;
   background-position: left center;
   background-repeat: no-repeat;
