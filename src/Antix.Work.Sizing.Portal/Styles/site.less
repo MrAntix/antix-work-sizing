@@ -223,10 +223,12 @@ a{
         left: @borderWidth;
         width: @iconSize+@borderWidth;
         height: auto;
-        background-image: url(../Images/User.svg);
+
+        background-image: url('/Images/User.svg');
         background-size: @iconSize @iconSize;
         background-position: @borderWidth center;
         background-repeat: no-repeat;
+
         cursor: pointer;
         text-indent: -10000px;
     }
@@ -273,7 +275,7 @@ a{
     .box;
     float: left;
     width:100%;min-height:45px;
-    margin: 0 0 2px;
+    margin: 0;
     padding: @borderWidth;
     border: solid @borderWidth transparent;
     text-align: center;
@@ -304,14 +306,14 @@ a{
     .rounded;
     .action;
     float: right;
-    min-height:23px;width:100%;
-    line-height:23px;
+    min-height:21px;width:100%;
+    line-height:21px;
     padding: @borderWidth;
     padding-left: @iconSize + @borderWidth;
     border: solid @borderWidth transparent;
     text-align: left;
 
-    background-image: url(../Images/Time.svg);
+    background-image: url('../Images/Time.svg');
     background-size: @iconSize @iconSize;
     background-position: left center;
     background-repeat: no-repeat;
