@@ -1,5 +1,6 @@
 ﻿define("SessionView", function() {
-    var logger = require("logger");
+    var logger = require("logger"),
+        browser = require("browser");
 
     return function($el) {
         var $users = $el.find(".users .inputs"),
@@ -26,7 +27,7 @@
                             .attr({ href: window.location })
                             .text(window.location)
                             .addClass("share")
-                            .on("click", function() { return false; }));
+                            .on(browser.touchClick, function () { return false; }));
 
                     renderStoryTitle();
                     renderStoryPoints();
@@ -48,7 +49,7 @@
                 $story.off("keyup")
                     .attr("readonly", true)
                     .parent().addClass("readonly");
-                $action.attr("disabled", true).off("click").removeClass("active");
+                $action.attr("disabled", true).off(browser.touchClick).removeClass("active");
 
                 view.model.user.isOwner = false;
                 if (!view.model.team
@@ -73,7 +74,7 @@
 
                     } else {
                         $action.text("")
-                            .on("click", function() {
+                            .on(browser.touchClick, function () {
                                 lock();
                                 this.blur();
                                 return false;
@@ -110,7 +111,7 @@
                 $storyPoints.removeClass("withAction");
                 $storyPointsAction
                     .hide()
-                    .off("click");
+                    .off(browser.touchClick);
                 if (view.model.team.CurrentStory
                     && view.model.user.Name === view.model.team.CurrentStoryOwner) {
                     $storyPoints.addClass("withAction");
@@ -119,19 +120,19 @@
                     if (view.model.team.CurrentStoryResult) {
                         $storyPointsAction
                             .text("Clear")
-                            .on("click", function() {
+                            .on(browser.touchClick, function () {
                                 $el.trigger("clear-votes");
                             });
                     } else if (view.model.team.CurrentStory.VotingOpen) {
                         $storyPointsAction
                             .text("Close")
-                            .on("click", function() {
+                            .on(browser.touchClick, function () {
                                 $el.trigger("close-voting");
                             });
                     } else {
                         $storyPointsAction
                             .text("Open")
-                            .on("click", function() {
+                            .on(browser.touchClick, function () {
                                 $el.trigger("open-voting");
                             });
 
@@ -140,7 +141,7 @@
                             var mins = this,
                                 $button = $("<span/>")
                                     .text(mins)
-                                    .on("click", function() {
+                                    .on(browser.touchClick, function () {
                                         $(this).addClass("active");
                                         $el.trigger("open-voting", mins);
                                     });
@@ -170,7 +171,7 @@
             },
             renderUserPoints = function() {
                 $userPoints
-                    .off("change click")
+                    .off("change " + browser.touchClick)
                     .attr({ disabled: true });
                 $userPointsContainer
                     .find("label")
@@ -221,7 +222,7 @@
 
                     if (userName === view.model.user.Name) {
                         $input
-                            .on("click", function() { return false; })
+                            .on(browser.touchClick, function () { return false; })
                             .on("change", function() {
                                 $el.trigger("user-change-name", $input.val());
                             });
@@ -233,7 +234,7 @@
                     if (userName === view.model.user.Name
                         || view.model.user.Name === view.model.team.CurrentStoryOwner) {
                         $row.find(".activate")
-                            .on("click", function() {
+                            .on(browser.touchClick, function() {
                                 $el.trigger("user-change-observer", [userName, !$row.hasClass("inactive")]);
                                 return false;
                             });
@@ -254,7 +255,7 @@
 
                 $demoButton
                     .attr("disabled", true)
-                    .off("click");
+                    .off(browser.touchClick);
 
                 if (!view.model.team.CurrentStoryOwner
                     || (view.model.team.CurrentStory
@@ -262,7 +263,7 @@
 
                     $demoButton
                         .attr("disabled", false)
-                        .on("click", function() {
+                        .on(browser.touchClick, function () {
                             $el.trigger("demo-toggle");
                         });
                 }

@@ -144,6 +144,7 @@
     <Content Include="Scripts\Common\define.js" />
     <Content Include="Scripts\Common\Modules\callout.js" />
     <Content Include="Scripts\Common\Modules\dialog.js" />
+    <Content Include="Scripts\Common\Modules\browser.js" />
     <Content Include="Scripts\Common\Modules\logger.js" />
     <None Include="Properties\PublishProfiles\richmond %28live%29.pubxml" />
     <None Include="Scripts\jquery-2.0.3.intellisense.js" />

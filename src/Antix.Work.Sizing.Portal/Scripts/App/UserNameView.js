@@ -1,6 +1,7 @@
 ﻿define("UserNameView", function () {
     var logger = require("logger"),
-        dialog = require("dialog");
+        dialog = require("dialog"),
+        browser = require("browser");
 
     return function ($el) {
 
@@ -17,7 +18,7 @@
                 }
             };
 
-        $ok.on("click", ok);
+        $ok.on(browser.touchClick, ok);
 
         $userNameInput.on("keypress", function(e) {
             if (e.keyCode == 13) ok();
