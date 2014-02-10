@@ -71,8 +71,8 @@ a {
   padding-left: 2.4000000000000003em;
   line-height: 1.8em;
   background-image: url(../Images/Share.svg);
-  background-size: 1.6em 1.6em;
   background-position: 0.4em center;
+  background-size: 1.6em 1.6em;
   background-repeat: no-repeat;
 }
 .box {
@@ -241,8 +241,8 @@ a {
   width: 2em;
   height: auto;
   background-image: url('/Images/User.svg');
-  background-size: 1.6em 1.6em;
   background-position: 0.4em center;
+  background-size: 1.6em 1.6em;
   background-repeat: no-repeat;
   cursor: pointer;
   text-indent: -10000px;
@@ -252,8 +252,8 @@ a {
 }
 .story .title .withAction button {
   background-image: url(../Images/Lock.svg);
-  background-size: 3.2em 3.2em;
   background-position: center center;
+  background-size: 3.2em 3.2em;
   background-repeat: no-repeat;
   padding-top: 4.25em;
   overflow: hidden;
@@ -321,8 +321,8 @@ a {
   border: solid 0.4em transparent;
   text-align: left;
   background-image: url('../Images/Time.svg');
-  background-size: 1.6em 1.6em;
   background-position: left center;
+  background-size: 1.6em 1.6em;
   background-repeat: no-repeat;
 }
 .user .points {
@@ -363,8 +363,8 @@ a {
   top: 0.4em;
   bottom: 0.4em;
   background-image: url(../Images/User.svg);
-  background-size: 1.6em 1.6em;
   background-position: center;
+  background-size: 1.6em 1.6em;
   background-repeat: no-repeat;
   cursor: pointer;
 }
