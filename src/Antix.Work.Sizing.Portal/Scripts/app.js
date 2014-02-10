@@ -7,7 +7,8 @@
     defineInstance("cookie", $.cookie);
     defineInstance("connection", $.connection);
 
-    require("logger", true);
+    require("browser", document);
+    require("logger", false);
     require("dialog", document.body, {});
 
     var app = require("Size")();

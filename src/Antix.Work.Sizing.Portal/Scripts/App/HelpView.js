@@ -1,5 +1,6 @@
 ﻿define("HelpView", function() {
-    var logger = require("logger");
+    var logger = require("logger"),
+        browser = require("browser");
 
     return function ($el, itemsSelector) {
 
@@ -26,7 +27,7 @@
                 position: "absolute"
             });
 
-        $(".showHelp").on("click", function() {
+        $(".showHelp").on(browser.touchClick, function () {
             index = -1;
             $el.show();
             view.showNext();
@@ -98,7 +99,7 @@
         };
 
         $el.find(".next")
-            .on("click", function() {
+            .on(browser.touchClick, function () {
                 view.showNext();
 
                 this.blur();
