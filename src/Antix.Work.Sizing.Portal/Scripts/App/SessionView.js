@@ -4,7 +4,6 @@
 
     return function($el) {
         var $users = $el.find(".users .inputs"),
-            $user = $el.find(".user .inputs"),
             $userPoints = $el.find(".user [name='points']"),
             $userPointsContainer = $el.find(".user .points"),
             $action = $el.find(".story .title .action"),
@@ -213,8 +212,8 @@
                 }
             },
             renderUsers = function() {
-                $users.add($user).empty();
-                $.each(view.model.team.Users, function() {
+                $users.empty();
+                $.each(view.model.team.Users, function () {
                     var userName = this.Name,
                         $row = $("<li class='input'><span class='activate'/></li>"),
                         $input = $("<input type='text' name='person.Name'/>")
@@ -272,7 +271,6 @@
                 if (s < 60) return s + "s";
 
                 if (s < 110) {
-                    var m = Math.floor(s / 60);
                     return "1m " + Math.ceil((s - 60)/10) + "0s";
                 }
 
