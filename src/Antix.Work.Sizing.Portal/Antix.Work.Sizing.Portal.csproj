@@ -144,10 +144,13 @@
     <Content Include="Scripts\Common\define.js" />
     <Content Include="Scripts\Common\Modules\callout.js" />
     <Content Include="Scripts\Common\Modules\dialog.js" />
-    <Content Include="Scripts\Common\Modules\browser.js" />
+    <Content Include="Scripts\Common\Modules\ui.js" />
     <Content Include="Scripts\Common\Modules\logger.js" />
     <None Include="Properties\PublishProfiles\richmond %28live%29.pubxml" />
     <None Include="Scripts\jquery-2.0.3.intellisense.js" />
+    <Content Include="Scripts\Common\Modules\popup.js" />
+    <Content Include="Scripts\Common\Modules\regsiterComponent.js" />
+    <Content Include="Scripts\Common\Modules\select.js" />
     <Content Include="Scripts\jquery-2.0.3.js" />
     <Content Include="Scripts\jquery-2.0.3.min.js" />
     <Content Include="Scripts\jquery-ie.js" />
@@ -212,6 +215,9 @@
     <Content Include="Styles\imports\vars.less" />
     <Content Include="Styles\site.less" />
     <Content Include="Scripts\jquery-2.0.3.min.map" />
+    <Content Include="Scripts\jquery-2.0.3.min.js.map">
+      <DependentUpon>jquery-2.0.3.js</DependentUpon>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

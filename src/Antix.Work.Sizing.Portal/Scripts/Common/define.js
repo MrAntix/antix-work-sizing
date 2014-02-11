@@ -21,4 +21,5 @@
 
         return (instances[name] = modules[name].apply(undefined, args));
     };
+    
 })();

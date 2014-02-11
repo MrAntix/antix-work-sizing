@@ -4,10 +4,11 @@
 (function ($) {
     defineInstance("$", $);
     defineInstance("window", window);
+    defineInstance("document", document);
     defineInstance("cookie", $.cookie);
     defineInstance("connection", $.connection);
 
-    require("browser", document);
+    require("ui", document);
     require("logger", false);
     require("dialog", document.body, {});
 

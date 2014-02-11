@@ -52,7 +52,17 @@
                         </div>
                         <div class="input">
                             <span class="results"></span>
-                            <button class="action">@Resources.Voting_Open</button>
+                            <span class="action">
+                                <select>
+                                    <option value="0">@Resources.Voting_Open</option>
+                                    <option value="2" class="icon-timer">2m</option>
+                                    <option value="5" class="icon-timer">5m</option>
+                                    <option value="10" class="icon-timer">10m</option>
+                                    <option value="15" class="icon-timer">15m</option>
+                                    <option value="30" class="icon-timer">30m</option>
+                                </select>                                
+                                <button>&hellip;</button>
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -116,7 +126,7 @@
             <div class="withAction">
                 <div class="helpContainerInner"></div>
             
-                <button class="next">@Resources.Next</button>
+                <button class="action next">@Resources.Next</button>
             </div>
         </div>
 

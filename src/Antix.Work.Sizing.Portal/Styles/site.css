@@ -80,6 +80,61 @@ a {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
+.ui-popup {
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  border-radius: .2em;
+  box-shadow: rgba(0, 0, 0, 0.4) 2px 2px 8px;
+}
+.ui-select {
+  background-color: #669966;
+  color: #003300;
+  cursor: pointer;
+}
+.ui-select-list,
+.ui-select-item {
+  list-style: none;
+  margin: 0;
+  padding: 0.4em;
+}
+.ui-select-item {
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  border-radius: .2em;
+  padding: 0.4em;
+}
+.ui-select-list .ui-select-item:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+}
+.ui-input {
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.ui-input-button {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  line-height: 2.4em;
+  padding-left: 0.4em;
+  border-left: solid 1px rgba(0, 51, 0, 0.25);
+  color: rgba(0, 51, 0, 0.5);
+}
+.icon-timer,
+.ui-input .icon-timer {
+  padding-left: 2em;
+  background-image: url('../Images/Time.svg');
+  background-position: left center;
+  background-size: 1.6em 1.6em;
+  background-repeat: no-repeat;
+}
 #HelpContainer {
   -ms-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -195,16 +250,19 @@ a {
 }
 .action {
   background-color: #669966;
-  color: #000000;
+  color: #003300;
+  cursor: pointer;
+}
+.action button {
   cursor: pointer;
 }
 .withAction {
   padding-right: 21.6%;
 }
-.withAction button {
+.withAction .action {
   border-radius: .2em;
   background-color: #669966;
-  color: #000000;
+  color: #003300;
   cursor: pointer;
   position: absolute;
   top: 0.4em;
@@ -215,14 +273,14 @@ a {
   border: solid 0.4em transparent;
   padding: 0.4em 0;
 }
-.withAction button.active {
+.withAction .action.active {
   background-color: #336633;
   border: solid 0.4em rgba(255, 255, 255, 0.1);
 }
 .readonly,
 .readonly .input,
 .input [readonly],
-.row .withAction button[disabled] {
+.row .withAction .action[disabled] {
   background-color: rgba(0, 0, 0, 0.05);
   box-shadow: none;
 }
@@ -250,7 +308,7 @@ a {
 .withSelector input[type='checkbox']:checked + label {
   background-image: url(../Images/User_inactive.svg);
 }
-.story .title .withAction button {
+.story .title .withAction .action {
   background-image: url(../Images/Lock.svg);
   background-position: center center;
   background-size: 3.2em 3.2em;
@@ -258,7 +316,7 @@ a {
   padding-top: 4.25em;
   overflow: hidden;
 }
-.story .title .withAction button.active {
+.story .title .withAction .action.active {
   background-image: url(../Images/Unlock.svg);
 }
 .story [name='title'] {
@@ -267,6 +325,9 @@ a {
 }
 .story [name='title'][readonly] {
   background-color: rgba(255, 255, 255, 0.5);
+}
+.story .points .input {
+  min-height: 3.8em;
 }
 .story .points .results {
   min-height: 3em;
@@ -288,42 +349,32 @@ a {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   border-radius: .2em;
+  position: relative;
   float: right;
-  min-height: 35px;
-  min-width: 30px;
+  min-height: 45px;
   line-height: 35px;
-  padding: 0.4em;
+  padding: 0;
   border: none;
   text-align: right;
   background-color: #ff9900;
 }
-.story .time {
-  -ms-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  float: left;
-  padding: 0 0.4em 0 0;
+.story .timerText {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0.4em;
+  line-height: 45px;
 }
-.story .time span {
+.story .points .action {
   -ms-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   border-radius: .2em;
   background-color: #669966;
-  color: #000000;
+  color: #003300;
   cursor: pointer;
-  float: right;
-  min-height: 21px;
-  width: 100%;
-  line-height: 21px;
-  padding: 0.4em;
-  padding-left: 2em;
   border: solid 0.4em transparent;
-  text-align: left;
-  background-image: url('../Images/Time.svg');
-  background-position: left center;
-  background-size: 1.6em 1.6em;
-  background-repeat: no-repeat;
+  padding: 0;
 }
 .user .points {
   display: none;

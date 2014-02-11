@@ -184,9 +184,9 @@
                             .fail(service.error);
 
                         if (schedule.Seconds > 0) {
-                            var interval = schedule.Seconds < 100
+                            var interval = schedule.Seconds <= 10
                                 ? .99
-                                : schedule.Seconds / 100;
+                                : schedule.Seconds / 5;
                             view.schedule = window.setTimeout(scheduleTick, interval * 1000);
                         } else {
                             clearSchedule();
