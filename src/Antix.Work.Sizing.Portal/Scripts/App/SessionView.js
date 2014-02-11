@@ -1,6 +1,7 @@
 ﻿define("SessionView", function() {
     var logger = require("logger"),
-        browser = require("browser");
+        ui = require("ui"),
+        Select = require("select");
 
     return function($el) {
         var $users = $el.find(".users .inputs"),
@@ -10,10 +11,13 @@
             $story = $el.find(".story [name='title']"),
             $storyPoints = $el.find(".story .points .input"),
             $storyPointsResult = $el.find(".story .points .results"),
-            $storyPointsAction = $el.find(".story .points .action"),
+            $storyPointsAction = $el.find(".story .points .action").hide(),
+            $storyPointsActionButton = $el.find(".story .points .action button"),
+            $storyPointsActionList = $el.find(".story .points .action select"),
             $demoButton = $el.find(".showDemo");
 
         var view = {
+            delay: 0,
             model: null,
             render:
                 function() {
@@ -26,7 +30,7 @@
                             .attr({ href: window.location })
                             .text(window.location)
                             .addClass("share")
-                            .on(browser.touchClick, function () { return false; }));
+                            .on(ui.touchClick, function () { return false; }));
 
                     renderStoryTitle();
                     renderStoryPoints();
@@ -38,6 +42,16 @@
             $el: $el
         };
 
+        $storyPointsActionList
+            .uiSelect({
+                parentElement: "body",
+                $offsetElement: $storyPointsActionButton.parent(),
+                $button: $storyPointsActionButton
+            })
+            .on("select", function(e, value) {
+                view.delay = value;
+            });
+
         var lock = function() {
             $el.trigger("story-lock", { Title: $story.val() });
         },
@@ -48,7 +62,7 @@
                 $story.off("keyup")
                     .attr("readonly", true)
                     .parent().addClass("readonly");
-                $action.attr("disabled", true).off(browser.touchClick).removeClass("active");
+                $action.attr("disabled", true).off(ui.touchClick).removeClass("active");
 
                 view.model.user.isOwner = false;
                 if (!view.model.team
@@ -73,7 +87,7 @@
 
                     } else {
                         $action.text("")
-                            .on(browser.touchClick, function () {
+                            .on(ui.touchClick, function () {
                                 lock();
                                 this.blur();
                                 return false;
@@ -108,69 +122,93 @@
                 }
 
                 $storyPoints.removeClass("withAction");
-                $storyPointsAction
-                    .hide()
-                    .off(browser.touchClick);
+                $storyPointsAction.hide();
+                $storyPointsActionList.data("antix.uiSelect").hideButton();
+                $storyPointsActionButton.off(ui.touchClick);
+              
                 if (view.model.team.CurrentStory
                     && view.model.user.Name === view.model.team.CurrentStoryOwner) {
                     $storyPoints.addClass("withAction");
                     $storyPointsAction.show();
 
                     if (view.model.team.CurrentStoryResult) {
-                        $storyPointsAction
+                        $storyPointsActionButton
                             .text("Clear")
-                            .on(browser.touchClick, function () {
+                            .on(ui.touchClick, function () {
                                 $el.trigger("clear-votes");
                             });
                     } else if (view.model.team.CurrentStory.VotingOpen) {
-                        $storyPointsAction
+                        $storyPointsActionButton
                             .text("Close")
-                            .on(browser.touchClick, function () {
+                            .on(ui.touchClick, function () {
                                 $el.trigger("close-voting");
                             });
                     } else {
-                        $storyPointsAction
-                            .text("Open")
-                            .on(browser.touchClick, function () {
-                                $el.trigger("open-voting");
-                            });
-
                         $storyPointsResult.empty();
-                        $.each([2, 5, 10, 20], function() {
-                            var mins = this,
-                                $button = $("<span/>")
-                                    .text(mins)
-                                    .on(browser.touchClick, function () {
-                                        $(this).addClass("active");
-                                        $el.trigger("open-voting", mins);
-                                    });
+                        if (view.model.team.CurrentStory.VoteSchedule) {
 
-                            $storyPointsResult
-                                .append($("<span class='time'/>").append($button));
-                        });
+                            $storyPointsActionButton
+                                .text("Open")
+                                .attr("class", "")
+                                .on(ui.touchClick, function() {
+                                    $el.trigger("open-voting");
+                                });
+                        } else {
+
+                            $storyPointsActionList
+                                .data("antix.uiSelect")
+                                .select(view.delay)
+                                .showButton();
+                            
+                            $storyPointsActionButton
+                                .on(ui.touchClick, function () {
+                                    $el.trigger("open-voting", view.delay);
+                                });
+                        }
                     }
                 }
             },
             renderTimer = function() {
+                if (view.renderTimerId) {
+                    window.clearTimeout(view.renderTimerId);
+                    view.renderTimerId = null;
+                }
+
                 var schedule = view.model.team.CurrentStory.VoteSchedule;
                 if (!schedule
                     || !schedule.Seconds) return;
 
-                var color = schedule.Seconds > 50 ? 255 : schedule.Seconds * 5,
-                    time = formatSeconds(schedule.Seconds);
+                var seconds = schedule.Seconds,
+                    percent = schedule.Percent,
+                    percentDrop = percent / seconds;
 
-                $storyPointsResult.html(
-                    $("<span/>")
-                        .addClass("timer")
-                        .width(schedule.Percent + "%")
-                        .text(time)
-                        .css({ backgroundColor: "rgb(" + Math.round(255 - color / 5) + "," + color + ",0)" })
-                );
+                var show = function() {
+
+                    var color = seconds > 50 ? 255 : seconds * 5,
+                        time = formatSeconds(seconds);
+
+                    $storyPointsResult
+                        .html(
+                            $("<span/>")
+                                .addClass("timer")
+                                .width(percent + "%")
+                                .css({ backgroundColor: "rgb(" + Math.round(255 - color / 5) + "," + color + ",0)" })
+                                .append($("<span/>")
+                                    .addClass("timerText icon-timer")
+                                    .text(time)
+                                ));
+
+                    seconds -= 1;
+                    percent -= percentDrop;
+                    if(seconds) view.renderTimerId = window.setTimeout(show, 1000);
+                };
+
+                show();
 
             },
             renderUserPoints = function() {
                 $userPoints
-                    .off("change " + browser.touchClick)
+                    .off("change " + ui.touchClick)
                     .attr({ disabled: true });
                 $userPointsContainer
                     .find("label")
@@ -213,7 +251,7 @@
             },
             renderUsers = function() {
                 $users.empty();
-                $.each(view.model.team.Users, function () {
+                $.each(view.model.team.Users, function() {
                     var userName = this.Name,
                         $row = $("<li class='input'><span class='activate'/></li>"),
                         $input = $("<input type='text' name='person.Name'/>")
@@ -221,7 +259,7 @@
 
                     if (userName === view.model.user.Name) {
                         $input
-                            .on(browser.touchClick, function () { return false; })
+                            .on(ui.touchClick, function () { return false; })
                             .on("change", function() {
                                 $el.trigger("user-change-name", $input.val());
                             });
@@ -233,7 +271,7 @@
                     if (userName === view.model.user.Name
                         || view.model.user.Name === view.model.team.CurrentStoryOwner) {
                         $row.find(".activate")
-                            .on(browser.touchClick, function() {
+                            .on(ui.touchClick, function () {
                                 $el.trigger("user-change-observer", [userName, !$row.hasClass("inactive")]);
                                 return false;
                             });
@@ -254,7 +292,7 @@
 
                 $demoButton
                     .attr("disabled", true)
-                    .off(browser.touchClick);
+                    .off(ui.touchClick);
 
                 if (!view.model.team.CurrentStoryOwner
                     || (view.model.team.CurrentStory
@@ -262,23 +300,17 @@
 
                     $demoButton
                         .attr("disabled", false)
-                        .on(browser.touchClick, function () {
+                        .on(ui.touchClick, function () {
                             $el.trigger("demo-toggle");
                         });
                 }
             },
             formatSeconds = function(s) {
-                if (s < 60) return s + "s";
-
-                if (s < 110) {
-                    return "1m " + Math.ceil((s - 60)/10) + "0s";
-                }
-
-                s = Math.round(s / 60);
-                if (s < 60) return s + "m";
-
-                s = Math.round(s / 24);
-                return s + "h";
+                var mLeft = Math.floor(s / 60),
+                    sLeft = Math.ceil(s % 60);
+                
+                return (mLeft > 0 ? mLeft + "m " : "")
+                    + sLeft + "s";
             };
 
         return view;
