@@ -17,7 +17,7 @@
 
     return {
         show: function($el) {
-            $el.show();
+            $el.fadeIn();
 
             $dialog.append($el);
             

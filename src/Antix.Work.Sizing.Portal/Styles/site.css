@@ -51,8 +51,10 @@ a {
   overflow: hidden;
   min-width: 300px;
   max-width: 600px;
+  min-height: 300px;
   margin: 0 auto;
   padding: 1em;
+  display: none;
 }
 .body {
   min-height: 300px;

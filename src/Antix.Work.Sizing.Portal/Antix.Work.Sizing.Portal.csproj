@@ -146,7 +146,7 @@
     <Content Include="Scripts\Common\Modules\dialog.js" />
     <Content Include="Scripts\Common\Modules\ui.js" />
     <Content Include="Scripts\Common\Modules\logger.js" />
-    <None Include="Properties\PublishProfiles\Default Settings.pubxml" />
+    <None Include="Properties\PublishProfiles\amazon.pubxml" />
     <None Include="Properties\PublishProfiles\richmond %28live%29.pubxml" />
     <None Include="Scripts\jquery-2.0.3.intellisense.js" />
     <Content Include="Scripts\Common\Modules\popup.js" />
