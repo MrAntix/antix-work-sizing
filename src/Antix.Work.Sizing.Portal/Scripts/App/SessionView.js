@@ -10,7 +10,7 @@
             $action = $el.find(".story .title .action"),
             $story = $el.find(".story [name='title']"),
             $storyPoints = $el.find(".story .points .input"),
-            $storyPointsResult = $el.find(".story .points .results"),
+            $storyPointsResults = $el.find(".story .points .results"),
             $storyPointsAction = $el.find(".story .points .action").hide(),
             $storyPointsActionButton = $el.find(".story .points .action button"),
             $storyPointsActionList = $el.find(".story .points .action select"),
@@ -32,11 +32,11 @@
                             .addClass("share")
                             .on(ui.touchClick, function () { return false; }));
 
+                    renderTimer();
                     renderStoryTitle();
                     renderStoryPoints();
                     renderUserPoints();
                     renderUsers();
-                    renderTimer();
                     renderDemo();
                 },
             $el: $el
@@ -106,19 +106,16 @@
                 }
             },
             renderStoryPoints = function() {
-                $storyPointsResult.empty();
                 if (view.model.team.CurrentStoryResult) {
-                    $.each(view.model.team.CurrentStoryResults, function() {
+                    $storyPointsResults.empty();
+
+                    $.each(view.model.team.CurrentStoryResults, function () {
                         $("<span>" + this.Value + "</span>")
                             .addClass("result")
                             .addClass("p" + this.Value)
                             .css({ width: this.Percentage + "%" })
-                            .appendTo($storyPointsResult);
+                            .appendTo($storyPointsResults);
                     });
-                } else {
-                    $("<span>&nbsp</span>")
-                        .addClass("result")
-                        .appendTo($storyPointsResult);
                 }
 
                 $storyPoints.removeClass("withAction");
@@ -144,7 +141,6 @@
                                 $el.trigger("close-voting");
                             });
                     } else {
-                        $storyPointsResult.empty();
                         if (view.model.team.CurrentStory.VoteSchedule) {
 
                             $storyPointsActionButton
@@ -169,25 +165,36 @@
                 }
             },
             renderTimer = function() {
-                if (view.renderTimerId) {
-                    window.clearTimeout(view.renderTimerId);
-                    view.renderTimerId = null;
-                }
-
+                
                 var schedule = view.model.team.CurrentStory.VoteSchedule;
                 if (!schedule
-                    || !schedule.Seconds) return;
+                    || !schedule.Seconds) {
 
-                var seconds = schedule.Seconds,
-                    percent = schedule.Percent,
-                    percentDrop = percent / seconds;
+                    view.scheduleSeconds = null;
+                    clearTimer();
+                    $storyPointsResults.empty();
+
+                    return;
+                }
+
+                if (view.scheduleSeconds &&
+                    schedule.Seconds > view.scheduleSeconds) {
+
+                    return;
+                }
+
+                clearTimer();
+                view.scheduleSeconds = schedule.Seconds;
+
+                var percent = schedule.Percent,
+                    percentDrop = percent / view.scheduleSeconds;
 
                 var show = function() {
 
-                    var color = seconds > 50 ? 255 : seconds * 5,
-                        time = formatSeconds(seconds);
+                    var color = view.scheduleSeconds > 50 ? 255 : view.scheduleSeconds * 5,
+                        time = formatSeconds(view.scheduleSeconds);
 
-                    $storyPointsResult
+                    $storyPointsResults
                         .html(
                             $("<span/>")
                                 .addClass("timer")
@@ -198,13 +205,19 @@
                                     .text(time)
                                 ));
 
-                    seconds -= 1;
+                    view.scheduleSeconds -= 1;
                     percent -= percentDrop;
-                    if(seconds) view.renderTimerId = window.setTimeout(show, 1000);
+                    if (view.scheduleSeconds) view.renderTimerId = window.setTimeout(show, 1000);
                 };
 
                 show();
 
+            },
+            clearTimer = function() {
+                if (view.renderTimerId) {
+                    window.clearTimeout(view.renderTimerId);
+                    view.renderTimerId = null;
+                }
             },
             renderUserPoints = function() {
                 $userPoints
