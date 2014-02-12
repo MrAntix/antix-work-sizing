@@ -69,6 +69,8 @@ a{
     .box;
     .rounded;
     .shadowed;
+
+    z-index:1;
 }
 
 .ui-select{
@@ -267,6 +269,32 @@ a{
 .withAction .action.active{
     background-color:@activeBackgroundColor;
     border:solid @borderWidth rgba(255,255,255,.1);
+}
+
+@media only screen and (max-width: 500px) {
+
+    .withAction {
+        padding-right: (@buttonWidth*1.4) + (@borderWidth*4);
+    }
+
+        .withAction .action {
+            .rounded;
+            .action;
+            width: @buttonWidth*1.4;
+        }
+}
+
+@media only screen and (max-width: 360px) {
+
+    .withAction {
+        padding-right: (@buttonWidth*1.6) + (@borderWidth*4);
+    }
+
+        .withAction .action {
+            .rounded;
+            .action;
+            width: @buttonWidth*1.7;
+        }
 }
 
 .readonly,
