@@ -8,7 +8,6 @@
     defineInstance("cookie", $.cookie);
     defineInstance("connection", $.connection);
 
-    require("ui", document);
     require("logger", false);
     require("dialog", document.body, {});
 

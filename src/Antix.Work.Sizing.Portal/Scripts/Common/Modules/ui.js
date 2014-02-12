@@ -1,5 +1,7 @@
-﻿define("ui", function(document) {
-    var touch = "ontouchend" in document;
+﻿define("ui", function () {
+    var document = require("document"),
+        touch = "ontouchend" in document;
+    
     return {
         touch: touch,
         touchClick: touch ? "touchstart" : "click",
