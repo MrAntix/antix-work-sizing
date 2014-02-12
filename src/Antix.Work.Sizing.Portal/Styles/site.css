@@ -86,6 +86,7 @@ a {
   box-sizing: border-box;
   border-radius: .2em;
   box-shadow: rgba(0, 0, 0, 0.4) 2px 2px 8px;
+  z-index: 1;
 }
 .ui-select {
   background-color: #669966;
@@ -276,6 +277,30 @@ a {
 .withAction .action.active {
   background-color: #336633;
   border: solid 0.4em rgba(255, 255, 255, 0.1);
+}
+@media only screen and (max-width: 500px) {
+  .withAction {
+    padding-right: 29.6%;
+  }
+  .withAction .action {
+    border-radius: .2em;
+    background-color: #669966;
+    color: #003300;
+    cursor: pointer;
+    width: 28%;
+  }
+}
+@media only screen and (max-width: 360px) {
+  .withAction {
+    padding-right: 33.6%;
+  }
+  .withAction .action {
+    border-radius: .2em;
+    background-color: #669966;
+    color: #003300;
+    cursor: pointer;
+    width: 34%;
+  }
 }
 .readonly,
 .readonly .input,
