@@ -355,7 +355,6 @@ a {
   line-height: 35px;
   padding: 0;
   border: none;
-  text-align: right;
   background-color: #ff9900;
 }
 .story .timerText {
@@ -363,7 +362,7 @@ a {
   top: 0;
   bottom: 0;
   right: 0.4em;
-  min-width: 4em;
+  min-width: 3em;
   line-height: 45px;
 }
 .story .points .action {
