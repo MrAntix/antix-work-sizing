@@ -148,6 +148,8 @@
             })
             .on("open-voting", function (e, mins) {
                 logger.log("open-voting");
+                
+                alarmSound.init();
 
                 var schedule = mins
                     ? {
