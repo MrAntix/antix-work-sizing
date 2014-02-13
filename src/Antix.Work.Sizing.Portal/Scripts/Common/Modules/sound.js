@@ -5,7 +5,13 @@
         var audio = new Audio(mp3),
             loops = 1;
 
-        this.play = function() {
+        this.init = function () {
+            audio.play();
+            audio.pause();
+            return this;
+        };
+
+        this.play = function () {
             audio.play();
             return this;
         };
