@@ -2,16 +2,21 @@
 
 ;
 (function ($) {
-    defineInstance("$", $);
-    defineInstance("window", window);
-    defineInstance("document", document);
-    defineInstance("cookie", $.cookie);
-    defineInstance("connection", $.connection);
+    defineInstance('$', $);
+    defineInstance('window', window);
+    defineInstance('document', document);
+    defineInstance('cookie', $.cookie);
+    defineInstance('connection', $.connection);
 
-    require("logger", false);
-    require("dialog", document.body, {});
+    require('logger', false);
+    require('dialog', document.body, {});
 
-    var app = require("Size")();
+    var Sound = require('sound'),
+        alarm = new Sound('Sounds/alarm.m4a').withLoop(5);
+
+    defineInstance("alarmSound", alarm);
+
+    var app = require('Size')();
 
     app.init(window.location);
 
