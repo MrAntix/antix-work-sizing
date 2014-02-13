@@ -376,7 +376,6 @@ a {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   border-radius: .2em;
-  position: relative;
   float: right;
   min-height: 45px;
   line-height: 35px;
@@ -386,11 +385,11 @@ a {
 }
 .story .timerText {
   position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 0.4em;
+  top: 0.4em;
+  bottom: 0.4em;
+  left: 0.6000000000000001em;
   min-width: 3em;
-  line-height: 45px;
+  line-height: 3em;
 }
 .story .points .action {
   -ms-box-sizing: border-box;
