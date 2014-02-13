@@ -144,6 +144,7 @@
     <Content Include="Scripts\Common\define.js" />
     <Content Include="Scripts\Common\Modules\callout.js" />
     <Content Include="Scripts\Common\Modules\dialog.js" />
+    <Content Include="Scripts\Common\Modules\sound.js" />
     <Content Include="Scripts\Common\Modules\ui.js" />
     <Content Include="Scripts\Common\Modules\logger.js" />
     <None Include="Properties\PublishProfiles\amazon.pubxml" />
@@ -159,6 +160,7 @@
     <Content Include="Scripts\jquery.signalR-2.0.0.js" />
     <Content Include="Scripts\jquery.signalR-2.0.0.min.js" />
     <Content Include="Scripts\json2.js" />
+    <Content Include="Sounds\alarm.m4a" />
     <Content Include="Styles\dialog.css">
       <DependentUpon>dialog.less</DependentUpon>
     </Content>
@@ -240,6 +242,7 @@
       <Name>Antix.Work.Sizing</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

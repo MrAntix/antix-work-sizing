@@ -3,7 +3,8 @@
 
     return function(hub, view, userNameView, helpView) {
         var logger = require("logger"),
-            cookie = require("cookie");
+            cookie = require("cookie"),
+            alarmSound = require("alarmSound");
 
         var service = {
             saveUser: function (user) {
@@ -189,6 +190,7 @@
                                 : schedule.Seconds / 5;
                             view.schedule = window.setTimeout(scheduleTick, interval * 1000);
                         } else {
+                            alarmSound.play();
                             clearSchedule();
                         }
                     };
