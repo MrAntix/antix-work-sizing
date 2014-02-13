@@ -382,7 +382,6 @@ a{
 .story .timer{
     .box;
     .rounded;
-    position:relative;
     float:right;
     min-height:45px;
     line-height:35px;
@@ -394,11 +393,11 @@ a{
 .story .timerText
 {
     position:absolute;
-    top:0;bottom:0;
-    right:@borderWidth;
+    top:@borderWidth;bottom:@borderWidth;
+    left:@borderWidth * 1.5;
     min-width:3em;
 
-    line-height:45px;
+    line-height:3em;
 }
 
 .story .points .action
