@@ -20,8 +20,11 @@ namespace Antix.Work.Sizing.Portal
             var teamService = new TeamService(teamDataService, ToTrace);
 
             GlobalHost.DependencyResolver
-                      .Register(typeof (SizeHub), () => new SizeHub(teamService));
-
+                      .Register(typeof (SizeHub),
+                                () => new SizeHub(
+                                          teamService,
+                                          broadcast => new DemoService(teamDataService, null, broadcast))
+                );
 
             app.MapSignalR(new HubConfiguration
                 {

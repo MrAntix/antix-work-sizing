@@ -11,7 +11,7 @@ namespace Antix.Work.Sizing.Services
         IDemoService
     {
         readonly ITeamDataService _teamDataService;
-        readonly ILogAdapter _logger;
+        readonly Log.Delegate _logger;
         readonly Func<TeamModel, Task> _broadcast;
 
         string _bobId;
@@ -19,7 +19,7 @@ namespace Antix.Work.Sizing.Services
 
         public DemoService(
             ITeamDataService teamDataService,
-            ILogAdapter logger,
+            Log.Delegate logger,
             Func<TeamModel, Task> broadcast
             )
         {

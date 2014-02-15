@@ -9,18 +9,18 @@ namespace Antix.Work.Sizing.Services
     {
         readonly int _startTime;
         readonly int _endTime;
-        readonly ILogAdapter _log;
+        readonly Log.Delegate _log;
 
         Schedule(
             int startTime, int endTime,
-            ILogAdapter log)
+            Log.Delegate log)
         {
             _startTime = startTime;
             _endTime = endTime;
             _log = log;
         }
 
-        public Schedule(ILogAdapter log) :
+        public Schedule(Log.Delegate log) :
             this(0, 0, log)
         {
         }
@@ -30,7 +30,7 @@ namespace Antix.Work.Sizing.Services
         {
         }
 
-        public static Schedule Create(ILogAdapter log = null)
+        public static Schedule Create(Log.Delegate log = null)
         {
             return new Schedule(log);
         }
