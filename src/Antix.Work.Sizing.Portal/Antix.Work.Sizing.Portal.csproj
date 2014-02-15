@@ -135,6 +135,7 @@
     <Content Include="nibbler-site-verification.txt" />
     <Content Include="packages.config" />
     <Content Include="index.cshtml" />
+    <Content Include="robots.txt" />
     <Content Include="Scripts\app.js" />
     <Content Include="Scripts\App\HelpView.js" />
     <Content Include="Scripts\App\SessionService.js" />

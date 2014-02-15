@@ -1,0 +1,5 @@
+﻿User-agent: heritrix
+Disallow: /
+
+User-agent: *
+Allow: /
