@@ -6,7 +6,7 @@
     viewBox='0 0 23 23'>
   <defs />
 
-  <g style="fill:#000000;fill-opacity:.25;stroke:none">
+  <g style="fill:#000000;fill-opacity:.5;stroke:none">
     <rect x="1" y="1" width="7" height="1"/>
     <rect x="1" y="7" width="7" height="1"/>
     <rect x="1" y="2" width="1" height="5"/>

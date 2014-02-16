@@ -70,8 +70,9 @@ namespace Antix.Work.Sizing.Portal.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;p&gt;If you&apos;re in charge the voting controls will show. Select a time for discussion or open the vote right away.&lt;/p&gt;
-        ///&lt;p&gt;When everyone has voted the results show here for everyone to see.&lt;/p&gt;.
+        ///   Looks up a localized string similar to &lt;p&gt;If you&apos;re in charge the voting controls will show.&lt;/p&gt;
+        ///&lt;p&gt;Select a time for discussion or open the vote right away.&lt;/p&gt;
+        ///&lt;p&gt;Only when everyone has voted the results show here for everyone to see.&lt;/p&gt;.
         /// </summary>
         public static string Help_Results {
             get {
@@ -90,7 +91,8 @@ namespace Antix.Work.Sizing.Portal.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;p&gt;Enter the topic for sizing.&lt;/p&gt;
-        ///&lt;p&gt;This will lock the session so you are in charge.&lt;/p&gt;.
+        ///&lt;p&gt;This will lock the session so you are in charge.&lt;/p&gt;
+        ///&lt;p&gt;Click on the lock to hand over.&lt;/p&gt;.
         /// </summary>
         public static string Help_Title {
             get {
@@ -100,7 +102,8 @@ namespace Antix.Work.Sizing.Portal.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;p&gt;This is the list of everyone in the session.&lt;/p&gt;
-        ///&lt;p&gt;Click your &lt;span class=&apos;withIcon icon-user&apos;&gt;icon&lt;/span&gt; if you don&apos;t want to vote&lt;/p&gt;.
+        ///&lt;p&gt;Click your &lt;span class=&apos;withIcon icon-user&apos;&gt;icon&lt;/span&gt; if you don&apos;t want to vote&lt;/p&gt;
+        ///&lt;p&gt;If you are in charge you can click the others too to exclude them from the vote.&lt;/p&gt;.
         /// </summary>
         public static string Help_Users {
             get {
