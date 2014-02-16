@@ -125,7 +125,7 @@
 &lt;p&gt;When everyone has voted the results show here for everyone to see.&lt;/p&gt;</value>
   </data>
   <data name="Help_Share" xml:space="preserve">
-    <value>&lt;p&gt;This is the link for this session, share it with your team.&lt;/p&gt;</value>
+    <value>&lt;p&gt;This is the link for this session, share it with your team.&lt;/p&gt;&lt;p&gt;There is also a &lt;span class="withIcon icon-qr-code"&gt;QR code&lt;/span&gt; on the right to share with those that can see you.&lt;/p&gt;</value>
   </data>
   <data name="Help_Title" xml:space="preserve">
     <value>&lt;p&gt;Enter the topic for sizing.&lt;/p&gt;
@@ -133,7 +133,7 @@
   </data>
   <data name="Help_Users" xml:space="preserve">
     <value>&lt;p&gt;This is the list of everyone in the session.&lt;/p&gt;
-&lt;p&gt;Click your icon if you don't want to vote&lt;/p&gt;</value>
+&lt;p&gt;Click your &lt;span class='withIcon icon-user'&gt;icon&lt;/span&gt; if you don't want to vote&lt;/p&gt;</value>
   </data>
   <data name="Next" xml:space="preserve">
     <value>next</value>

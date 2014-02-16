@@ -526,6 +526,9 @@ a {
 .icon-google {
   background-image: url(/images/google.png);
 }
+.icon-user {
+  background-image: url(../Images/User.svg);
+}
 .icon-share {
   background-image: url(../Images/Share.svg);
 }

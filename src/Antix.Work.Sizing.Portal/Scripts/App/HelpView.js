@@ -31,6 +31,7 @@
             index = -1;
             $el.show();
             view.showNext();
+            return false;
         });
 
         var view = {
@@ -103,9 +104,10 @@
                 view.showNext();
 
                 this.blur();
+                return false;
             });
 
-        $(window).on("resize", view.hide);
+        $(window).on(ui.touchClick+" resize", view.hide);
 
         return view;
     };
