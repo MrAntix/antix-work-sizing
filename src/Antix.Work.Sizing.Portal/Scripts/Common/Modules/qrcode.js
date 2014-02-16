@@ -1641,6 +1641,6 @@
         qr.addData(text);
         qr.make();
 
-        return qr.createTableTag(1, 0);
+        return qr.createImgTag();
     };
 });

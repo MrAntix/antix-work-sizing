@@ -1,10 +1,11 @@
 ﻿define("dialog", function(parent) {
-    var $ = require("$");
+    var $ = require("$"),
+        window = require("window");
 
     var $cover =
             $("<div/>")
                 .addClass("dialogCover")
-                .css({ position: "fixed", zIndex:1000, left: 0, top: 0, right: 0, bottom: 0 })
+                .css({ position: "fixed", zIndex: 1000, left: 0, top: 0, right: 0, bottom: 0 })
                 .appendTo(parent),
         $container =
             $("<div/>")
@@ -21,10 +22,19 @@
             $dialog
                 .empty()
                 .append($el.show());
-            
+
             $container.fadeIn();
             $cover.fadeIn();
-            
+
+            if (window.onorientationchange) {
+                $(window).on("orientationchange", function() {
+                    this.position();
+                });
+            }
+
+            this.position();
+        },
+        position: function() {
             var top = ($cover.height() - $container.height()) / 3;
             $container.css({ top: top });
         },
