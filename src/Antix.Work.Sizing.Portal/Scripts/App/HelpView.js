@@ -11,6 +11,7 @@
         var $highlighter = $("<div>")
             .css({
                 position: "absolute",
+                zIndex:1,
                 left: 0,
                 top: 0,
                 right: 0,
