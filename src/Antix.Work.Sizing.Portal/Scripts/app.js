@@ -8,7 +8,7 @@
     defineInstance('cookie', $.cookie);
     defineInstance('connection', $.connection);
 
-    require('logger', false);
+    require('logger', true);
     require('dialog', document.body, {});
 
     var Sound = require('sound'),

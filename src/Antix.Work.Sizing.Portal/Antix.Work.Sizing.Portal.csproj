@@ -118,6 +118,8 @@
   <ItemGroup>
     <Content Include="Global.asax" />
     <Content Include="Images\body-back.png" />
+    <Content Include="Images\QRCode.svg" />
+    <Content Include="Images\icon-152x152.png" />
     <Content Include="Images\Time.svg" />
     <Content Include="Images\icon.svg" />
     <Content Include="Images\Lock.gif" />
@@ -137,6 +139,7 @@
     <Content Include="index.cshtml" />
     <Content Include="robots.txt" />
     <Content Include="Scripts\app.js" />
+    <Content Include="Scripts\App\ShareView.js" />
     <Content Include="Scripts\App\HelpView.js" />
     <Content Include="Scripts\App\SessionService.js" />
     <Content Include="Scripts\App\SessionView.js" />
@@ -145,6 +148,7 @@
     <Content Include="Scripts\Common\define.js" />
     <Content Include="Scripts\Common\Modules\callout.js" />
     <Content Include="Scripts\Common\Modules\dialog.js" />
+    <Content Include="Scripts\Common\Modules\qrcode.js" />
     <Content Include="Scripts\Common\Modules\sound.js" />
     <Content Include="Scripts\Common\Modules\ui.js" />
     <Content Include="Scripts\Common\Modules\logger.js" />

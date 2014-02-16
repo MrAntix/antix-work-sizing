@@ -17,12 +17,13 @@
 
     return {
         show: function($el) {
-            $el.fadeIn();
 
-            $dialog.append($el);
+            $dialog
+                .empty()
+                .append($el.show());
             
-            $container.show();
-            $cover.show();
+            $container.fadeIn();
+            $cover.fadeIn();
             
             var top = ($cover.height() - $container.height()) / 3;
             $container.css({ top: top });

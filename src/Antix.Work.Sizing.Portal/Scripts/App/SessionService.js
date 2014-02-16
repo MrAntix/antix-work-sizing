@@ -1,7 +1,7 @@
 ﻿define("SessionService", function() {
     var userCookieName = "User";
 
-    return function(hub, view, userNameView, helpView) {
+    return function(hub, view, userNameView, helpView, shareView) {
         var logger = require("logger"),
             cookie = require("cookie"),
             alarmSound = require("alarmSound");
@@ -27,7 +27,7 @@
 
                             service.connect(teamId);
                         });
-                    
+
                     userNameView.render();
 
                     return;
@@ -35,6 +35,7 @@
 
                 if (teamId !== undefined) {
                     service.user.TeamId = teamId ? teamId.substr(1) : null;
+
                     logger.log("SessionService.connect teamId set " + service.user.TeamId);
                 }
 
@@ -94,6 +95,10 @@
                             a.Name < b.Name ? -1 : a.Name > b.Name ? 1 : 0;
                     });
                     
+                    shareView.render({
+                        hash: service.user.TeamId
+                    });
+
                     view.render();
                     helpView.render();
                 }

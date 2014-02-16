@@ -3,7 +3,8 @@
     var SessionService = require("SessionService"),
         SessionView = require("SessionView"),
         UserNameView = require("UserNameView"),
-        HelpView = require("HelpView");
+        HelpView = require("HelpView"),
+        ShareView = require("ShareView");
 
     return function() {
         var logger = require("logger"),
@@ -24,7 +25,8 @@
                     hub,
                     new SessionView($("html")),
                     new UserNameView($("#UserNameView")),
-                    new HelpView($("#HelpContainer"), ".help")
+                    new HelpView($("#HelpContainer"), ".help"),
+                    new ShareView($(".story .share"))
                 );
 
                 var start = function () {

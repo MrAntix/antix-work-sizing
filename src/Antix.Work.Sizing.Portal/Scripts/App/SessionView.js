@@ -23,15 +23,6 @@
                 function() {
                     logger.log("render: " + JSON.stringify(view.model));
 
-                    location.hash = view.model.team.Id;
-                    $(".story .share .input")
-                        .empty()
-                        .append($("<a/>")
-                            .attr({ href: window.location })
-                            .text(window.location)
-                            .addClass("share")
-                            .on(ui.touchClick, function () { return false; }));
-
                     renderTimer();
                     renderStoryTitle();
                     renderStoryPoints();

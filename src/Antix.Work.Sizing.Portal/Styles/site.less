@@ -50,17 +50,6 @@ a{
 .footer p, .footer a{
     color:darken(desaturate(@backgroundColor,25%),25%);
 }
-.share a {
-    text-decoration: none;
-    padding: @borderWidth;
-    padding-left: (@borderWidth *2 + @iconSize);
-    line-height:1.8em;
-
-    background-image: url(../Images/Share.svg);
-    background-position: @borderWidth center;
-    background-size: @iconSize @iconSize;
-    background-repeat: no-repeat;
-}
 
 .box{
     -ms-box-sizing: border-box;
@@ -193,8 +182,10 @@ a{
 .withLabel {
     padding: 0 0 0 (@labelWidth+@borderWidth);
 }
-.row .input{
-    min-height:2.5em;
+.row .input
+{
+    min-height: 2em;
+    line-height: 2em;
 }
 .row .inputs{
     padding:0;
@@ -254,6 +245,20 @@ a{
 }
 .action button{
     cursor: pointer;
+}
+
+.share a
+{
+    text-decoration: none;
+}
+
+.withIcon{
+    padding: @borderWidth;
+    padding-left: (@borderWidth *2 + @iconSize);
+
+    background-position: @borderWidth center;
+    background-size: @iconSize @iconSize;
+    background-repeat: no-repeat;
 }
 
 .withAction{
@@ -504,4 +509,32 @@ a{
 }
 .icon-google{
     background-image:url(/images/google.png);
+}
+.icon-share{
+    background-image: url(../Images/Share.svg);
+}
+
+.icon-qr-code{
+    background-image: url(../Images/QRCode.svg);
+}
+
+.show-qrCode{
+    position:absolute;
+    top:@borderWidth*1.5;
+    right:@borderWidth;
+}
+.qrCode{
+    .box;
+    width:400px;
+    height:400px;
+    padding:20px;
+    background-color:#fff;
+}
+.qrCode table{
+    width:100%;
+    height:100%;
+}
+
+#UserNameView{
+    padding: 1em;
 }

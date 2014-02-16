@@ -15,6 +15,7 @@
 
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
         
+        <link rel="apple-touch-icon" href="Images/icon-152x152.png" />
         <meta name='apple-mobile-web-app-capable' content='yes' />
         <meta name='apple-mobile-web-app-status-bar-style' content='black' />
 
@@ -34,7 +35,8 @@
                             @Html.Raw(Resources.Help_Share)
                         </div>
                         <div class="input">
-                            
+                            <a class="location withIcon icon-share">Share Url</a>
+                            <a class="show-qrCode icon icon-qr-code">QR Code</a>
                         </div>
                     </div>
                     <div class="row title">
@@ -122,7 +124,7 @@
             @Html.Raw(Resources.Welcome_message)
         </div>
         
-        <div id="HelpContainer" class="hide">
+        <div id="HelpContainer" class="dialog">
             <div class="withAction">
                 <div class="helpContainerInner"></div>
             
