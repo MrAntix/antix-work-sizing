@@ -217,7 +217,7 @@ a {
   background-color: #ffffff;
   color: #333333;
   padding: 0.4em;
-  box-shadow: inset 1px 1px 6px rgba(0, 0, 0, 0.2);
+  box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
 .input input,
 .input textarea,
@@ -259,6 +259,12 @@ a {
   background-position: 0.4em center;
   background-size: 1.6em 1.6em;
   background-repeat: no-repeat;
+}
+#HelpContainer .withIcon {
+  padding: 0;
+  padding-left: 1.6em;
+  background-position: 0.26666666666666666em center;
+  background-size: 1.0666666666666666em 1.0666666666666666em;
 }
 .withAction {
   padding-right: 21.6%;
