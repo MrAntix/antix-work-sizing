@@ -182,7 +182,7 @@
 
                 var show = function() {
 
-                    var color = view.scheduleSeconds > 50 ? 255 : view.scheduleSeconds * 5,
+                    var color = view.scheduleSeconds > 50 ? 200 : view.scheduleSeconds * 4,
                         time = formatSeconds(view.scheduleSeconds);
 
                     $storyPointsResults
@@ -190,7 +190,7 @@
                             $("<span/>")
                                 .addClass("timer")
                                 .width(percent + "%")
-                                .css({ backgroundColor: "rgb(" + Math.round(255 - color / 5) + "," + color + ",0)" })
+                                .css({ backgroundColor: "rgb(" + Math.round(200 - color / 5) + "," + color + ",0)" })
                                 .append($("<span/>")
                                     .addClass("timerText icon-timer")
                                     .text(time)

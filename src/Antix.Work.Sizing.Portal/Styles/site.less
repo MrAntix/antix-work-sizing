@@ -48,7 +48,14 @@ a{
     margin: 0 5px;
 }
 .footer p, .footer a{
-    color:darken(desaturate(@backgroundColor,25%),25%);
+    color:@backgroundColor;
+    text-shadow: -1px -1px 1px @darken,1px 1px 1px @lighten;
+}
+.footer p:hover{
+    color:#eee;
+}
+.footer p:hover a{
+    color:#fff;
 }
 
 .box{
@@ -338,7 +345,7 @@ a{
 	        width: @iconSize+@borderWidth;
 	        height: auto;
 	
-	        background-image: url('/Images/User.svg');
+	        background-image: url('../Images/User.svg');
 	        background-position: @borderWidth center;
 	        background-size: @iconSize @iconSize;
 	        background-repeat: no-repeat;
@@ -354,7 +361,7 @@ a{
 
 .story .title .withAction .action {
     
-    background-image: url(../Images/Lock.svg);
+    background-image: url('../Images/Lock.svg');
     background-position: center center;
     background-size: (@iconSize*2) (@iconSize*2);
     background-repeat: no-repeat;
@@ -364,7 +371,7 @@ a{
 }
 
 .story .title .withAction .action.active {
-    background-image: url(../Images/Unlock.svg);
+    background-image: url('../Images/Unlock.svg');
 }
 
 .story [name='title']{
@@ -457,7 +464,7 @@ a{
     left:@borderWidth; width:(@borderWidth + @iconSize);
     top:@borderWidth; bottom:@borderWidth;
 
-    background-image: url(../Images/User.svg);
+    background-image: url('../Images/User.svg');
     background-position: center;
     background-size: @iconSize @iconSize;
     background-repeat: no-repeat;
@@ -466,7 +473,7 @@ a{
 }
 
 .users .input.inactive .activate{
-    background-image: url(../Images/User_inactive.svg);
+    background-image: url('../Images/User_inactive.svg');
 }
 .input.voted{
     background-color:@selectedBackgroundColor;
@@ -513,21 +520,21 @@ a{
     border-radius:2px;
 }
 .icon-twitter{
-    background-image:url(/images/twitter.png);
+    background-image:url('../images/twitter.png');
 }
 .icon-google{
-    background-image:url(/images/google.png);
+    background-image:url('../images/google.png');
 }
 .icon-user{
-    background-image: url(../Images/User.svg);
+    background-image: url('../Images/User.svg');
 }
 
 .icon-share{
-    background-image: url(../Images/Share.svg);
+    background-image: url('../Images/Share.svg');
 }
 
 .icon-qr-code{
-    background-image: url(../Images/QRCode.svg);
+    background-image: url('../Images/QRCode.svg');
 }
 
 .show-qrCode{    

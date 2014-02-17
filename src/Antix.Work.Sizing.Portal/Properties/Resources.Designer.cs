@@ -175,8 +175,7 @@ namespace Antix.Work.Sizing.Portal.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;p&gt;Welcome to &lt;strong&gt;[Size]&lt;/strong&gt;, an estimation tool for online teams.&lt;br /&gt;Enter a name and click ok.&lt;/p&gt;
-        ///&lt;p&gt;&lt;em&gt;(If your not voting click the icon by your name)&lt;/em&gt;&lt;/p&gt;.
+        ///   Looks up a localized string similar to &lt;p&gt;Welcome to &lt;strong&gt;[Size]&lt;/strong&gt;, an online estimation.&lt;br /&gt;Enter a name and click ok.&lt;/p&gt;.
         /// </summary>
         public static string Welcome_message {
             get {

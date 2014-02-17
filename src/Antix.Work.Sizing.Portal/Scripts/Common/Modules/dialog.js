@@ -35,7 +35,7 @@
             this.position();
         },
         position: function() {
-            var top = ($cover.height() - $container.height()) / 3;
+            var top = ($cover.height() - $container.height()) / 2.75;
             $container.css({ top: top });
         },
         hide: function() {

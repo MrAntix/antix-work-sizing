@@ -24,6 +24,7 @@
   background-image: -webkit-linear-gradient(bottom, #204060 7%, #336699 70%);
   background-image: -ms-linear-gradient(bottom, #204060 7%, #336699 70%);
   background-image: linear-gradient(to top, #204060 7%, #336699 70%);
+  box-shadow: rgba(0, 0, 0, 0.4) 2px 2px 8px;
   display: none;
   color: #fff;
 }

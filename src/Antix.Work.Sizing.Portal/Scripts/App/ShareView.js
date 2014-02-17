@@ -29,8 +29,8 @@
 
                     window.location.hash = model.hash;
                     $locationEl
-                        .attr({ href: window.location })
-                        .text(window.location)
+                        .attr({ href: window.location.href })
+                        .text(window.location.href.substr(7))
                         .on(ui.touchClick, function () { return false; });
                     
                     $showQRCodeEl
