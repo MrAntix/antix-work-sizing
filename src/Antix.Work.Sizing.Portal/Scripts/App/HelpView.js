@@ -1,5 +1,7 @@
 ﻿define("HelpView", function() {
     var logger = require("logger"),
+        window = require("window"),
+        document = require("document"),
         ui = require("ui");
 
     return function ($el, itemsSelector) {
@@ -42,6 +44,7 @@
 
                 },
             $el: $el,
+            
             hide: function() {
                 $el.hide();
                 $highlighter
@@ -52,7 +55,10 @@
                         borderBottomWidth: 0
                     })
                     .hide();
+
+                $(window).off(".helpView");
             },
+            
             showNext: function() {
 
                 index++;
@@ -73,29 +79,66 @@
                     $el.find(".helpContainerInner").append($item);
                 }
 
-                var $parent = $item.data("parent"),
-                    parentOffset = $parent.offset();
+                view.resize(true);
 
-                var left = parentOffset.left + 15,
-                    top = parentOffset.top - $el.outerHeight() - 5;
+                $(window).on("resize.helpView", view.resize);
+            },
+            resize:function(animate) {
+                var $item = $help.eq(index).show();
+
+                var $parent = $item.data("parent"),
+                    parentOffset = $parent.offset(),
+                    parentHeight = $parent.outerHeight(),
+                    windowScrollTop = $(window).scrollTop(),
+                    windowHeight = $(window).innerHeight();
+                
+                var height = $el.outerHeight(),
+                    left = parentOffset.left + 15,
+                    top = parentOffset.top - height - 5;
                 $el.removeClass("below");
                 if (top < 0) {
                     top = parentOffset.top + $parent.outerHeight() + 5;
                     $el.addClass("below");
+
+                    if (top + height > windowScrollTop + windowHeight) {
+                        windowScrollTop = top + height - windowHeight;
+                    }
+                } else {
+                    if (parentOffset.top + parentHeight > windowScrollTop + windowHeight) {
+                        windowScrollTop = parentOffset.top + parentHeight - windowHeight;
+                    }
                 }
+                
+                if (windowScrollTop > top) {
+                    windowScrollTop = windowScrollTop - top;
+                }
+
+                $("html,body").animate({ scrollTop: windowScrollTop+"px" });
 
                 $el
                     .offset({ left: left, top: top })
                     .show();
 
+                var maxHeight = Math.max(windowHeight, $("html,body").height(), top + height);
+
+                var css = {
+                    borderTopWidth: parentOffset.top - 3,
+                    borderLeftWidth: parentOffset.left - 3,
+                    borderRightWidth: $(window).innerWidth() - parentOffset.left - $parent.width() - 3,
+                    borderBottomWidth: maxHeight - parentOffset.top - parentHeight - 3
+                };
+
                 $highlighter
                     .show()
-                    .animate({
-                        borderTopWidth: parentOffset.top - 3,
-                        borderLeftWidth: parentOffset.left - 3,
-                        borderRightWidth: $(window).innerWidth() - parentOffset.left - $parent.width() - 3,
-                        borderBottomWidth: $(window).innerHeight() - parentOffset.top - $parent.height() - 3
+                    .css({
+                        top: 0,
+                        height: maxHeight
                     });
+
+                if (animate===true)
+                    $highlighter.animate(css);
+                else
+                    $highlighter.css(css);
 
             }
         };
@@ -108,7 +151,7 @@
                 return false;
             });
 
-        $(window).on(ui.touchClick+" resize", view.hide);
+        $(window).on(ui.touchClick, view.hide);
 
         return view;
     };
