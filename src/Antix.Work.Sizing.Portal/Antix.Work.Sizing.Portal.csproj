@@ -118,6 +118,7 @@
   <ItemGroup>
     <Content Include="Global.asax" />
     <Content Include="Images\body-back.png" />
+    <Content Include="Images\email.svg" />
     <Content Include="Images\QRCode.svg" />
     <Content Include="Images\icon-152x152.png" />
     <Content Include="Images\Time.svg" />
