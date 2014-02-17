@@ -123,7 +123,7 @@
   <data name="Help_Results" xml:space="preserve">
     <value>&lt;p&gt;If you're in charge the voting controls will show.&lt;/p&gt;
 &lt;p&gt;Select a time for discussion or open the vote right away.&lt;/p&gt;
-&lt;p&gt;Only when everyone has voted the results show here for everyone to see.&lt;/p&gt;</value>
+&lt;p&gt;Only when everyone has voted the results will show here for everyone to see.&lt;/p&gt;</value>
   </data>
   <data name="Help_Share" xml:space="preserve">
     <value>&lt;p&gt;This is the link for this session, share it with your team.&lt;/p&gt;&lt;p&gt;There is also a &lt;span class="withIcon icon-qr-code"&gt;QR code&lt;/span&gt; on the right to share with those that can see you.&lt;/p&gt;</value>

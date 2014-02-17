@@ -72,7 +72,7 @@ namespace Antix.Work.Sizing.Portal.Properties {
         /// <summary>
         ///   Looks up a localized string similar to &lt;p&gt;If you&apos;re in charge the voting controls will show.&lt;/p&gt;
         ///&lt;p&gt;Select a time for discussion or open the vote right away.&lt;/p&gt;
-        ///&lt;p&gt;Only when everyone has voted the results show here for everyone to see.&lt;/p&gt;.
+        ///&lt;p&gt;Only when everyone has voted the results will show here for everyone to see.&lt;/p&gt;.
         /// </summary>
         public static string Help_Results {
             get {
