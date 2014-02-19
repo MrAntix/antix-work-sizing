@@ -48,12 +48,13 @@
             },
             teamUpdate: function(team) {
                 logger.log("SessionService.handleResponse");
-
+                
                 if ($.grep(team.Users,
                     function(user) {
                         return user.Name == service.user.Name;
                 }).length === 0) {
                     service.connect();
+
                 } else {
                     
                     view.model = {

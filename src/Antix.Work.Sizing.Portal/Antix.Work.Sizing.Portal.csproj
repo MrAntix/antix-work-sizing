@@ -149,6 +149,7 @@
     <Content Include="Scripts\Common\define.js" />
     <Content Include="Scripts\Common\Modules\callout.js" />
     <Content Include="Scripts\Common\Modules\dialog.js" />
+    <Content Include="Scripts\Common\Modules\effects.js" />
     <Content Include="Scripts\Common\Modules\qrcode.js" />
     <Content Include="Scripts\Common\Modules\sound.js" />
     <Content Include="Scripts\Common\Modules\ui.js" />

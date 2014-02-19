@@ -1,7 +1,8 @@
 ﻿define("SessionView", function() {
     var logger = require("logger"),
-        ui = require("ui"),
-        Select = require("select");
+        ui = require("ui");
+
+    require("select");
 
     return function($el) {
         var $users = $el.find(".users .inputs"),
@@ -156,7 +157,7 @@
                 }
             },
             renderTimer = function() {
-                
+
                 var schedule = view.model.team.CurrentStory.VoteSchedule;
                 if (!schedule
                     || !schedule.Seconds) {
@@ -198,7 +199,7 @@
 
                     view.scheduleSeconds -= 1;
                     percent -= percentDrop;
-                    if (view.scheduleSeconds) view.renderTimerId = window.setTimeout(show, 1000);
+                    if (view.scheduleSeconds > 0) view.renderTimerId = window.setTimeout(show, 1000);
                 };
 
                 show();

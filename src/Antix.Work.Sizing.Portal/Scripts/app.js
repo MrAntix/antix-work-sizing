@@ -10,7 +10,8 @@
 
     require('logger', true);
     require('dialog', document.body, {});
-
+    require("effects");
+    
     var Sound = require('sound'),
         alarm = new Sound('Sounds/alarm.m4a').withLoop(5);
 

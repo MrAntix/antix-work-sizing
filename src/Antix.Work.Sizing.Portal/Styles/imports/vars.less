@@ -4,7 +4,9 @@
 @lighten:rgba(255,255,255,.25);
 @darken:rgba(0,0,0,.1);
 
-@inputBackgroundColor: #fff;
+@headerColor:lighten(@backgroundColor,2%);
+
+@inputBackgroundColor: rgba(255,255,255,.75);
 @inputColor:#555;
 @inputReadonlyBackgroundColor: rgba(0,0,0,.05);
 @inputReadonlyColor:rgba(0,0,0,.6);
@@ -30,15 +32,15 @@
 
 @iconSize:1.7em;
 
-@font:Helvetica, Arial, 'DejaVu Sans', 'Liberation Sans', Freesans, sans-serif;
+@font:'Open Sans', sans-serif;
 
-.linearGradient(@c){
+.linearGradient(@c, @i: none, @a: 5%) {
     background-color: @backgroundColor;
-    background-image: -o-linear-gradient(bottom, darken(@c,5%) 7%, @c 70%);
-    background-image: -moz-linear-gradient(bottom, darken(@c,5%) 7%, @c 70%);
-    background-image: -webkit-linear-gradient(bottom, darken(@c,5%) 7%, @c 70%);
-    background-image: -ms-linear-gradient(bottom, darken(@c,5%) 7%, @c 70%);
-    background-image: linear-gradient(to top, darken(@c,5%) 7%, @c 70%);
+    background-image: @i, -o-linear-gradient(bottom, darken(@c,@a) 7%, @c 70%);
+    background-image: @i, -moz-linear-gradient(bottom, darken(@c,@a) 7%, @c 70%);
+    background-image: @i, -webkit-linear-gradient(bottom, darken(@c,@a) 7%, @c 70%);
+    background-image: @i,-ms-linear-gradient(bottom, darken(@c,@a) 7%, @c 70%);
+    background-image: @i,linear-gradient(to top, darken(@c,@a) 7%, @c 70%);
 }
 
 .opacity(@v){

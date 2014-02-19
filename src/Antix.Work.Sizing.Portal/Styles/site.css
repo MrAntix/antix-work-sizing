@@ -15,18 +15,18 @@ body {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   background-color: #eeddbb;
-  background-image: -o-linear-gradient(bottom, #e9d3a7 7%, #eeddbb 70%);
-  background-image: -moz-linear-gradient(bottom, #e9d3a7 7%, #eeddbb 70%);
-  background-image: -webkit-linear-gradient(bottom, #e9d3a7 7%, #eeddbb 70%);
-  background-image: -ms-linear-gradient(bottom, #e9d3a7 7%, #eeddbb 70%);
-  background-image: linear-gradient(to top, #e9d3a7 7%, #eeddbb 70%);
+  background-image: url('../Images/body-back.png'), -o-linear-gradient(bottom, #d4aa55 7%, #eeddbb 70%);
+  background-image: url('../Images/body-back.png'), -moz-linear-gradient(bottom, #d4aa55 7%, #eeddbb 70%);
+  background-image: url('../Images/body-back.png'), -webkit-linear-gradient(bottom, #d4aa55 7%, #eeddbb 70%);
+  background-image: url('../Images/body-back.png'), -ms-linear-gradient(bottom, #d4aa55 7%, #eeddbb 70%);
+  background-image: url('../Images/body-back.png'), linear-gradient(to top, #d4aa55 7%, #eeddbb 70%);
   color: #666666;
-  font-family: Helvetica, Arial, 'DejaVu Sans', 'Liberation Sans', Freesans, sans-serif;
+  font-family: 'Open Sans', sans-serif;
   font-size: 95%;
   font-weight: 100;
 }
 textarea {
-  font-family: Helvetica, Arial, 'DejaVu Sans', 'Liberation Sans', Freesans, sans-serif;
+  font-family: 'Open Sans', sans-serif;
 }
 input,
 textarea,
@@ -39,9 +39,9 @@ a {
   color: #666666;
 }
 .header h1 {
-  font-size: 10em;
+  font-size: 12em;
   margin: -0.2em 0 -0.8em;
-  color: #e6d5b4;
+  color: #f0e1c3;
 }
 .page {
   -ms-box-sizing: border-box;
@@ -68,10 +68,12 @@ a {
   color: #eeddbb;
   text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1), 1px 1px 1px rgba(255, 255, 255, 0.25);
 }
-.footer p:hover {
+.footer p:hover,
+.footer p.hover {
   color: #eee;
 }
-.footer p:hover a {
+.footer p:hover a,
+.footer p.hover a {
   color: #fff;
 }
 .box {
@@ -221,7 +223,7 @@ a {
   position: relative;
   display: block;
   overflow: auto;
-  background-color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.75);
   color: #555555;
   padding: 0.5em;
   box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.1);
@@ -245,6 +247,9 @@ a {
   -webkit-appearance: none;
   color: inherit;
   background-color: transparent;
+}
+.input button {
+  padding: 0;
 }
 .input textarea {
   width: 100%!important;
@@ -391,8 +396,8 @@ a {
   box-sizing: border-box;
   border-radius: .2em;
   float: right;
-  min-height: 45px;
-  line-height: 35px;
+  min-height: 47px;
+  line-height: 37px;
   padding: 0;
   border: none;
   background-color: #ff9900;
@@ -498,21 +503,21 @@ a {
 }
 .dialogCover {
   background-color: #eeddbb;
-  background-image: -o-linear-gradient(bottom, #000000 7%, #000000 70%);
-  background-image: -moz-linear-gradient(bottom, #000000 7%, #000000 70%);
-  background-image: -webkit-linear-gradient(bottom, #000000 7%, #000000 70%);
-  background-image: -ms-linear-gradient(bottom, #000000 7%, #000000 70%);
-  background-image: linear-gradient(to top, #000000 7%, #000000 70%);
+  background-image: none, -o-linear-gradient(bottom, #000000 7%, #000000 70%);
+  background-image: none, -moz-linear-gradient(bottom, #000000 7%, #000000 70%);
+  background-image: none, -webkit-linear-gradient(bottom, #000000 7%, #000000 70%);
+  background-image: none, -ms-linear-gradient(bottom, #000000 7%, #000000 70%);
+  background-image: none, linear-gradient(to top, #000000 7%, #000000 70%);
   opacity: 0.5;
   display: none;
 }
 .dialogContainer {
   background-color: #eeddbb;
-  background-image: -o-linear-gradient(bottom, #2d5986 7%, #336699 70%);
-  background-image: -moz-linear-gradient(bottom, #2d5986 7%, #336699 70%);
-  background-image: -webkit-linear-gradient(bottom, #2d5986 7%, #336699 70%);
-  background-image: -ms-linear-gradient(bottom, #2d5986 7%, #336699 70%);
-  background-image: linear-gradient(to top, #2d5986 7%, #336699 70%);
+  background-image: none, -o-linear-gradient(bottom, #2d5986 7%, #336699 70%);
+  background-image: none, -moz-linear-gradient(bottom, #2d5986 7%, #336699 70%);
+  background-image: none, -webkit-linear-gradient(bottom, #2d5986 7%, #336699 70%);
+  background-image: none, -ms-linear-gradient(bottom, #2d5986 7%, #336699 70%);
+  background-image: none, linear-gradient(to top, #2d5986 7%, #336699 70%);
   box-shadow: rgba(0, 0, 0, 0.4) 2px 2px 8px;
   display: none;
   color: #fff;

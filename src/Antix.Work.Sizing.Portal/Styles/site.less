@@ -3,7 +3,7 @@
 html,body{min-height:100%;margin:0;padding:0;}
 body {
     .box;
-    .linearGradient(@backgroundColor);
+    .linearGradient(@backgroundColor, url('../Images/body-back.png'), 25%);
     color: @color;
     font-family: @font;
     font-size: 95%;
@@ -20,10 +20,10 @@ a{
     color:@color;    
 }
 .header h1{
-    font-size:10em;
+    font-size:12em;
     margin:-.2em 0 -.8em;
 
-    color:darken(desaturate(@backgroundColor,10%),3%);
+    color:@headerColor;
 }
 
 .page{
@@ -51,10 +51,12 @@ a{
     color:@backgroundColor;
     text-shadow: -1px -1px 1px @darken,1px 1px 1px @lighten;
 }
-.footer p:hover{
+.footer p:hover,
+.footer p.hover{
     color:#eee;
 }
-.footer p:hover a{
+.footer p:hover a,
+.footer p.hover a{
     color:#fff;
 }
 
@@ -241,6 +243,9 @@ a{
     color:inherit;
     background-color:transparent;
 }
+.input button{
+    padding:0;
+}
 .input textarea {
     width: 100%!important; //over-rides user resize
 }
@@ -403,8 +408,8 @@ a{
     .box;
     .rounded;
     float:right;
-    min-height:45px;
-    line-height:35px;
+    min-height:47px;
+    line-height:37px;
     padding: 0;
     border: none;
 
@@ -444,7 +449,7 @@ a{
         float:left;
         width: 20%;height:100%;
         margin:0;padding:(@borderWidth * 3) @borderWidth;
-        border:solid @borderWidth @inputBackgroundColor;
+        border:solid @borderWidth #fff;
         text-align:center;
     }
 
