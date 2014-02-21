@@ -132,7 +132,7 @@ a {
   top: 0;
   bottom: 0;
   right: 0;
-  line-height: 2.4em;
+  line-height: 2.1em;
   padding-left: 0.5em;
   border-left: solid 1px rgba(0, 51, 0, 0.25);
   color: rgba(0, 51, 0, 0.5);
@@ -232,7 +232,7 @@ a {
   display: block;
   overflow: auto;
   background-color: rgba(255, 255, 255, 0.75);
-  color: #555555;
+  color: #333333;
   padding: 0.5em;
   box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
@@ -255,6 +255,7 @@ a {
   -webkit-appearance: none;
   color: inherit;
   background-color: transparent;
+  text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.25);
 }
 .input button {
   padding: 0;
@@ -335,7 +336,7 @@ a {
 .readonly .input,
 .input [readonly],
 .row .withAction .action[disabled] {
-  background-color: rgba(194, 172, 129, 0.4);
+  background-color: rgba(0, 0, 0, 0.05);
   box-shadow: none;
 }
 .withSelector {
@@ -360,7 +361,7 @@ a {
   text-indent: -10000px;
 }
 .withSelector input[type='checkbox']:checked + label {
-  background-image: url(../Images/User_inactive.svg);
+  background-image: url('../Images/User_inactive.svg');
 }
 .story .title .withAction .action {
   background-image: url('../Images/Lock.svg');
@@ -565,6 +566,9 @@ a {
 }
 .icon-user {
   background-image: url('../Images/User.svg');
+}
+.icon-user-inactive {
+  background-image: url('../Images/User_inactive.svg');
 }
 .icon-share {
   background-image: url('../Images/Share.svg');

@@ -89,7 +89,7 @@
     Select.prototype.showButton = function () {
         var comp = this;
 
-        comp.$input.css({ paddingRight: "1.5em" });
+        comp.$input.css({ paddingRight: comp.$button.width()+15 });
         comp.$button.show();
 
         return comp;
