@@ -8,7 +8,7 @@
 
 @inputBackgroundColor: rgba(255,255,255,.75);
 @inputColor:#555;
-@inputReadonlyBackgroundColor: fade(desaturate(darken(@backgroundColor,20%),25%),35%);
+@inputReadonlyBackgroundColor: fade(desaturate(darken(@backgroundColor,20%),25%),40%);
 @inputReadonlyColor:rgba(0,0,0,.6);
 
 @titleReadonlyBackgroundColor: rgba(255,255,255,.5);
@@ -35,7 +35,7 @@
 @font:'Open Sans', sans-serif;
 
 .linearGradient(@c, @a: 5%, @i: none, @ibottom: none) {
-    background-color: @backgroundColor;
+    background-color: @c;
     background-image: @ibottom, @i, -o-linear-gradient(bottom, darken(@c,@a) 7%, @c 70%);
     background-image: @ibottom, @i, -moz-linear-gradient(bottom, darken(@c,@a) 7%, @c 70%);
     background-image: @ibottom, @i, -webkit-linear-gradient(bottom, darken(@c,@a) 7%, @c 70%);
@@ -43,7 +43,7 @@
     background-image: @ibottom, @i, linear-gradient(to top, darken(@c,@a) 7%, @c 70%);
 
     background-repeat: no-repeat, repeat, no-repeat;
-    background-position: 20% bottom, left center, left center;
+    background-position: 75% bottom, left center, left center;
     -moz-background-size: auto 65%, auto, auto;
     -o-background-size: auto 65%, auto, auto;
     background-size: auto 65%, auto, auto;
