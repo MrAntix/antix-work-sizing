@@ -1,9 +1,10 @@
 ﻿@import url('imports/vars.less');
 
-html,body{min-height:100%;margin:0;padding:0;}
+html{min-height:100%;}
+html,body{width:100%;margin:0;padding:0;}
 body {
     .box;
-    .linearGradient(@backgroundColor, url('../Images/body-back.png'), 25%);
+    .linearGradient(@backgroundColor, 25%, url('../Images/body-back.png'), url('../Images/Tree.png'));
     color: @color;
     font-family: @font;
     font-size: 95%;
@@ -32,7 +33,7 @@ a{
     overflow:hidden;
 
     min-width:300px;max-width:600px;
-    min-height:300px;
+    min-height:100%;
 
     margin:0 auto;
     padding: 1em;
@@ -567,4 +568,10 @@ a{
 
 #UserNameView{
     padding: 1em;
+}
+
+.background-tree{
+    position:absolute;z-index:-100;
+    bottom:0; left:0;
+    height:75%;
 }

@@ -4,9 +4,12 @@
 .shadowed {
   box-shadow: rgba(0, 0, 0, 0.4) 2px 2px 8px;
 }
+html {
+  min-height: 100%;
+}
 html,
 body {
-  min-height: 100%;
+  width: 100%;
   margin: 0;
   padding: 0;
 }
@@ -15,11 +18,16 @@ body {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   background-color: #eeddbb;
-  background-image: url('../Images/body-back.png'), -o-linear-gradient(bottom, #d4aa55 7%, #eeddbb 70%);
-  background-image: url('../Images/body-back.png'), -moz-linear-gradient(bottom, #d4aa55 7%, #eeddbb 70%);
-  background-image: url('../Images/body-back.png'), -webkit-linear-gradient(bottom, #d4aa55 7%, #eeddbb 70%);
-  background-image: url('../Images/body-back.png'), -ms-linear-gradient(bottom, #d4aa55 7%, #eeddbb 70%);
-  background-image: url('../Images/body-back.png'), linear-gradient(to top, #d4aa55 7%, #eeddbb 70%);
+  background-image: url('../Images/Tree.png'), url('../Images/body-back.png'), -o-linear-gradient(bottom, #d4aa55 7%, #eeddbb 70%);
+  background-image: url('../Images/Tree.png'), url('../Images/body-back.png'), -moz-linear-gradient(bottom, #d4aa55 7%, #eeddbb 70%);
+  background-image: url('../Images/Tree.png'), url('../Images/body-back.png'), -webkit-linear-gradient(bottom, #d4aa55 7%, #eeddbb 70%);
+  background-image: url('../Images/Tree.png'), url('../Images/body-back.png'), -ms-linear-gradient(bottom, #d4aa55 7%, #eeddbb 70%);
+  background-image: url('../Images/Tree.png'), url('../Images/body-back.png'), linear-gradient(to top, #d4aa55 7%, #eeddbb 70%);
+  background-repeat: no-repeat, repeat, no-repeat;
+  background-position: 20% bottom, left center, left center;
+  -moz-background-size: auto 65%, auto, auto;
+  -o-background-size: auto 65%, auto, auto;
+  background-size: auto 65%, auto, auto;
   color: #666666;
   font-family: 'Open Sans', sans-serif;
   font-size: 95%;
@@ -51,7 +59,7 @@ a {
   overflow: hidden;
   min-width: 300px;
   max-width: 600px;
-  min-height: 300px;
+  min-height: 100%;
   margin: 0 auto;
   padding: 1em;
   display: none;
@@ -327,7 +335,7 @@ a {
 .readonly .input,
 .input [readonly],
 .row .withAction .action[disabled] {
-  background-color: rgba(0, 0, 0, 0.05);
+  background-color: rgba(194, 172, 129, 0.35);
   box-shadow: none;
 }
 .withSelector {
@@ -503,21 +511,31 @@ a {
 }
 .dialogCover {
   background-color: #eeddbb;
-  background-image: none, -o-linear-gradient(bottom, #000000 7%, #000000 70%);
-  background-image: none, -moz-linear-gradient(bottom, #000000 7%, #000000 70%);
-  background-image: none, -webkit-linear-gradient(bottom, #000000 7%, #000000 70%);
-  background-image: none, -ms-linear-gradient(bottom, #000000 7%, #000000 70%);
-  background-image: none, linear-gradient(to top, #000000 7%, #000000 70%);
+  background-image: none, none, -o-linear-gradient(bottom, #000000 7%, #000000 70%);
+  background-image: none, none, -moz-linear-gradient(bottom, #000000 7%, #000000 70%);
+  background-image: none, none, -webkit-linear-gradient(bottom, #000000 7%, #000000 70%);
+  background-image: none, none, -ms-linear-gradient(bottom, #000000 7%, #000000 70%);
+  background-image: none, none, linear-gradient(to top, #000000 7%, #000000 70%);
+  background-repeat: no-repeat, repeat, no-repeat;
+  background-position: 20% bottom, left center, left center;
+  -moz-background-size: auto 65%, auto, auto;
+  -o-background-size: auto 65%, auto, auto;
+  background-size: auto 65%, auto, auto;
   opacity: 0.5;
   display: none;
 }
 .dialogContainer {
   background-color: #eeddbb;
-  background-image: none, -o-linear-gradient(bottom, #2d5986 7%, #336699 70%);
-  background-image: none, -moz-linear-gradient(bottom, #2d5986 7%, #336699 70%);
-  background-image: none, -webkit-linear-gradient(bottom, #2d5986 7%, #336699 70%);
-  background-image: none, -ms-linear-gradient(bottom, #2d5986 7%, #336699 70%);
-  background-image: none, linear-gradient(to top, #2d5986 7%, #336699 70%);
+  background-image: none, none, -o-linear-gradient(bottom, #2d5986 7%, #336699 70%);
+  background-image: none, none, -moz-linear-gradient(bottom, #2d5986 7%, #336699 70%);
+  background-image: none, none, -webkit-linear-gradient(bottom, #2d5986 7%, #336699 70%);
+  background-image: none, none, -ms-linear-gradient(bottom, #2d5986 7%, #336699 70%);
+  background-image: none, none, linear-gradient(to top, #2d5986 7%, #336699 70%);
+  background-repeat: no-repeat, repeat, no-repeat;
+  background-position: 20% bottom, left center, left center;
+  -moz-background-size: auto 65%, auto, auto;
+  -o-background-size: auto 65%, auto, auto;
+  background-size: auto 65%, auto, auto;
   box-shadow: rgba(0, 0, 0, 0.4) 2px 2px 8px;
   display: none;
   color: #fff;
@@ -580,4 +598,11 @@ a {
 }
 #UserNameView {
   padding: 1em;
+}
+.background-tree {
+  position: absolute;
+  z-index: -100;
+  bottom: 0;
+  left: 0;
+  height: 75%;
 }

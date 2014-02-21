@@ -121,6 +121,9 @@
     <Content Include="Images\email.svg" />
     <Content Include="Images\QRCode.svg" />
     <Content Include="Images\icon-152x152.png" />
+    <Content Include="Images\Screenshots\InCharge.png" />
+    <Content Include="Images\Screenshots\Timer.png" />
+    <Content Include="Images\Screenshots\Voted.png" />
     <Content Include="Images\Time.svg" />
     <Content Include="Images\icon.svg" />
     <Content Include="Images\Lock.gif" />
@@ -128,6 +131,7 @@
     <Content Include="Images\google.png" />
     <Content Include="Images\Share.gif" />
     <Content Include="Images\Share.svg" />
+    <Content Include="Images\Tree.png" />
     <Content Include="Images\twitter.png" />
     <Content Include="Images\Unlock.gif" />
     <Content Include="Images\Unlock.svg" />
