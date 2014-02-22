@@ -139,9 +139,8 @@ a {
 }
 .icon-timer,
 .ui-input .icon-timer {
-  padding-left: 2.2em;
-  background-image: url('../Images/Time.svg');
-  background-position: left center;
+  padding-left: 2.7em;
+  background-position: 0.5em center;
   background-size: 1.7em 1.7em;
   background-repeat: no-repeat;
 }
@@ -575,6 +574,9 @@ a {
 }
 .icon-qr-code {
   background-image: url('../Images/QRCode.svg');
+}
+.icon-timer {
+  background-image: url('../Images/Time.svg');
 }
 .show-qrCode {
   position: absolute;

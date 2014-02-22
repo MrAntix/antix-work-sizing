@@ -103,9 +103,7 @@ a{
     width:100%;
     height:100%;
 }
-.ui-input button{
-    
-}
+
 .ui-input-button{
     position:absolute;
     top:0;bottom:0;
@@ -119,14 +117,12 @@ a{
 }
 
 .icon-timer,
-.ui-input .icon-timer{
-    padding-left: @iconSize + @borderWidth;
+.ui-input .icon-timer {
+    padding-left: @iconSize + @borderWidth *2;
 
-    background-image: url('../Images/Time.svg');
-    background-position: left center;
+    background-position: @borderWidth center;
     background-size: @iconSize @iconSize;
     background-repeat: no-repeat;
-
 }
 
 #HelpContainer{
@@ -542,13 +538,14 @@ a{
 .icon-user-inactive{
     background-image: url('../Images/User_inactive.svg');
 }
-
 .icon-share{
     background-image: url('../Images/Share.svg');
 }
-
 .icon-qr-code{
     background-image: url('../Images/QRCode.svg');
+}
+.icon-timer{
+    background-image: url('../Images/Time.svg');
 }
 
 .show-qrCode{    
