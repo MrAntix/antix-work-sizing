@@ -1,8 +1,9 @@
 ﻿define("HelpView", function() {
     var logger = require("logger"),
         window = require("window"),
-        document = require("document"),
-        ui = require("ui");
+        ui = require("ui"),
+        namespace = ".showHelp",
+        touchClick = ui.touchClick + namespace;
 
     return function ($el, itemsSelector) {
 
@@ -30,7 +31,7 @@
                 position: "absolute"
             });
 
-        $(".showHelp").on(ui.touchClick, function () {
+        $(".showHelp").on(touchClick, function () {
             index = -1;
             $el.show();
             view.showNext();
@@ -56,7 +57,7 @@
                     })
                     .hide();
 
-                $(window).off(".helpView");
+                $(window).off(namespace);
             },
             
             showNext: function() {
@@ -81,7 +82,7 @@
 
                 view.resize(true);
 
-                $(window).on("resize.helpView", view.resize);
+                $(window).on("resize" + namespace, view.resize);
             },
             resize:function(animate) {
                 var $item = $help.eq(index).show();
@@ -95,8 +96,13 @@
                 var height = $el.outerHeight(),
                     left = parentOffset.left + 15,
                     top = parentOffset.top - height - 5;
+                logger.log("top:" + top);
+                logger.log("windowScrollTop:" + windowScrollTop);
+
                 $el.removeClass("below");
                 if (top < 0) {
+                    logger.log("top<0");
+
                     top = parentOffset.top + $parent.outerHeight() + 5;
                     $el.addClass("below");
 
@@ -110,7 +116,7 @@
                 }
                 
                 if (windowScrollTop > top) {
-                    windowScrollTop = windowScrollTop - top;
+                    windowScrollTop = top;
                 }
 
                 $("html,body").animate({ scrollTop: windowScrollTop+"px" });
@@ -144,14 +150,14 @@
         };
 
         $el.find(".next")
-            .on(ui.touchClick, function () {
+            .on(touchClick, function () {
                 view.showNext();
 
                 this.blur();
                 return false;
             });
 
-        $(window).on(ui.touchClick, view.hide);
+        $(window).on(touchClick, view.hide);
 
         return view;
     };
