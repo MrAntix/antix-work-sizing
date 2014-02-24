@@ -361,7 +361,7 @@ noscript p{
 	        width: @iconSize+@borderWidth;
 	        height: auto;
 	
-	        background-image: url('../Images/User.png');
+	        background-image: url('../Images/User.svg');
 	        background-position: @borderWidth center;
 	        background-size: @iconSize @iconSize;
 	        background-repeat: no-repeat;
@@ -371,13 +371,13 @@ noscript p{
 	    }
 	    .withSelector input[type='checkbox']:checked + label
 	    {
-	        background-image: url('../Images/User_inactive.png');
+	        background-image: url('../Images/User_inactive.svg');
 	    }
 
 
 .story .title .withAction .action {
     
-    background-image: url('../Images/Lock.png');
+    background-image: url('../Images/Lock.svg');
     background-position: center center;
     background-size: (@iconSize*2) (@iconSize*2);
     background-repeat: no-repeat;
@@ -387,7 +387,7 @@ noscript p{
 }
 
 .story .title .withAction .action.active {
-    background-image: url('../Images/Unlock.png');
+    background-image: url('../Images/Unlock.svg');
 }
 
 .story [name='title']{
@@ -435,7 +435,6 @@ noscript p{
     min-width:3em;
 
     line-height:@rowHeight;
-    background-position: left center;
 }
 
 .story .points .action
@@ -470,28 +469,18 @@ noscript p{
         border:solid @borderWidth rgba(255,255,255,.1);
     }
 
-.users .input {
-    padding-left: (@borderWidth*2 + @iconSize);
-    padding-right: (@borderWidth);
-    margin-bottom:@borderWidth;
+.users .input .activate
+{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: @iconSize+@borderWidth;
 }
-.users .input .activate{
-    .rounded;
-    position:absolute;
-    left:@borderWidth; width:(@borderWidth + @iconSize);
-    top:@borderWidth; bottom:@borderWidth;
-
-    background-image: url('../Images/User.png');
-    background-position: center;
-    background-size: @iconSize @iconSize;
-    background-repeat: no-repeat;
-
-    cursor:pointer;
+.users .withIcon{
+    background-position: @borderWidth*2 center;
 }
 
-.users .input.inactive .activate{
-    background-image: url('../Images/User_inactive.png');
-}
 .input.voted{
     background-color:@selectedBackgroundColor;
 }
@@ -543,19 +532,19 @@ noscript p{
     background-image:url('../images/google.png');
 }
 .icon-user{
-    background-image: url('../Images/User.png');
+    background-image: url('../Images/User.svg');
 }
-.icon-user-inactive{
-    background-image: url('../Images/User_inactive.png');
+.inactive.icon-user{
+    background-image: url('../Images/User_inactive.svg');
 }
 .icon-share{
-    background-image: url('../Images/Share.png');
+    background-image: url('../Images/Share.svg');
 }
 .icon-qr-code{
-    background-image: url('../Images/QRCode.png');
+    background-image: url('../Images/QRCode.svg');
 }
 .icon-timer{
-    background-image: url('../Images/Time.png');
+    background-image: url('../Images/Time.svg');
 }
 
 .show-qrCode{    

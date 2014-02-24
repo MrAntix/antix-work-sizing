@@ -363,7 +363,7 @@ noscript p {
   left: 6px;
   width: 29px;
   height: auto;
-  background-image: url('../Images/User.png');
+  background-image: url('../Images/User.svg');
   background-position: 6px center;
   background-size: 23px 23px;
   background-repeat: no-repeat;
@@ -371,10 +371,10 @@ noscript p {
   text-indent: -10000px;
 }
 .withSelector input[type='checkbox']:checked + label {
-  background-image: url('../Images/User_inactive.png');
+  background-image: url('../Images/User_inactive.svg');
 }
 .story .title .withAction .action {
-  background-image: url('../Images/Lock.png');
+  background-image: url('../Images/Lock.svg');
   background-position: center center;
   background-size: 46px 46px;
   background-repeat: no-repeat;
@@ -382,7 +382,7 @@ noscript p {
   overflow: hidden;
 }
 .story .title .withAction .action.active {
-  background-image: url('../Images/Unlock.png');
+  background-image: url('../Images/Unlock.svg');
 }
 .story [name='title'] {
   font-size: 1.25em;
@@ -431,7 +431,6 @@ noscript p {
   left: 9px;
   min-width: 3em;
   line-height: 45px;
-  background-position: left center;
 }
 .story .points .action {
   -ms-box-sizing: border-box;
@@ -469,26 +468,15 @@ noscript p {
   box-sizing: border-box;
   border: solid 6px rgba(255, 255, 255, 0.1);
 }
-.users .input {
-  padding-left: 35px;
-  padding-right: 6px;
-  margin-bottom: 6px;
-}
 .users .input .activate {
-  border-radius: .2em;
   position: absolute;
-  left: 6px;
+  top: 0;
+  bottom: 0;
+  left: 0;
   width: 29px;
-  top: 6px;
-  bottom: 6px;
-  background-image: url('../Images/User.png');
-  background-position: center;
-  background-size: 23px 23px;
-  background-repeat: no-repeat;
-  cursor: pointer;
 }
-.users .input.inactive .activate {
-  background-image: url('../Images/User_inactive.png');
+.users .withIcon {
+  background-position: 12px center;
 }
 .input.voted {
   background-color: #bbeedd;
@@ -576,19 +564,19 @@ noscript p {
   background-image: url('../images/google.png');
 }
 .icon-user {
-  background-image: url('../Images/User.png');
+  background-image: url('../Images/User.svg');
 }
-.icon-user-inactive {
-  background-image: url('../Images/User_inactive.png');
+.inactive.icon-user {
+  background-image: url('../Images/User_inactive.svg');
 }
 .icon-share {
-  background-image: url('../Images/Share.png');
+  background-image: url('../Images/Share.svg');
 }
 .icon-qr-code {
-  background-image: url('../Images/QRCode.png');
+  background-image: url('../Images/QRCode.svg');
 }
 .icon-timer {
-  background-image: url('../Images/Time.png');
+  background-image: url('../Images/Time.svg');
 }
 .show-qrCode {
   position: absolute;
