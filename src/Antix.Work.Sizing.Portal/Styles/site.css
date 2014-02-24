@@ -4,6 +4,39 @@
 .shadowed {
   box-shadow: rgba(0, 0, 0, 0.4) 2px 2px 8px;
 }
+.icon {
+  float: right;
+  overflow: hidden;
+  width: 24px;
+  height: 0;
+  padding-top: 24px;
+  background-size: 24px 24px;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 2px;
+}
+.icon-twitter {
+  background-image: url('../images/twitter.png');
+}
+.icon-google {
+  background-image: url('../images/google.png');
+}
+.icon-user {
+  background-image: url('../Images/User.svg');
+}
+.inactive .icon-user,
+.withSelector input[type='checkbox']:checked + label {
+  background-image: url('../Images/User_inactive.svg');
+}
+.icon-share {
+  background-image: url('../Images/Share.svg');
+}
+.icon-qr-code {
+  background-image: url('../Images/QRCode.svg');
+}
+.icon-timer {
+  background-image: url('../Images/Time.svg');
+}
 html {
   min-height: 100%;
 }
@@ -94,6 +127,9 @@ noscript p {
 .footer p.hover a {
   color: #fff;
 }
+.footer .icon {
+  margin: 0 0 0 6px;
+}
 .box {
   -ms-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -149,9 +185,9 @@ noscript p {
 }
 .icon-timer,
 .ui-input .icon-timer {
-  padding-left: 35px;
+  padding-left: 36px;
   background-position: 6px center;
-  background-size: 23px 23px;
+  background-size: 24px 24px;
   background-repeat: no-repeat;
 }
 #HelpContainer {
@@ -298,16 +334,16 @@ noscript p {
 }
 .withIcon {
   padding: 6px;
-  padding-left: 35px;
+  padding-left: 36px;
   background-position: 6px center;
-  background-size: 23px 23px;
+  background-size: 24px 24px;
   background-repeat: no-repeat;
 }
 #HelpContainer .withIcon {
   padding: 0;
-  padding-left: 23px;
+  padding-left: 24px;
   background-position: 4px center;
-  background-size: 15.333333333333334px 15.333333333333334px;
+  background-size: 16px 16px;
 }
 .withAction {
   padding-right: 22%;
@@ -362,7 +398,7 @@ noscript p {
   box-shadow: none;
 }
 .withSelector {
-  padding-left: 35px;
+  padding-left: 36px;
 }
 .withSelector > [type='checkbox'],
 .withSelector > [type='radio'] {
@@ -373,22 +409,18 @@ noscript p {
   top: 6px;
   bottom: 6px;
   left: 6px;
-  width: 29px;
+  width: 30px;
   height: auto;
-  background-image: url('../Images/User.svg');
   background-position: 6px center;
-  background-size: 23px 23px;
+  background-size: 24px 24px;
   background-repeat: no-repeat;
   cursor: pointer;
   text-indent: -10000px;
 }
-.withSelector input[type='checkbox']:checked + label {
-  background-image: url('../Images/User_inactive.svg');
-}
 .story .title .withAction .action {
   background-image: url('../Images/Lock.svg');
   background-position: center center;
-  background-size: 46px 46px;
+  background-size: 48px 48px;
   background-repeat: no-repeat;
   padding-top: 4.25em;
   overflow: hidden;
@@ -484,8 +516,8 @@ noscript p {
   position: absolute;
   top: 6px;
   bottom: 6px;
-  left: 6px;
-  width: 23px;
+  left: 12px;
+  width: 24px;
   height: auto;
   cursor: pointer;
 }
@@ -560,38 +592,6 @@ noscript p {
 }
 .dialogContainer .withAction button {
   border: none;
-}
-.icon {
-  float: right;
-  overflow: hidden;
-  width: 24px;
-  height: 0;
-  margin: 0 0 0 6px;
-  padding-top: 24px;
-  background-repeat: no-repeat;
-  background-position: center;
-  border-radius: 2px;
-}
-.icon-twitter {
-  background-image: url('../images/twitter.png');
-}
-.icon-google {
-  background-image: url('../images/google.png');
-}
-.icon-user {
-  background-image: url('../Images/User.svg');
-}
-.inactive .icon-user {
-  background-image: url('../Images/User_inactive.svg');
-}
-.icon-share {
-  background-image: url('../Images/Share.svg');
-}
-.icon-qr-code {
-  background-image: url('../Images/QRCode.svg');
-}
-.icon-timer {
-  background-image: url('../Images/Time.svg');
 }
 .show-qrCode {
   position: absolute;

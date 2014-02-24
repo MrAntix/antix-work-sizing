@@ -1,4 +1,5 @@
 ﻿@import url('imports/vars.less');
+@import url('imports/icons.less');
 
 html{min-height:100%;}
 html,body{width:100%;margin:0;padding:0;}
@@ -68,6 +69,10 @@ noscript p{
 .footer p:hover a,
 .footer p.hover a{
     color:#fff;
+}
+
+.footer .icon{
+    margin:0 0 0 6px;
 }
 
 .box{
@@ -374,17 +379,12 @@ noscript p{
 	        width: @iconSize+@borderWidth;
 	        height: auto;
 	
-	        background-image: url('../Images/User.svg');
 	        background-position: @borderWidth center;
 	        background-size: @iconSize @iconSize;
 	        background-repeat: no-repeat;
 	
 	        cursor: pointer;
 	        text-indent: -10000px;
-	    }
-	    .withSelector input[type='checkbox']:checked + label
-	    {
-	        background-image: url('../Images/User_inactive.svg');
 	    }
 
 
@@ -487,7 +487,7 @@ noscript p{
     position: absolute;
     top: @borderWidth;
     bottom: @borderWidth;
-    left: @borderWidth;
+    left: @borderWidth*2;
     width: @iconSize;
     height:auto;
     cursor:pointer;
@@ -528,40 +528,6 @@ noscript p{
 }
 
 @import url(dialog.less);
-
-.icon{
-    float:right;
-    overflow:hidden;
-    width:24px;height:0;
-
-    margin:0 0 0 6px;
-    padding-top:24px;
-
-    background-repeat:no-repeat;
-    background-position: center;
-    border-radius:2px;
-}
-.icon-twitter{
-    background-image:url('../images/twitter.png');
-}
-.icon-google{
-    background-image:url('../images/google.png');
-}
-.icon-user{
-    background-image: url('../Images/User.svg');
-}
-.inactive .icon-user{
-    background-image: url('../Images/User_inactive.svg');
-}
-.icon-share{
-    background-image: url('../Images/Share.svg');
-}
-.icon-qr-code{
-    background-image: url('../Images/QRCode.svg');
-}
-.icon-timer{
-    background-image: url('../Images/Time.svg');
-}
 
 .show-qrCode{    
     position:absolute;

@@ -1,0 +1,39 @@
+.rounded {
+  border-radius: .2em;
+}
+.shadowed {
+  box-shadow: rgba(0, 0, 0, 0.4) 2px 2px 8px;
+}
+.icon {
+  float: right;
+  overflow: hidden;
+  width: 24px;
+  height: 0;
+  padding-top: 24px;
+  background-size: 24px 24px;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 2px;
+}
+.icon-twitter {
+  background-image: url('../images/twitter.png');
+}
+.icon-google {
+  background-image: url('../images/google.png');
+}
+.icon-user {
+  background-image: url('../Images/User.svg');
+}
+.inactive .icon-user,
+.withSelector input[type='checkbox']:checked + label {
+  background-image: url('../Images/User_inactive.svg');
+}
+.icon-share {
+  background-image: url('../Images/Share.svg');
+}
+.icon-qr-code {
+  background-image: url('../Images/QRCode.svg');
+}
+.icon-timer {
+  background-image: url('../Images/Time.svg');
+}

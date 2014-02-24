@@ -190,6 +190,12 @@
     <Content Include="Styles\ie\site.min.css">
       <DependentUpon>site.less</DependentUpon>
     </Content>
+    <Content Include="Styles\icons.css">
+      <DependentUpon>icons.less</DependentUpon>
+    </Content>
+    <Content Include="Styles\icons.min.css">
+      <DependentUpon>icons.less</DependentUpon>
+    </Content>
     <Content Include="Styles\imports\vars.css">
       <DependentUpon>vars.less</DependentUpon>
     </Content>
@@ -237,6 +243,7 @@
     <Content Include="Scripts\jquery-2.0.3.min.js.map">
       <DependentUpon>jquery-2.0.3.js</DependentUpon>
     </Content>
+    <Content Include="Styles\icons.less" />
     <None Include="Web.Amazon.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
