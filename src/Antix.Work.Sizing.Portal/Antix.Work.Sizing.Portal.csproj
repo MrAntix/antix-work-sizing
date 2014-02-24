@@ -119,11 +119,15 @@
     <Content Include="Global.asax" />
     <Content Include="Images\body-back.png" />
     <Content Include="Images\email.svg" />
+    <Content Include="Images\Lock.png" />
+    <Content Include="Images\QRCode.png" />
     <Content Include="Images\QRCode.svg" />
     <Content Include="Images\icon-152x152.png" />
     <Content Include="Images\Screenshots\InCharge.png" />
     <Content Include="Images\Screenshots\Timer.png" />
     <Content Include="Images\Screenshots\Voted.png" />
+    <Content Include="Images\Share.png" />
+    <Content Include="Images\Time.png" />
     <Content Include="Images\Time.svg" />
     <Content Include="Images\icon.svg" />
     <Content Include="Images\Lock.gif" />
@@ -134,8 +138,10 @@
     <Content Include="Images\Tree.png" />
     <Content Include="Images\twitter.png" />
     <Content Include="Images\Unlock.gif" />
+    <Content Include="Images\Unlock.png" />
     <Content Include="Images\Unlock.svg" />
     <Content Include="Images\User.gif" />
+    <Content Include="Images\User.png" />
     <Content Include="Images\User.svg" />
     <Content Include="Images\User_current.gif" />
     <Content Include="Images\User_inactive.svg" />

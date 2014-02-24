@@ -72,7 +72,10 @@
                     restart();
                 };
 
-                $(".page").fadeIn();
+                $(".body")
+                    .hide()
+                    .css({ visibility: "visible" })
+                    .fadeIn();
             }
         };
     };

@@ -33,15 +33,24 @@ a{
     overflow:hidden;
 
     min-width:300px;max-width:600px;
-    min-height:100%;
+    min-height:300px;
 
     margin:0 auto;
     padding: 1em;
-
-    display:none;
 }
 .body{
     min-height:300px;
+    visibility:hidden;
+}
+noscript p{
+    .box;
+    .rounded;
+    
+    padding: 1em;
+
+    margin-top:200px;
+    background-color:@inputReadonlyBackgroundColor;
+    color:@inputReadonlyColor;
 }
 
 .footer p {
@@ -231,7 +240,7 @@ a{
 
     display:block;
     width:100%;
-    height:100%;
+    height:100%;min-height:33px;
     border:none;
     
     padding:@borderWidth;
@@ -284,7 +293,7 @@ a{
 }
 
 .withAction{
-    padding-right:@buttonWidth + (@borderWidth*4);
+    padding-right:@buttonWidth + 2;
 }
 .withAction .action{
     .rounded;
@@ -305,7 +314,7 @@ a{
 @media only screen and (max-width: 500px) {
 
     .withAction {
-        padding-right: (@buttonWidth*1.4) + (@borderWidth*4);
+        padding-right: (@buttonWidth*1.4) + 2;
     }
 
         .withAction .action {
@@ -318,7 +327,7 @@ a{
 @media only screen and (max-width: 360px) {
 
     .withAction {
-        padding-right: (@buttonWidth*1.6) + (@borderWidth*4);
+        padding-right: (@buttonWidth*1.6) + 2;
     }
 
         .withAction .action {
@@ -352,7 +361,7 @@ a{
 	        width: @iconSize+@borderWidth;
 	        height: auto;
 	
-	        background-image: url('../Images/User.svg');
+	        background-image: url('../Images/User.png');
 	        background-position: @borderWidth center;
 	        background-size: @iconSize @iconSize;
 	        background-repeat: no-repeat;
@@ -362,13 +371,13 @@ a{
 	    }
 	    .withSelector input[type='checkbox']:checked + label
 	    {
-	        background-image: url('../Images/User_inactive.svg');
+	        background-image: url('../Images/User_inactive.png');
 	    }
 
 
 .story .title .withAction .action {
     
-    background-image: url('../Images/Lock.svg');
+    background-image: url('../Images/Lock.png');
     background-position: center center;
     background-size: (@iconSize*2) (@iconSize*2);
     background-repeat: no-repeat;
@@ -378,7 +387,7 @@ a{
 }
 
 .story .title .withAction .action.active {
-    background-image: url('../Images/Unlock.svg');
+    background-image: url('../Images/Unlock.png');
 }
 
 .story [name='title']{
@@ -391,15 +400,15 @@ a{
     }
 
 .story .points .input {
-    min-height: 3em + (@borderWidth * 2);
+    min-height: @rowHeight + (@borderWidth * 2);
 }
 .story .points .results{
-    min-height:3em;
+    min-height:@rowHeight;
 }
 .story .points .result {
     .box;
     float: left;
-    width:100%;min-height:45px;
+    width:100%;min-height:@rowHeight;
     margin: 0;
     padding: @borderWidth;
     border: solid @borderWidth transparent;
@@ -410,7 +419,7 @@ a{
     .box;
     .rounded;
     float:right;
-    min-height:47px;
+    min-height:@rowHeight;
     line-height:37px;
     padding: 0;
     border: none;
@@ -425,7 +434,8 @@ a{
     left:@borderWidth * 1.5;
     min-width:3em;
 
-    line-height:3em;
+    line-height:@rowHeight;
+    background-position: left center;
 }
 
 .story .points .action
@@ -471,7 +481,7 @@ a{
     left:@borderWidth; width:(@borderWidth + @iconSize);
     top:@borderWidth; bottom:@borderWidth;
 
-    background-image: url('../Images/User.svg');
+    background-image: url('../Images/User.png');
     background-position: center;
     background-size: @iconSize @iconSize;
     background-repeat: no-repeat;
@@ -480,7 +490,7 @@ a{
 }
 
 .users .input.inactive .activate{
-    background-image: url('../Images/User_inactive.svg');
+    background-image: url('../Images/User_inactive.png');
 }
 .input.voted{
     background-color:@selectedBackgroundColor;
@@ -533,19 +543,19 @@ a{
     background-image:url('../images/google.png');
 }
 .icon-user{
-    background-image: url('../Images/User.svg');
+    background-image: url('../Images/User.png');
 }
 .icon-user-inactive{
-    background-image: url('../Images/User_inactive.svg');
+    background-image: url('../Images/User_inactive.png');
 }
 .icon-share{
-    background-image: url('../Images/Share.svg');
+    background-image: url('../Images/Share.png');
 }
 .icon-qr-code{
-    background-image: url('../Images/QRCode.svg');
+    background-image: url('../Images/QRCode.png');
 }
 .icon-timer{
-    background-image: url('../Images/Time.svg');
+    background-image: url('../Images/Time.png');
 }
 
 .show-qrCode{    
