@@ -258,7 +258,7 @@
                 $users.empty();
                 $.each(view.model.team.Users, function() {
                     var userName = this.Name,
-                        $row = $("<li class='input withIcon icon-user'><span class='activate'/></li>"),
+                        $row = $("<li class='input withIcon'><span class='activate icon icon-user'/></li>"),
                         $input = $("<input type='text' name='person.Name'/>")
                             .val(userName);
 

@@ -236,7 +236,6 @@ noscript p {
   -ms-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  border-radius: .2em;
   position: relative;
   display: block;
   overflow: auto;
@@ -244,6 +243,19 @@ noscript p {
   color: #333333;
   padding: 6px;
   box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+.input:first-child {
+  border-radius: .2em;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.input:last-child {
+  border-radius: .2em;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+.input:first-child:last-child {
+  border-radius: .2em;
 }
 .input input,
 .input textarea,
@@ -428,7 +440,7 @@ noscript p {
   position: absolute;
   top: 6px;
   bottom: 6px;
-  left: 9px;
+  left: 6px;
   min-width: 3em;
   line-height: 45px;
 }
@@ -470,10 +482,12 @@ noscript p {
 }
 .users .input .activate {
   position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  width: 29px;
+  top: 6px;
+  bottom: 6px;
+  left: 6px;
+  width: 23px;
+  height: auto;
+  cursor: pointer;
 }
 .users .withIcon {
   background-position: 12px center;
@@ -555,6 +569,7 @@ noscript p {
   margin: 0 0 0 6px;
   padding-top: 24px;
   background-repeat: no-repeat;
+  background-position: center;
   border-radius: 2px;
 }
 .icon-twitter {
@@ -566,7 +581,7 @@ noscript p {
 .icon-user {
   background-image: url('../Images/User.svg');
 }
-.inactive.icon-user {
+.inactive .icon-user {
   background-image: url('../Images/User_inactive.svg');
 }
 .icon-share {

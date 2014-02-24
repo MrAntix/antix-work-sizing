@@ -219,7 +219,6 @@ noscript p{
 
 .input{
     .box;
-    .rounded;
     position:relative;
     display:block;
     overflow:auto;
@@ -230,6 +229,20 @@ noscript p{
 
     box-shadow:inset 1px 1px 2px rgba(0,0,0,.1);
 }
+.input:first-child{
+    .rounded;
+    border-bottom-left-radius:0;
+    border-bottom-right-radius:0;
+}
+.input:last-child{
+    .rounded;
+    border-top-left-radius:0;
+    border-top-right-radius:0;
+}
+.input:first-child:last-child{
+    .rounded;
+}
+
 .input input,
 .input textarea,
 .input select,
@@ -431,7 +444,7 @@ noscript p{
     .box;
     position:absolute;
     top:@borderWidth;bottom:@borderWidth;
-    left:@borderWidth * 1.5;
+    left:@borderWidth;
     min-width:3em;
 
     line-height:@rowHeight;
@@ -472,10 +485,12 @@ noscript p{
 .users .input .activate
 {
     position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    width: @iconSize+@borderWidth;
+    top: @borderWidth;
+    bottom: @borderWidth;
+    left: @borderWidth;
+    width: @iconSize;
+    height:auto;
+    cursor:pointer;
 }
 .users .withIcon{
     background-position: @borderWidth*2 center;
@@ -523,6 +538,7 @@ noscript p{
     padding-top:24px;
 
     background-repeat:no-repeat;
+    background-position: center;
     border-radius:2px;
 }
 .icon-twitter{
@@ -534,7 +550,7 @@ noscript p{
 .icon-user{
     background-image: url('../Images/User.svg');
 }
-.inactive.icon-user{
+.inactive .icon-user{
     background-image: url('../Images/User_inactive.svg');
 }
 .icon-share{
