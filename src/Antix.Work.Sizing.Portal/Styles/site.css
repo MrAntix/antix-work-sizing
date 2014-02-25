@@ -37,6 +37,9 @@
 .icon-timer {
   background-image: url('../Images/Time.svg');
 }
+.icon-feedback {
+  background-image: url('../Images/Star.svg');
+}
 html {
   min-height: 100%;
 }

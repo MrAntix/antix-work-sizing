@@ -127,6 +127,7 @@
     <Content Include="Images\Screenshots\Timer.png" />
     <Content Include="Images\Screenshots\Voted.png" />
     <Content Include="Images\Share.png" />
+    <Content Include="Images\Star.svg" />
     <Content Include="Images\Time.png" />
     <Content Include="Images\Time.svg" />
     <Content Include="Images\icon.svg" />
