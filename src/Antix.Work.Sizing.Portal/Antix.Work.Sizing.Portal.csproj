@@ -252,6 +252,7 @@
     <Content Include="Styles\icons.less" />
     <None Include="Web.Amazon.config">
       <DependentUpon>Web.config</DependentUpon>
+      <SubType>Designer</SubType>
     </None>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
