@@ -118,6 +118,7 @@
   <ItemGroup>
     <Content Include="Global.asax" />
     <Content Include="Images\body-back.png" />
+    <Content Include="Images\Tree-smooth.svg" />
     <Content Include="Images\email.svg" />
     <Content Include="Images\Lock.png" />
     <Content Include="Images\QRCode.png" />
@@ -137,6 +138,9 @@
     <Content Include="Images\Share.gif" />
     <Content Include="Images\Share.svg" />
     <Content Include="Images\Tree.png" />
+    <Content Include="Images\Tree.svg">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Images\twitter.png" />
     <Content Include="Images\Unlock.gif" />
     <Content Include="Images\Unlock.png" />
@@ -171,6 +175,7 @@
     <Content Include="Scripts\Common\Modules\popup.js" />
     <Content Include="Scripts\Common\Modules\regsiterComponent.js" />
     <Content Include="Scripts\Common\Modules\select.js" />
+    <Content Include="Scripts\GoogleAnalytics\ga.js" />
     <Content Include="Scripts\jquery-2.0.3.js" />
     <Content Include="Scripts\jquery-2.0.3.min.js" />
     <Content Include="Scripts\jquery-ie.js" />

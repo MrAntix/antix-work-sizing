@@ -54,11 +54,11 @@ body {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   background-color: #eeddbb;
-  background-image: url('../Images/Tree.png'), url('../Images/body-back.png'), -o-linear-gradient(bottom, #d4aa55 7%, #eeddbb 70%);
-  background-image: url('../Images/Tree.png'), url('../Images/body-back.png'), -moz-linear-gradient(bottom, #d4aa55 7%, #eeddbb 70%);
-  background-image: url('../Images/Tree.png'), url('../Images/body-back.png'), -webkit-linear-gradient(bottom, #d4aa55 7%, #eeddbb 70%);
-  background-image: url('../Images/Tree.png'), url('../Images/body-back.png'), -ms-linear-gradient(bottom, #d4aa55 7%, #eeddbb 70%);
-  background-image: url('../Images/Tree.png'), url('../Images/body-back.png'), linear-gradient(to top, #d4aa55 7%, #eeddbb 70%);
+  background-image: url('../Images/Tree.svg'), url('../Images/body-back.png'), -o-linear-gradient(bottom, #d4aa55 7%, #eeddbb 70%);
+  background-image: url('../Images/Tree.svg'), url('../Images/body-back.png'), -moz-linear-gradient(bottom, #d4aa55 7%, #eeddbb 70%);
+  background-image: url('../Images/Tree.svg'), url('../Images/body-back.png'), -webkit-linear-gradient(bottom, #d4aa55 7%, #eeddbb 70%);
+  background-image: url('../Images/Tree.svg'), url('../Images/body-back.png'), -ms-linear-gradient(bottom, #d4aa55 7%, #eeddbb 70%);
+  background-image: url('../Images/Tree.svg'), url('../Images/body-back.png'), linear-gradient(to top, #d4aa55 7%, #eeddbb 70%);
   background-repeat: no-repeat, repeat, no-repeat;
   background-position: 75% bottom, left center, left center;
   -moz-background-size: auto 65%, auto, auto;
