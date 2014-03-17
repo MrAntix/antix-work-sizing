@@ -508,6 +508,7 @@ noscript p {
   padding: 18px 6px;
   border: solid 6px #ffffff;
   text-align: center;
+  cursor: pointer;
 }
 .user .points [type='radio'] + label.active {
   -ms-box-sizing: border-box;
