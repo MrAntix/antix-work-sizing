@@ -82,10 +82,14 @@ a {
   font-size: 1em;
   color: #666666;
 }
+.header {
+    -ms-user-select: none;
+    user-select: none;
+}
 .header h1 {
-  font-size: 12em;
-  margin: -0.2em 0 -0.8em;
-  color: #f0e1c3;
+    font-size: 12em;
+    margin: -0.2em 0 -0.8em;
+    color: #f0e1c3;
 }
 .page {
   -ms-box-sizing: border-box;

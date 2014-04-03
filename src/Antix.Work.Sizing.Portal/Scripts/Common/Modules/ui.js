@@ -1,10 +1,21 @@
 ﻿define("ui", function () {
     var document = require("document"),
-        touch = "ontouchend" in document;
+        pointer = "onpointerdown" in document;
     
     return {
-        touch: touch,
-        touchClick: touch ? "touchstart" : "click",
+        pointer: pointer,
+        getEvent: function (eventNames, namespace) {
+            if (namespace) namespace = '.' + namespace;
+
+            return $.grep(eventNames, function (eventName) {
+                return eventName + namespace;
+            }).join(" ");
+        },
+        getClickEvent: function (namespace) {
+            return this.getEvent(
+                pointer ? ["pointerdown"] : ["click"],
+                namespace);
+        },
         css: {
             input: "ui-input",
             inputButton: "ui-input-button",

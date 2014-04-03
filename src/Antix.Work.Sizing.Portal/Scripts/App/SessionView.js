@@ -1,6 +1,7 @@
 ﻿define("SessionView", function() {
     var logger = require("logger"),
-        ui = require("ui");
+        ui = require("ui"),
+        clickEvent = ui.getClickEvent();
 
     require("select");
 
@@ -54,7 +55,7 @@
                 $story.off("keyup")
                     .attr("readonly", true)
                     .parent().addClass("readonly");
-                $action.attr("disabled", true).off(ui.touchClick).removeClass("active");
+                $action.attr("disabled", true).off(clickEvent).removeClass("active");
 
                 view.model.user.isOwner = false;
                 if (!view.model.team
@@ -79,7 +80,7 @@
 
                     } else {
                         $action.text("")
-                            .on(ui.touchClick, function () {
+                            .on(clickEvent, function () {
                                 lock();
                                 this.blur();
                                 return false;
@@ -113,7 +114,7 @@
                 $storyPoints.removeClass("withAction");
                 $storyPointsAction.hide();
                 $storyPointsActionList.data("antix.uiSelect").hideButton();
-                $storyPointsActionButton.off(ui.touchClick);
+                $storyPointsActionButton.off(clickEvent);
               
                 if (view.model.team.CurrentStory
                     && view.model.user.Name === view.model.team.CurrentStoryOwner) {
@@ -123,13 +124,13 @@
                     if (view.model.team.CurrentStoryResult) {
                         $storyPointsActionButton
                             .text("Clear")
-                            .on(ui.touchClick, function () {
+                            .on(clickEvent, function () {
                                 $el.trigger("clear-votes");
                             });
                     } else if (view.model.team.CurrentStory.VotingOpen) {
                         $storyPointsActionButton
                             .text("Close")
-                            .on(ui.touchClick, function () {
+                            .on(clickEvent, function () {
                                 $el.trigger("close-voting");
                             });
                     } else {
@@ -138,7 +139,7 @@
                             $storyPointsActionButton
                                 .text("Open")
                                 .attr("class", "")
-                                .on(ui.touchClick, function() {
+                                .on(clickEvent, function() {
                                     $el.trigger("open-voting");
                                 });
                         } else {
@@ -149,7 +150,7 @@
                                 .showButton();
                             
                             $storyPointsActionButton
-                                .on(ui.touchClick, function () {
+                                .on(clickEvent, function () {
                                     $el.trigger("open-voting", view.delay);
                                 });
                         }
@@ -213,7 +214,7 @@
             },
             renderUserPoints = function() {
                 $userPoints
-                    .off("change " + ui.touchClick)
+                    .off("change " + clickEvent)
                     .attr({ disabled: true });
                 $userPointsContainer
                     .find("label")
@@ -264,7 +265,7 @@
 
                     if (userName === view.model.user.Name) {
                         $input
-                            .on(ui.touchClick, function () { return false; })
+                            .on(clickEvent, function () { return false; })
                             .on("change", function() {
                                 $el.trigger("user-change-name", $input.val());
                             });
@@ -276,7 +277,7 @@
                     if (userName === view.model.user.Name
                         || view.model.user.Name === view.model.team.CurrentStoryOwner) {
                         $row.find(".activate")
-                            .on(ui.touchClick, function () {
+                            .on(clickEvent, function () {
                                 $el.trigger("user-change-observer", [userName, !$row.hasClass("inactive")]);
                                 return false;
                             });
@@ -297,7 +298,7 @@
 
                 $demoButton
                     .attr("disabled", true)
-                    .off(ui.touchClick);
+                    .off(clickEvent);
 
                 if (!view.model.team.CurrentStoryOwner
                     || (view.model.team.CurrentStory
@@ -305,7 +306,7 @@
 
                     $demoButton
                         .attr("disabled", false)
-                        .on(ui.touchClick, function () {
+                        .on(clickEvent, function () {
                             $el.trigger("demo-toggle");
                         });
                 }

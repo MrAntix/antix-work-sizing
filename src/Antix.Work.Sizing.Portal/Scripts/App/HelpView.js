@@ -2,8 +2,8 @@
     var logger = require("logger"),
         window = require("window"),
         ui = require("ui"),
-        namespace = ".showHelp",
-        touchClick = ui.touchClick + namespace;
+        namespace = "showHelp",
+        clickEvent = ui.getClickEvent(namespace);
 
     return function ($el, itemsSelector) {
 
@@ -31,7 +31,7 @@
                 position: "absolute"
             });
 
-        $(".showHelp").on(touchClick, function () {
+        $(".showHelp").on(clickEvent, function () {
             index = -1;
             $el.show();
             view.showNext();
@@ -57,7 +57,7 @@
                     })
                     .hide();
 
-                $(window).off(namespace);
+                $(window).off('.' + namespace);
             },
             
             showNext: function() {
@@ -82,7 +82,7 @@
 
                 view.resize(true);
 
-                $(window).on("resize" + namespace, view.resize);
+                $(window).on("resize." + namespace, view.resize);
             },
             resize:function(animate) {
                 var $item = $help.eq(index).show();
@@ -150,14 +150,14 @@
         };
 
         $el.find(".next")
-            .on(touchClick, function () {
+            .on(clickEvent, function () {
                 view.showNext();
 
                 this.blur();
                 return false;
             });
 
-        $(window).on(touchClick, view.hide);
+        $(window).on(clickEvent, view.hide);
 
         return view;
     };

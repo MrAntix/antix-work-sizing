@@ -2,6 +2,8 @@
     var $ = require("$"), 
         register = require("registerComponent"),
         ui = require("ui"),
+        namespace = 'select',
+        clickEvent = ui.getClickEvent(namespace),
         Popup = require("popup");
 
     var Select = function(element, options) {
@@ -39,7 +41,7 @@
                 comp.add($option.val(), $option.text(), $option.attr("class"));
             });
 
-        comp.$button.on(ui.touchClick, function () {
+        comp.$button.on(clickEvent, function () {
             comp.toggle();
             return false;
         });
@@ -57,7 +59,7 @@
             .addClass(ui.css.selectItem)
             .addClass(cssClass)
             .text(text)
-            .on(ui.touchClick, function() {
+            .on(clickEvent, function() {
                 comp.select(value);
                 comp.hide();
 

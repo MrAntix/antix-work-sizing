@@ -4,6 +4,7 @@
         logger = require("logger"),
         dialog = require("dialog"),
         ui = require("ui"),
+        clickEvent = ui.getClickEvent(),
         qrCode = require("qrCode");
 
     return function ($el) {
@@ -20,7 +21,7 @@
                         
                 );
 
-                $(document).on(ui.touchClick, dialog.hide);
+                $(document).on(clickEvent, dialog.hide);
             },
 
             render:
@@ -31,10 +32,10 @@
                     $locationEl
                         .attr({ href: window.location.href })
                         .text(window.location.href.substr(7))
-                        .on(ui.touchClick, function () { return false; });
+                        .on(clickEvent, function () { return false; });
                     
                     $showQRCodeEl
-                        .on(ui.touchClick, function() {
+                        .on(clickEvent, function() {
                             view.showQRCodeDialog();
                             return false;
                         });

@@ -1,13 +1,15 @@
 ﻿define("popup", function () {
     var $ = require("$"),
         ui = require("ui"),
+        namespace = 'popup',
+        clickEvent = ui.getClickEvent(namespace),
         window = require("window"),
         document = require("document"),
         register = require("registerComponent");
 
     var Popup = function (element, options) {
         var comp = this;
-        
+
         comp.options = options;
 
         comp.$container = $("<div/>")
@@ -28,7 +30,7 @@
         parentElement: null
     };
 
-    Popup.prototype.show = function() {
+    Popup.prototype.show = function () {
         var comp = this;
         if (comp.shown) return;
 
@@ -57,8 +59,8 @@
 
         comp.$container.show();
         comp.shown = true;
-        
-        $(document).on(ui.touchClick, function() { comp.hide(); });
+
+        $(document).on(clickEvent, function () { comp.hide(); });
     };
 
     Popup.prototype.hide = function () {
@@ -68,24 +70,24 @@
         comp.$container.hide();
         comp.shown = false;
 
-        $(document).off(ui.touchClick, function () { comp.hide(); });
+        $(document).off('.' + namespace, function () { comp.hide(); });
     };
 
-    Popup.prototype.toggle = function() {
+    Popup.prototype.toggle = function () {
         var comp = this;
         if (comp.shown) comp.hide();
         else comp.show();
     };
 
     var setPosition = {
-        top: function(elOffset, elSize, popupSize) {
+        top: function (elOffset, elSize, popupSize) {
 
             return {
                 left: elOffset.left + elSize.width - popupSize.width,
                 top: elOffset.top - popupSize.height - 2
             };
         },
-        bottom: function(elOffset, elSize, popupSize) {
+        bottom: function (elOffset, elSize, popupSize) {
             var reach = elOffset.top + elSize.height + popupSize.height + 2;
             if (reach > $(window).height() + $(window).scrollTop()) return false;
 
