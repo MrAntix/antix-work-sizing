@@ -437,7 +437,7 @@ noscript p {
 }
 .story [name='title'] {
   font-size: 1.25em;
-  min-height: 5em;
+  min-height: 5.5em;
 }
 .story [name='title'][readonly] {
   background-color: rgba(255, 255, 255, 0.5);
