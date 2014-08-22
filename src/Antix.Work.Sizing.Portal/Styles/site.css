@@ -1,4 +1,4 @@
-.rounded {
+﻿.rounded {
   border-radius: .2em;
 }
 .shadowed {
@@ -82,14 +82,10 @@ a {
   font-size: 1em;
   color: #666666;
 }
-.header {
-    -ms-user-select: none;
-    user-select: none;
-}
 .header h1 {
-    font-size: 12em;
-    margin: -0.2em 0 -0.8em;
-    color: #f0e1c3;
+  font-size: 12em;
+  margin: -0.2em 0 -0.8em;
+  color: #f0e1c3;
 }
 .page {
   -ms-box-sizing: border-box;
@@ -116,6 +112,10 @@ noscript p {
   margin-top: 200px;
   background-color: rgba(0, 0, 0, 0.05);
   color: rgba(0, 0, 0, 0.8);
+}
+.message-not-supported {
+  text-align: center;
+  padding: 2em;
 }
 .footer p {
   font-size: 1em;
@@ -635,3 +635,4 @@ noscript p {
   left: 0;
   height: 75%;
 }
+/*# sourceMappingURL=site.css.map */

@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="BrowserNotSupported_message" xml:space="preserve">
+    <value>&lt;p&gt;Sorry to say, your browser is not supported&lt;br /&gt;please consider an upgrade&lt;/p&gt;</value>
+  </data>
   <data name="Help_Button" xml:space="preserve">
     <value>help</value>
   </data>

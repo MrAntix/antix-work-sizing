@@ -42,7 +42,7 @@ namespace Antix.Work.Sizing.Portal.Hubs
             return team.ToSession(Context.ConnectionId);
         }
 
-        public override async Task OnDisconnected()
+        public override async Task OnDisconnected(bool stopCalled)
         {
             var team = await _teamService
                                  .TryDisconnect(Context.ConnectionId);
@@ -52,7 +52,7 @@ namespace Antix.Work.Sizing.Portal.Hubs
                     .OthersInGroup(team.Id)
                     .teamUpdate(team.ToTeam());
 
-            await base.OnDisconnected();
+           await base.OnDisconnected(stopCalled);
         }
 
         public async Task<Session> UpdateCurrentUserName(string name)

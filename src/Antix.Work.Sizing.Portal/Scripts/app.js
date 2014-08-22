@@ -2,6 +2,10 @@
 
 ;
 (function ($) {
+
+    if (typeof Object.create !== "function")
+        window.location = "sorry-browser-not-supported.html";
+
     defineInstance('$', $);
     defineInstance('window', window);
     defineInstance('document', document);

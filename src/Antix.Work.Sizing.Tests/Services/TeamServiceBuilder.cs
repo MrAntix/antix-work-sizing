@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 using Antix.Logging;
 using Antix.Work.Sizing.Services;
 using Antix.Work.Sizing.Services.Models;
-
 using Moq;
+
 
 namespace Antix.Work.Sizing.Tests.Services
 {
